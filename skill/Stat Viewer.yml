@@ -1,0 +1,767 @@
+Stat Viewer: 
+  name: 'Stat Viewer'
+  type: 'Passive'
+  max-level: 1
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '0'
+    level-scale: '0'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '0'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'APPLE'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&dStats'
+  - ''
+  - '&fVitality: {attr:Vitality_Value1.value} &fSpirit: {attr:Spirit_Value1.value} &fAquatia: {attr:Aquatia_Value1.value}'
+  - '&fStrength: {attr:Strength_Value1.value} &fIntelligence: {attr:Intelligence_Value1.value} &fEndurance: {attr:Endurance_Value1.value}'
+  - '&fWillpower: {attr:Willpower_Value1.value} &fAgility: {attr:Agility_Value1.value} &fDice: {attr:Dice_Value1.value}'
+  - ''
+  - '&fFireDMG: {attr:FireDMG_Value1.value}% &fLightDMG: {attr:LightDMG_Value1.value}% &fWaterDMG: {attr:WaterDMG_Value1.value}%'
+  - '&fPhysicalDMG: {attr:PhysicalDMG_Value1.value}% &fNeutralDMG: {attr:NeutralDMG_Value1.value}% &fEarthDMG: {attr:EarthDMG_Value1.value}%'
+  - '&fThunderDMG: {attr:ThunderDMG_Value1.value}% &fWindDMG: {attr:WindDMG_Value1.value}% &fDarkDMG: {attr:DarkDMG_Value1.value}%'
+  - ''
+  - '&fFireDEF: {attr:FireDEF_Value1.value}% &fLightDEF: {attr:LightDEF_Value1.value}% &fWaterDEF: {attr:WaterDEF_Value1.value}%'
+  - '&fPhysicalDEF: {attr:PhysicalDEF_Value1.value}% &fNeutralDEF: {attr:NeutralDEF_Value1.value}% &fEarthDEF: {attr:EarthDEF_Value1.value}%'
+  - '&fThunderDEF: {attr:ThunderDEF_Value1.value}% &fWindDEF: {attr:WindDEF_Value1.value}% &fDarkDEF: {attr:DarkDEF_Value1.value}%'
+  - ''
+  - '&fXpBonus: {attr:XpBonus_Value1.value}% &fBaseSpeed: {attr:BaseSpeed_Value1.value}%'
+  desc:  []
+  components: 
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-b: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '1.1010101'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Self-c: 
+              type: 'target'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                indicator: '2D'
+                group: 'enemy'
+                wall: 'false'
+                caster: 'false'
+              children: 
+                Self-d: 
+                  type: 'target'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    indicator: '2D'
+                    group: 'enemy'
+                    wall: 'false'
+                    caster: 'false'
+                  children: 
+                    Value Attribute-e: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'Vitality_Value'
+                        attribute: 'Vitality'
+                        indicator: '2D'
+                      children:  {}
+                    Value Attribute-f: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'Spirit_Value'
+                        attribute: 'Spirit'
+                        indicator: '2D'
+                      children:  {}
+                    Value Attribute-g: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'Aquatia_Value'
+                        attribute: 'Aquatia'
+                        indicator: '2D'
+                      children:  {}
+                    Value Attribute-h: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'Strength_Value'
+                        attribute: 'Strength'
+                        indicator: '2D'
+                      children:  {}
+                    Value Attribute-i: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'Intelligence_Value'
+                        attribute: 'Intelligence'
+                        indicator: '2D'
+                      children:  {}
+                    Value Attribute-j: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'Endurance_Value'
+                        attribute: 'Endurance'
+                        indicator: '2D'
+                      children:  {}
+                    Value Attribute-k: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'Willpower_Value'
+                        attribute: 'Willpower'
+                        indicator: '2D'
+                      children:  {}
+                    Value Attribute-l: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'Agility_Value'
+                        attribute: 'Agility'
+                        indicator: '2D'
+                      children:  {}
+                    Value Attribute-m: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'Dice_Value'
+                        attribute: 'Dice'
+                        indicator: '2D'
+                      children:  {}
+                Self-n: 
+                  type: 'target'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    indicator: '2D'
+                    group: 'enemy'
+                    wall: 'false'
+                    caster: 'false'
+                  children: 
+                    Value Attribute-o: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'FireDMG_Value'
+                        attribute: 'FireDMG'
+                        indicator: '2D'
+                      children:  {}
+                    Value Attribute-p: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'WaterDMG_Value'
+                        attribute: 'WaterDMG'
+                        indicator: '2D'
+                      children:  {}
+                    Value Attribute-q: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'LightDMG_Value'
+                        attribute: 'LightDMG'
+                        indicator: '2D'
+                      children:  {}
+                    Value Attribute-r: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'PhysicalDMG_Value'
+                        attribute: 'PhysicalDMG'
+                        indicator: '2D'
+                      children:  {}
+                    Value Attribute-s: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'NeutralDMG_Value'
+                        attribute: 'NeutralDMG'
+                        indicator: '2D'
+                      children:  {}
+                    Value Attribute-t: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'EarthDMG_Value'
+                        attribute: 'EarthDMG'
+                        indicator: '2D'
+                      children:  {}
+                    Value Attribute-u: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'ThunderDMG_Value'
+                        attribute: 'ThunderDMG'
+                        indicator: '2D'
+                      children:  {}
+                    Value Attribute-v: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'WindDMG_Value'
+                        attribute: 'WindDMG'
+                        indicator: '2D'
+                      children:  {}
+                    Value Attribute-w: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'DarkDMG_Value'
+                        attribute: 'DarkDMG'
+                        indicator: '2D'
+                      children:  {}
+                Self-x: 
+                  type: 'target'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    indicator: '2D'
+                    group: 'enemy'
+                    wall: 'false'
+                    caster: 'false'
+                  children: 
+                    Value Attribute-y: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'FireDEF_Value'
+                        attribute: 'FireDEF'
+                        indicator: '2D'
+                      children:  {}
+                    Value Attribute-z: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'WaterDEF_Value'
+                        attribute: 'WaterDEF'
+                        indicator: '2D'
+                      children:  {}
+                    Value Attribute-ab: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'LightDEF_Value'
+                        attribute: 'LightDEF'
+                        indicator: '2D'
+                      children:  {}
+                    Value Attribute-bb: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'PhysicalDEF_Value'
+                        attribute: 'PhysicalDEF'
+                        indicator: '2D'
+                      children:  {}
+                    Value Attribute-cb: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'NeutralDEF_Value'
+                        attribute: 'NeutralDEF'
+                        indicator: '2D'
+                      children:  {}
+                    Value Attribute-db: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'EarthDEF_Value'
+                        attribute: 'EarthDEF'
+                        indicator: '2D'
+                      children:  {}
+                    Value Attribute-eb: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'ThunderDEF_Value'
+                        attribute: 'ThunderDEF'
+                        indicator: '2D'
+                      children:  {}
+                    Value Attribute-fb: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'WindDEF_Value'
+                        attribute: 'WindDEF'
+                        indicator: '2D'
+                      children:  {}
+                    Value Attribute-gb: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'DarkDEF_Value'
+                        attribute: 'DarkDEF'
+                        indicator: '2D'
+                      children:  {}
+                Self-hb: 
+                  type: 'target'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    indicator: '2D'
+                    group: 'enemy'
+                    wall: 'false'
+                    caster: 'false'
+                  children: 
+                    Value Attribute-ib: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'XpBonus_Value'
+                        attribute: 'XpBonus'
+                        indicator: '2D'
+                      children:  {}
+                    Value Attribute-jb: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'BaseSpeed_Value'
+                        attribute: 'BaseSpeed'
+                        indicator: '2D'
+                      children:  {}
+            Self-kb: 
+              type: 'target'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                indicator: '2D'
+                group: 'enemy'
+                wall: 'false'
+                caster: 'false'
+              children: 
+                Self-lb: 
+                  type: 'target'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    indicator: '2D'
+                    group: 'enemy'
+                    wall: 'false'
+                    caster: 'false'
+                  children: 
+                    Value Set-mb: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'Vitality_Value1'
+                        counts: 'True'
+                        key: ''
+                        value-base: 'Vitality_Value'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Value Set-nb: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'Spirit_Value1'
+                        counts: 'True'
+                        key: ''
+                        value-base: 'Spirit_Value'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Value Set-ob: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'Aquatia_Value1'
+                        counts: 'True'
+                        key: ''
+                        value-base: 'Aquatia_Value'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Value Set-pb: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'Strength_Value1'
+                        counts: 'True'
+                        key: ''
+                        value-base: 'Strength_Value'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Value Set-qb: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'Intelligence_Value1'
+                        counts: 'True'
+                        key: ''
+                        value-base: 'Intelligence_Value'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Value Set-rb: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'Endurance_Value1'
+                        counts: 'True'
+                        key: ''
+                        value-base: 'Endurance_Value'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Value Set-sb: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'Willpower_Value1'
+                        counts: 'True'
+                        key: ''
+                        value-base: 'Willpower_Value'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Value Set-tb: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'Agility_Value1'
+                        counts: 'True'
+                        key: ''
+                        value-base: 'Agility_Value'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Value Set-ub: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'Dice_Value1'
+                        counts: 'True'
+                        key: ''
+                        value-base: 'Dice_Value'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                Self-vb: 
+                  type: 'target'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    indicator: '2D'
+                    group: 'enemy'
+                    wall: 'false'
+                    caster: 'false'
+                  children: 
+                    Value Set-wb: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'FireDMG_Value1'
+                        counts: 'True'
+                        key: ''
+                        value-base: 'FireDMG_Value'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Value Set-xb: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'WaterDMG_Value1'
+                        counts: 'True'
+                        key: ''
+                        value-base: 'WaterDMG_Value'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Value Set-yb: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'LightDMG_Value1'
+                        counts: 'True'
+                        key: ''
+                        value-base: 'LightDMG_Value'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Value Set-zb: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'PhysicalDMG_Value1'
+                        counts: 'True'
+                        key: ''
+                        value-base: 'PhysicalDMG_Value'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Value Set-ac: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'NeutralDMG_Value1'
+                        counts: 'True'
+                        key: ''
+                        value-base: 'NeutralDMG_Value'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Value Set-bc: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'EarthDMG_Value1'
+                        counts: 'True'
+                        key: ''
+                        value-base: 'EarthDMG_Value'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Value Set-cc: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'ThunderDMG_Value1'
+                        counts: 'True'
+                        key: ''
+                        value-base: 'ThunderDMG_Value'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Value Set-dc: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'WindDMG_Value1'
+                        counts: 'True'
+                        key: ''
+                        value-base: 'WindDMG_Value'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Value Set-ec: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'DarkDMG_Value1'
+                        counts: 'True'
+                        key: ''
+                        value-base: 'DarkDMG_Value'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                Self-fc: 
+                  type: 'target'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    indicator: '2D'
+                    group: 'enemy'
+                    wall: 'false'
+                    caster: 'false'
+                  children: 
+                    Value Set-gc: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'FireDEF_Value1'
+                        counts: 'True'
+                        key: ''
+                        value-base: 'FireDEF_Value'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Value Set-hc: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'WaterDEF_Value1'
+                        counts: 'True'
+                        key: ''
+                        value-base: 'WaterDEF_Value'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Value Set-ic: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'LightDEF_Value1'
+                        counts: 'True'
+                        key: ''
+                        value-base: 'LightDEF_Value'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Value Set-jc: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'PhysicalDEF_Value1'
+                        counts: 'True'
+                        key: ''
+                        value-base: 'PhysicalDEF_Value'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Value Set-kc: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'NeutralDEF_Value1'
+                        counts: 'True'
+                        key: ''
+                        value-base: 'NeutralDEF_Value'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Value Set-lc: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'EarthDEF_Value1'
+                        counts: 'True'
+                        key: ''
+                        value-base: 'EarthDEF_Value'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Value Set-mc: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'ThunderDEF_Value1'
+                        counts: 'True'
+                        key: ''
+                        value-base: 'ThunderDEF_Value'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Value Set-nc: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'WindDEF_Value1'
+                        counts: 'True'
+                        key: ''
+                        value-base: 'WindDEF_Value'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Value Set-oc: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'DarkDEF_Value1'
+                        counts: 'True'
+                        key: ''
+                        value-base: 'DarkDEF_Value'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                Self-pc: 
+                  type: 'target'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    indicator: '2D'
+                    group: 'enemy'
+                    wall: 'false'
+                    caster: 'false'
+                  children: 
+                    Value Set-qc: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'XpBonus_Value1'
+                        counts: 'True'
+                        key: ''
+                        value-base: 'XpBonus_Value'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Value Set-rc: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'BaseSpeed_Value1'
+                        counts: 'True'
+                        key: ''
+                        value-base: 'BaseSpeed_Value'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}

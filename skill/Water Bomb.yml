@@ -1,0 +1,295 @@
+Water Bomb: 
+  name: 'Water Bomb'
+  type: 'Damage'
+  max-level: 1
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '6'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'IRON_PICKAXE'
+  icon-durability: 209
+  icon-data: -47
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Launches a lobbing projectile that'
+  - '&7splashes where it lands, dealing damage'
+  - '&7and some knockback to enemies. Reduces'
+  - '&7the cooldown if casted in the water.'
+  - ''
+  - '&bDamage: {attr:dmg.value} Damage &1䛴'
+  - '&bRange: &6Short'
+  - '&bProjectile Radius: &61.5 &fBlocks'
+  - '&bBlast Radius: {attr:area.radius} Blocks'
+  - '&bCooldown Reduction: &620&f%'
+  - ''
+  - '&2Cooldown: {attr:cooldown}'
+  desc:  []
+  components: 
+    Cast: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Self-b: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Particle Projectile-c: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                group: 'Enemy'
+                spread: 'Cone'
+                amount-base: '1'
+                amount-scale: '0'
+                velocity-base: '1.25'
+                velocity-scale: '0'
+                angle-base: '30'
+                angle-scale: '0'
+                position: '0'
+                forward-base: '0'
+                forward-scale: '0'
+                upward-base: '1.5'
+                upward-scale: '0'
+                right-base: '0'
+                right-scale: '0'
+                gravity: '-0.04'
+                pierce: 'False'
+                particle: 'Red Dust'
+                arrangement: 'Sphere'
+                radius-base: '1.5'
+                radius-scale: '0'
+                particles-base: '11'
+                particles-scale: '0'
+                visible-radius: '60'
+                dx: '0.25'
+                dy: '0.25'
+                dz: '1'
+                speed: '1'
+                amount: '0'
+                frequency: '0.05'
+                lifespan: '6'
+                use-effect: 'False'
+                indicator: '2D'
+              children: 
+                Area-d: 
+                  type: 'target'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'area'
+                    radius-base: '6'
+                    radius-scale: '0'
+                    group: 'Enemy'
+                    wall: 'True'
+                    caster: 'False'
+                    max-base: '999'
+                    max-scale: '0'
+                    random: 'False'
+                    indicator: '2D'
+                  children: 
+                    Damage-e: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'dmg'
+                        counts: 'True'
+                        type: 'Damage'
+                        value-base: '50'
+                        value-scale: '0'
+                        true: 'False'
+                        classifier: 'water'
+                        indicator: '2D'
+                      children:  {}
+                    Delay-f: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        delay-base: '0.03'
+                        delay-scale: '0'
+                        indicator: '2D'
+                      children: 
+                        Repeat-g: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            repetitions-base: '2'
+                            repetitions-scale: '0'
+                            period: '0.05'
+                            delay: '0'
+                            stop-on-fail: 'False'
+                            indicator: '2D'
+                          children: 
+                            Push-h: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                type: 'Fixed'
+                                speed-base: '1'
+                                speed-scale: '0'
+                                source: 'none'
+                                indicator: '2D'
+                              children:  {}
+                Particle-i: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'Huge Explosion'
+                    arrangement: 'Sphere'
+                    radius-base: '4'
+                    radius-scale: '0'
+                    particles-base: '8'
+                    particles-scale: '0'
+                    visible-radius: '100'
+                    dx: '0'
+                    dy: '0'
+                    dz: '0'
+                    speed: '1'
+                    amount: '1'
+                    forward: '0'
+                    upward: '0'
+                    right: '0'
+                    indicator: '2D'
+                  children:  {}
+                Particle-j: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'Block Crack'
+                    material: 'Water'
+                    type: '0'
+                    arrangement: 'Sphere'
+                    radius-base: '5'
+                    radius-scale: '0'
+                    particles-base: '25'
+                    particles-scale: '0'
+                    forward: '0'
+                    upward: '0.1'
+                    right: '0'
+                    indicator: '2D'
+                  children:  {}
+                Explosion-k: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    power-base: '0'
+                    power-scale: '0'
+                    damage: 'False'
+                    fire: 'False'
+                    indicator: '2D'
+                  children:  {}
+            Particle Projectile-l: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                group: 'Enemy'
+                spread: 'Cone'
+                amount-base: '1'
+                amount-scale: '0'
+                velocity-base: '1.25'
+                velocity-scale: '0'
+                angle-base: '30'
+                angle-scale: '0'
+                position: '0'
+                forward-base: '0'
+                forward-scale: '0'
+                upward-base: '1.5'
+                upward-scale: '0'
+                right-base: '0'
+                right-scale: '0'
+                gravity: '-0.04'
+                pierce: 'False'
+                particle: 'Mob Spell'
+                arrangement: 'Sphere'
+                radius-base: '1.5'
+                radius-scale: '0'
+                particles-base: '7'
+                particles-scale: '0'
+                visible-radius: '60'
+                dx: '0.25'
+                dy: '0.25'
+                dz: '1'
+                speed: '1'
+                amount: '0'
+                frequency: '0.05'
+                lifespan: '6'
+                use-effect: 'False'
+                indicator: '2D'
+              children:  {}
+            Command-m: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                command: 'playsound spells.water5 ambient @a[r=16] ~ ~ ~ 0.3 1.2'
+                type: 'OP'
+                indicator: '2D'
+              children:  {}
+        Water-n: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            state: 'In Water'
+            indicator: '2D'
+          children: 
+            Delay-o: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                delay-base: '0.01'
+                delay-scale: '0'
+                indicator: '2D'
+              children: 
+                Cooldown-p: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    skill: 'Water Bomb'
+                    type: 'Percent'
+                    value-base: '25'
+                    value-scale: '0'
+                    indicator: '2D'
+                  children:  {}

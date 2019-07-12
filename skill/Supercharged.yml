@@ -1,0 +1,272 @@
+Supercharged: 
+  name: 'Supercharged'
+  type: 'Passive'
+  max-level: 1
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '0'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'GLOWSTONE'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Deal &640&f% &7more Thunder Damage when'
+  - '&7hit with a thunder type attack for &63 &7seconds.'
+  - ''
+  - '&7Heals &63 &eTech &7every second when in'
+  - '&7the supercharged state.'
+  desc:  []
+  components: 
+    Took Skill Damage-a: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        dmg-min: '0'
+        dmg-max: '999999'
+        category: 
+        - 'thunder'
+        indicator: '2D'
+      children: 
+        Value Set-b: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            key: 'ThunderCharged'
+            value-base: '40'
+            value-scale: '0'
+            indicator: '2D'
+          children:  {}
+        Skill Level-c: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            skill: 'Rune_Mage_Supercharged'
+            min-level: '1'
+            max-level: '1'
+            indicator: '2D'
+          children: 
+            Status-d: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                status: 'Invincible'
+                duration-base: '1.2'
+                duration-scale: '0'
+                indicator: '2D'
+              children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-f: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.03'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Skill Level-g: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                skill: 'Rune_Mage_Supercharged'
+                min-level: '1'
+                max-level: '1'
+                indicator: '2D'
+              children: 
+                Attribute-h: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    attribute: 'ThunderDEF'
+                    min-base: '100'
+                    min-scale: '0'
+                    max-base: '9999'
+                    max-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Attribute-i: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'BaseSpeed'
+                        amount-base: '10'
+                        amount-scale: '0'
+                        seconds-base: '1'
+                        seconds-scale: '0'
+                        stackable: 'False'
+                        indicator: '2D'
+                      children:  {}
+            Skill Level-j: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                skill: 'Rune_Mage_Supercharged'
+                min-level: '3'
+                max-level: '3'
+                indicator: '2D'
+              children: 
+                Health-k: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    type: 'Percent'
+                    min-value-base: '0'
+                    min-value-scale: '0'
+                    max-value-base: '20'
+                    max-value-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Buff-l: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        immediate: 'False'
+                        type: 'SKILL_DAMAGE'
+                        modifier: 'Multiplier'
+                        category: 'thunder'
+                        value-base: '1.2'
+                        value-scale: '0'
+                        seconds-base: '0.15'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+        Passive-m: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.1'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value-n: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                key: 'ThunderCharged'
+                min-value-base: '1'
+                min-value-scale: '0'
+                max-value-base: '30'
+                max-value-scale: '0'
+                indicator: '2D'
+              children: 
+                Value Add-o: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'ThunderCharged'
+                    amount-base: '-1'
+                    amount-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Particle-p: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'Block Crack'
+                    material: 'Gold Block'
+                    type: '0'
+                    arrangement: 'Sphere'
+                    radius-base: '1'
+                    radius-scale: '0'
+                    particles-base: '5'
+                    particles-scale: '0'
+                    forward: '0'
+                    upward: '1'
+                    right: '0'
+                    indicator: '2D'
+                  children:  {}
+                Buff-q: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    immediate: 'False'
+                    type: 'SKILL_DAMAGE'
+                    modifier: 'Multiplier'
+                    category: 'thunder'
+                    value-base: '1.4'
+                    value-scale: '0'
+                    seconds-base: '0.15'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+        Passive-r: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '1'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value-s: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                key: 'ThunderCharged'
+                min-value-base: '1'
+                min-value-scale: '0'
+                max-value-base: '30'
+                max-value-scale: '0'
+                indicator: '2D'
+              children: 
+                Value Add-t: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'tech'
+                    amount-base: '3'
+                    amount-scale: '0'
+                    indicator: '2D'
+                  children:  {}

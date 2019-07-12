@@ -1,0 +1,247 @@
+Spit: 
+  name: 'Spit'
+  type: 'Damage/Support'
+  max-level: 1
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '4'
+    cooldown-scale: '0'
+    mana-base: '150'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'INK_SACK'
+  icon-durability: 15
+  icon-data: 15
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Be the disgusting creature'
+  - '&7you are, by spitting spit'
+  - '&7forward, granting Slowness and'
+  - '&7Poison to your targets.'
+  - ''
+  - '&bDamage: {attr:dmg.value} x3 Damage &r䛶'
+  - '&bRange: &6Medium'
+  - '&bSpit Spread Radius: {attr:area.radius} Blocks'
+  - '&bSlowness: {attr:po1.tier} for {attr:po1.seconds} Seconds'
+  - '&bPoison: {attr:po2.tier} for {attr:po2.seconds} Seconds'
+  - ''
+  - '&bPiercing Damage (Alby 3): {attr:dmg2.value} Damage &r䛶'
+  - ''
+  - '&2Mana: {attr:mana} &2Cooldown: {attr:cooldown}'
+  desc:  []
+  components: 
+    Cast: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Self-b: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Particle Projectile-c: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                group: 'Enemy'
+                spread: 'Cone'
+                amount-base: '3'
+                amount-scale: '0'
+                velocity-base: '1.5'
+                velocity-scale: '0'
+                angle-base: '30'
+                angle-scale: '0'
+                position: '1'
+                forward-base: '0'
+                forward-scale: '0'
+                upward-base: '1.5'
+                upward-scale: '0'
+                right-base: '0'
+                right-scale: '0'
+                gravity: '-0.02'
+                pierce: 'True'
+                particle: 'Red Dust'
+                arrangement: 'Sphere'
+                radius-base: '0.6'
+                radius-scale: '0'
+                particles-base: '10'
+                particles-scale: '0'
+                visible-radius: '55'
+                dx: '1'
+                dy: '1'
+                dz: '1'
+                speed: '1'
+                amount: '0'
+                frequency: '0.02'
+                lifespan: '10'
+                use-effect: 'False'
+                indicator: '2D'
+              children: 
+                Delay-d: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    delay-base: '0.01'
+                    delay-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Area-e: 
+                      type: 'target'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'area'
+                        radius-base: '3.5'
+                        radius-scale: '0'
+                        group: 'Enemy'
+                        wall: 'True'
+                        caster: 'False'
+                        max-base: '999'
+                        max-scale: '0'
+                        random: 'False'
+                        indicator: '2D'
+                      children: 
+                        Damage-f: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: 'dmg'
+                            counts: 'True'
+                            type: 'Damage'
+                            value-base: '20'
+                            value-scale: '0'
+                            true: 'False'
+                            classifier: 'neutral'
+                            indicator: '2D'
+                          children:  {}
+                        Potion-g: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: 'po1'
+                            counts: 'True'
+                            potion: 'Slow'
+                            ambient: 'True'
+                            tier-base: '2'
+                            tier-scale: '0'
+                            seconds-base: '6'
+                            seconds-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Particle-h: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            particle: 'Angry Villager'
+                            arrangement: 'Circle'
+                            radius-base: '1'
+                            radius-scale: '0'
+                            particles-base: '3'
+                            particles-scale: '0'
+                            direction: 'XZ'
+                            visible-radius: '25'
+                            dx: '0'
+                            dy: '0'
+                            dz: '0'
+                            speed: '1'
+                            amount: '1'
+                            forward: '0'
+                            upward: '1.5'
+                            right: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Potion-i: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: 'po2'
+                            counts: 'True'
+                            potion: 'Poison'
+                            ambient: 'True'
+                            tier-base: '2'
+                            tier-scale: '0'
+                            seconds-base: '6'
+                            seconds-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Skill Level-j: 
+                          type: 'condition'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            skill: 'Alby-Beast'
+                            min-level: '3'
+                            max-level: '3'
+                            indicator: '2D'
+                          children: 
+                            Damage-k: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: 'dmg2'
+                                counts: 'True'
+                                type: 'Damage'
+                                value-base: '25'
+                                value-scale: '0'
+                                true: 'True'
+                                classifier: 'neutral'
+                                indicator: '2D'
+                              children:  {}
+                    Particle-l: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        particle: 'Red Dust'
+                        arrangement: 'Circle'
+                        radius-base: '2.5'
+                        radius-scale: '0'
+                        particles-base: '30'
+                        particles-scale: '0'
+                        direction: 'XZ'
+                        visible-radius: '25'
+                        dx: '1'
+                        dy: '1'
+                        dz: '1'
+                        speed: '1'
+                        amount: '0'
+                        forward: '0'
+                        upward: '0.15'
+                        right: '0'
+                        indicator: '2D'
+                      children:  {}
+            Command-m: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                command: 'playsound minecraft:entity.llama.spit ambient @a[r=16] ~ ~ ~ 0.6 1'
+                type: 'OP'
+                indicator: '2D'
+              children:  {}

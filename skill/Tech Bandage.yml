@@ -1,0 +1,151 @@
+Tech Bandage: 
+  name: 'Tech Bandage'
+  type: 'Healing'
+  max-level: 1
+  skill-req: 'None'
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '0'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'IRON_ORE'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Spend some Tech, and heal'
+  - '&7a fixed amount of HP,'
+  - '&7Stamina, and Wrath.'
+  - ''
+  - '&bHP Healed: {attr:zzheal.value}'
+  - '&aStamina &bHealed: {attr:stradd.amount}'
+  - '&4Wrath &bHealed: {attr:wrathadd.amount}'
+  - ''
+  - '&eTech: &610 &2Cooldown: {attr:cooldown}'
+  desc:  []
+  components: 
+    Cast: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Self-b: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Value-c: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                key: 'tech'
+                min-value-base: '10'
+                min-value-scale: '0'
+                max-value-base: '999'
+                max-value-scale: '0'
+                indicator: '2D'
+              children: 
+                Value Add-d: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'tech'
+                    amount-base: '-10'
+                    amount-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Command-e: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    command: 'playsound spells.water3 ambient @a[r=16] ~ ~ ~ 0.65 0.9'
+                    type: 'OP'
+                    indicator: '2D'
+                  children:  {}
+                Self-f: 
+                  type: 'target'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    indicator: '2D'
+                    group: 'enemy'
+                    wall: 'false'
+                    caster: 'false'
+                  children: 
+                    Heal-g: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'zzheal'
+                        counts: 'True'
+                        type: 'Health'
+                        value-base: '40'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Value Add-h: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'stradd'
+                        counts: 'True'
+                        key: 'stamina'
+                        amount-base: '7'
+                        amount-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Value Add-i: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'wrathadd'
+                        counts: 'True'
+                        key: 'wrath'
+                        amount-base: '4'
+                        amount-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Particle-j: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        particle: 'Block Crack'
+                        material: 'Iron Ore'
+                        type: '0'
+                        arrangement: 'Sphere'
+                        radius-base: '1'
+                        radius-scale: '0'
+                        particles-base: '10'
+                        particles-scale: '0'
+                        forward: '0'
+                        upward: '1'
+                        right: '0'
+                        indicator: '2D'
+                      children:  {}
