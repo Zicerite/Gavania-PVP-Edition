@@ -1,0 +1,1033 @@
+Grappling Hook: 
+  name: 'Grappling Hook'
+  type: 'Support'
+  max-level: 1
+  skill-req: 'None'
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '0'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'TRIPWIRE_HOOK'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Launches a hook that attaches to'
+  - '&7terrain. It automatically pulls you'
+  - '&7in. Cast again to manually'
+  - '&7disengage the hook.'
+  - '&7The hookshot automatically disengages'
+  - '&7when you get next to it, and pushes'
+  - '&7you upward when you do.'
+  - ''
+  - '&bGrapple Range: {attr:range.range} Blocks'
+  - ''
+  - '&2Cooldown: &63'
+  desc:  []
+  components: 
+    Cast: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Value-b: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            key: 'hooked'
+            min-value-base: '1'
+            min-value-scale: '0'
+            max-value-base: '1'
+            max-value-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Set-c: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'hooked'
+                value-base: '2'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Delay-d: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                delay-base: '0.3'
+                delay-scale: '0'
+                indicator: '2D'
+              children: 
+                Value Set-e: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'hooked'
+                    value-base: '0'
+                    value-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+            Sound-f: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                sound: 'Block Glass Break'
+                volume-base: '80'
+                volume-scale: '0'
+                pitch-base: '1.2'
+                pitch-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Delay-g: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                delay-base: '0.01'
+                delay-scale: '0'
+                indicator: '2D'
+              children: 
+                Cooldown-h: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    skill: 'Grappling Hook'
+                    type: 'Seconds'
+                    value-base: '-3'
+                    value-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+        Value-i: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            key: 'hooked'
+            min-value-base: '0'
+            min-value-scale: '0'
+            max-value-base: '0'
+            max-value-scale: '0'
+            indicator: '2D'
+          children: 
+            Self-j: 
+              type: 'target'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                indicator: '2D'
+                group: 'enemy'
+                wall: 'false'
+                caster: 'false'
+              children: 
+                Location-k: 
+                  type: 'target'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'range'
+                    range-base: '36'
+                    range-scale: '0'
+                    ground: 'True'
+                    indicator: '2D'
+                    group: 'enemy'
+                    wall: 'false'
+                    caster: 'false'
+                  children: 
+                    Remember Targets-l: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'hook'
+                        indicator: '2D'
+                      children:  {}
+                    Particle-m: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        particle: 'Cloud'
+                        arrangement: 'Circle'
+                        radius-base: '1'
+                        radius-scale: '0'
+                        particles-base: '5'
+                        particles-scale: '0'
+                        direction: 'XZ'
+                        visible-radius: '50'
+                        dx: '0'
+                        dy: '0'
+                        dz: '0'
+                        speed: '0'
+                        amount: '1'
+                        forward: '0'
+                        upward: '0'
+                        right: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Block-n: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        standing: 'Not On Block'
+                        material: 'Air'
+                        indicator: '2D'
+                      children: 
+                        Value Set-o: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            key: 'hooked'
+                            value-base: '1'
+                            value-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                    Offset-p: 
+                      type: 'target'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        forward-base: '1'
+                        forward-scale: '0'
+                        upward-base: '0'
+                        upward-scale: '0'
+                        right-base: '0'
+                        right-scale: '0'
+                        indicator: '2D'
+                        group: 'enemy'
+                        wall: 'false'
+                        caster: 'false'
+                      children: 
+                        Block-q: 
+                          type: 'condition'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            standing: 'Not On Block'
+                            material: 'Air'
+                            indicator: '2D'
+                          children: 
+                            Value Set-r: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                key: 'hooked'
+                                value-base: '1'
+                                value-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+                        Ground-s: 
+                          type: 'condition'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            type: 'On Ground'
+                            indicator: '2D'
+                          children: 
+                            Value Set-t: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                key: 'hooked'
+                                value-base: '1'
+                                value-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+                    Offset-u: 
+                      type: 'target'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        forward-base: '-1'
+                        forward-scale: '0'
+                        upward-base: '0'
+                        upward-scale: '0'
+                        right-base: '0'
+                        right-scale: '0'
+                        indicator: '2D'
+                        group: 'enemy'
+                        wall: 'false'
+                        caster: 'false'
+                      children: 
+                        Block-v: 
+                          type: 'condition'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            standing: 'Not On Block'
+                            material: 'Air'
+                            indicator: '2D'
+                          children: 
+                            Value Set-w: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                key: 'hooked'
+                                value-base: '1'
+                                value-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+                        Ground-x: 
+                          type: 'condition'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            type: 'On Ground'
+                            indicator: '2D'
+                          children: 
+                            Value Set-y: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                key: 'hooked'
+                                value-base: '1'
+                                value-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+                    Offset-z: 
+                      type: 'target'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        forward-base: '0'
+                        forward-scale: '0'
+                        upward-base: '0'
+                        upward-scale: '0'
+                        right-base: '1'
+                        right-scale: '0'
+                        indicator: '2D'
+                        group: 'enemy'
+                        wall: 'false'
+                        caster: 'false'
+                      children: 
+                        Block-ab: 
+                          type: 'condition'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            standing: 'Not On Block'
+                            material: 'Air'
+                            indicator: '2D'
+                          children: 
+                            Value Set-bb: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                key: 'hooked'
+                                value-base: '1'
+                                value-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+                        Ground-cb: 
+                          type: 'condition'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            type: 'On Ground'
+                            indicator: '2D'
+                          children: 
+                            Value Set-db: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                key: 'hooked'
+                                value-base: '1'
+                                value-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+                    Offset-eb: 
+                      type: 'target'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        forward-base: '0'
+                        forward-scale: '0'
+                        upward-base: '0'
+                        upward-scale: '0'
+                        right-base: '-1'
+                        right-scale: '0'
+                        indicator: '2D'
+                        group: 'enemy'
+                        wall: 'false'
+                        caster: 'false'
+                      children: 
+                        Block-fb: 
+                          type: 'condition'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            standing: 'Not On Block'
+                            material: 'Air'
+                            indicator: '2D'
+                          children: 
+                            Value Set-gb: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                key: 'hooked'
+                                value-base: '1'
+                                value-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+                        Ground-hb: 
+                          type: 'condition'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            type: 'On Ground'
+                            indicator: '2D'
+                          children: 
+                            Value Set-ib: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                key: 'hooked'
+                                value-base: '1'
+                                value-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+                    Offset-jb: 
+                      type: 'target'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        forward-base: '0'
+                        forward-scale: '0'
+                        upward-base: '1'
+                        upward-scale: '0'
+                        right-base: '0'
+                        right-scale: '0'
+                        indicator: '2D'
+                        group: 'enemy'
+                        wall: 'false'
+                        caster: 'false'
+                      children: 
+                        Block-kb: 
+                          type: 'condition'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            standing: 'Not On Block'
+                            material: 'Air'
+                            indicator: '2D'
+                          children: 
+                            Value Set-lb: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                key: 'hooked'
+                                value-base: '1'
+                                value-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+                        Ground-mb: 
+                          type: 'condition'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            type: 'On Ground'
+                            indicator: '2D'
+                          children: 
+                            Value Set-nb: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                key: 'hooked'
+                                value-base: '1'
+                                value-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+                    Offset-ob: 
+                      type: 'target'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        forward-base: '0'
+                        forward-scale: '0'
+                        upward-base: '2'
+                        upward-scale: '0'
+                        right-base: '0'
+                        right-scale: '0'
+                        indicator: '2D'
+                        group: 'enemy'
+                        wall: 'false'
+                        caster: 'false'
+                      children: 
+                        Block-pb: 
+                          type: 'condition'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            standing: 'Not On Block'
+                            material: 'Air'
+                            indicator: '2D'
+                          children: 
+                            Value Set-qb: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                key: 'hooked'
+                                value-base: '1'
+                                value-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+                            Offset-rb: 
+                              type: 'target'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                forward-base: '0'
+                                forward-scale: '0'
+                                upward-base: '2'
+                                upward-scale: '0'
+                                right-base: '0'
+                                right-scale: '0'
+                                indicator: '2D'
+                                group: 'enemy'
+                                wall: 'false'
+                                caster: 'false'
+                              children: 
+                                Block-sb: 
+                                  type: 'condition'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    standing: 'Not On Block'
+                                    material: 'Air'
+                                    indicator: '2D'
+                                  children: 
+                                    Value Set-tb: 
+                                      type: 'mechanic'
+                                      indicator: '3D'
+                                      data: 
+                                        icon-key: ''
+                                        counts: 'True'
+                                        key: 'hooked'
+                                        value-base: '1'
+                                        value-scale: '0'
+                                        indicator: '2D'
+                                      children:  {}
+                        Ground-ub: 
+                          type: 'condition'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            type: 'On Ground'
+                            indicator: '2D'
+                          children: 
+                            Value Set-vb: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                key: 'hooked'
+                                value-base: '1'
+                                value-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+                    Block-wb: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        standing: 'In Block'
+                        material: 'Air'
+                        indicator: '2D'
+                      children:  {}
+                    Else-xb: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        indicator: '2D'
+                      children: 
+                        Value Set-yb: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            key: 'hooked'
+                            value-base: '1'
+                            value-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                    Ground-zb: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        type: 'Not On Ground'
+                        indicator: '2D'
+                      children:  {}
+                    Else-ac: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        indicator: '2D'
+                      children: 
+                        Value Set-bc: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            key: 'hooked'
+                            value-base: '1'
+                            value-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                    Block-cc: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        standing: 'On Block'
+                        material: 'Air'
+                        indicator: '2D'
+                      children:  {}
+                    Else-dc: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        indicator: '2D'
+                      children: 
+                        Value Set-ec: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            key: 'hooked'
+                            value-base: '1'
+                            value-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                    Ground-fc: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        type: 'On Ground'
+                        indicator: '2D'
+                      children: 
+                        Value Set-gc: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            key: 'hooked'
+                            value-base: '1'
+                            value-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                    Value Set-hc: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'hooked'
+                        value-base: '1'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                Sound-ic: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    sound: 'Block Fire Extinguish'
+                    volume-base: '70'
+                    volume-scale: '0'
+                    pitch-base: '1'
+                    pitch-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Value Set-kc: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            key: 'hooked'
+            value-base: '0'
+            value-scale: '0'
+            indicator: '2D'
+          children:  {}
+        Passive-lc: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Remember Targets-mc: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'player'
+                indicator: '2D'
+              children:  {}
+            Self-nc: 
+              type: 'target'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                indicator: '2D'
+                group: 'enemy'
+                wall: 'false'
+                caster: 'false'
+              children: 
+                Value-oc: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    key: 'hooked'
+                    min-value-base: '1'
+                    min-value-scale: '0'
+                    max-value-base: '1'
+                    max-value-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Remember-pc: 
+                      type: 'target'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        key: 'hook'
+                        indicator: '2D'
+                        group: 'enemy'
+                        wall: 'false'
+                        caster: 'false'
+                      children: 
+                        Elevation-qc: 
+                          type: 'condition'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            type: 'Difference'
+                            min-value-base: '1'
+                            min-value-scale: '0'
+                            max-value-base: '99'
+                            max-value-scale: '0'
+                            indicator: '2D'
+                          children: 
+                            Self-rc: 
+                              type: 'target'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                indicator: '2D'
+                                group: 'enemy'
+                                wall: 'false'
+                                caster: 'false'
+                              children: 
+                                Push-sc: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    type: 'Fixed'
+                                    speed-base: '-1.4'
+                                    speed-scale: '0'
+                                    source: 'hook'
+                                    indicator: '2D'
+                                  children:  {}
+                        Elevation-tc: 
+                          type: 'condition'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            type: 'Difference'
+                            min-value-base: '-999'
+                            min-value-scale: '0'
+                            max-value-base: '0.99999'
+                            max-value-scale: '0'
+                            indicator: '2D'
+                          children: 
+                            Area-uc: 
+                              type: 'target'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                radius-base: '1.5'
+                                radius-scale: '0'
+                                group: 'Both'
+                                wall: 'True'
+                                caster: 'False'
+                                max-base: '2'
+                                max-scale: '0'
+                                random: 'False'
+                                indicator: '2D'
+                              children: 
+                                Remember-vc: 
+                                  type: 'target'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    key: 'player'
+                                    indicator: '2D'
+                                    group: 'enemy'
+                                    wall: 'false'
+                                    caster: 'false'
+                                  children: 
+                                    Self-wc: 
+                                      type: 'target'
+                                      indicator: '3D'
+                                      data: 
+                                        icon-key: ''
+                                        indicator: '2D'
+                                        group: 'enemy'
+                                        wall: 'false'
+                                        caster: 'false'
+                                      children: 
+                                        Value Set-xc: 
+                                          type: 'mechanic'
+                                          indicator: '3D'
+                                          data: 
+                                            icon-key: ''
+                                            counts: 'True'
+                                            key: 'hooked'
+                                            value-base: '0'
+                                            value-scale: '0'
+                                            indicator: '2D'
+                                          children:  {}
+                                        Launch-yc: 
+                                          type: 'mechanic'
+                                          indicator: '3D'
+                                          data: 
+                                            icon-key: ''
+                                            counts: 'True'
+                                            relative: 'Caster'
+                                            forward-base: '0'
+                                            forward-scale: '0'
+                                            upward-base: '0.65'
+                                            upward-scale: '0'
+                                            right-base: '0'
+                                            right-scale: '0'
+                                            indicator: '2D'
+                                          children:  {}
+                                        Sound-zc: 
+                                          type: 'mechanic'
+                                          indicator: '3D'
+                                          data: 
+                                            icon-key: ''
+                                            counts: 'True'
+                                            sound: 'Block Glass Break'
+                                            volume-base: '80'
+                                            volume-scale: '0'
+                                            pitch-base: '1.2'
+                                            pitch-scale: '0'
+                                            indicator: '2D'
+                                          children:  {}
+                                        Delay-ad: 
+                                          type: 'mechanic'
+                                          indicator: '3D'
+                                          data: 
+                                            icon-key: ''
+                                            counts: 'True'
+                                            delay-base: '0.01'
+                                            delay-scale: '0'
+                                            indicator: '2D'
+                                          children: 
+                                            Cooldown-bd: 
+                                              type: 'mechanic'
+                                              indicator: '3D'
+                                              data: 
+                                                icon-key: ''
+                                                counts: 'True'
+                                                skill: 'Grappling Hook'
+                                                type: 'Seconds'
+                                                value-base: '-3'
+                                                value-scale: '0'
+                                                indicator: '2D'
+                                              children:  {}
+                                Ceiling-cd: 
+                                  type: 'condition'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    distance-base: '0.6'
+                                    distance-scale: '0'
+                                    at-least: 'False'
+                                    indicator: '2D'
+                                  children: 
+                                    Remember-dd: 
+                                      type: 'target'
+                                      indicator: '3D'
+                                      data: 
+                                        icon-key: ''
+                                        key: 'player'
+                                        indicator: '2D'
+                                        group: 'enemy'
+                                        wall: 'false'
+                                        caster: 'false'
+                                      children: 
+                                        Self-ed: 
+                                          type: 'target'
+                                          indicator: '3D'
+                                          data: 
+                                            icon-key: ''
+                                            indicator: '2D'
+                                            group: 'enemy'
+                                            wall: 'false'
+                                            caster: 'false'
+                                          children: 
+                                            Value Set-fd: 
+                                              type: 'mechanic'
+                                              indicator: '3D'
+                                              data: 
+                                                icon-key: ''
+                                                counts: 'True'
+                                                key: 'hooked'
+                                                value-base: '0'
+                                                value-scale: '0'
+                                                indicator: '2D'
+                                              children:  {}
+                                            Launch-gd: 
+                                              type: 'mechanic'
+                                              indicator: '3D'
+                                              data: 
+                                                icon-key: ''
+                                                counts: 'True'
+                                                relative: 'Target'
+                                                forward-base: '0'
+                                                forward-scale: '0'
+                                                upward-base: '0.65'
+                                                upward-scale: '0'
+                                                right-base: '0'
+                                                right-scale: '0'
+                                                indicator: '2D'
+                                              children:  {}
+                                            Sound-hd: 
+                                              type: 'mechanic'
+                                              indicator: '3D'
+                                              data: 
+                                                icon-key: ''
+                                                counts: 'True'
+                                                sound: 'Block Fire Extinguish'
+                                                volume-base: '80'
+                                                volume-scale: '0'
+                                                pitch-base: '1.2'
+                                                pitch-scale: '0'
+                                                indicator: '2D'
+                                              children:  {}
+                                            Delay-id: 
+                                              type: 'mechanic'
+                                              indicator: '3D'
+                                              data: 
+                                                icon-key: ''
+                                                counts: 'True'
+                                                delay-base: '0.01'
+                                                delay-scale: '0'
+                                                indicator: '2D'
+                                              children: 
+                                                Cooldown-jd: 
+                                                  type: 'mechanic'
+                                                  indicator: '3D'
+                                                  data: 
+                                                    icon-key: ''
+                                                    counts: 'True'
+                                                    skill: 'Grappling Hook'
+                                                    type: 'Seconds'
+                                                    value-base: '-3'
+                                                    value-scale: '0'
+                                                    indicator: '2D'
+                                                  children:  {}
+                        Particle-kd: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            particle: 'Red Dust'
+                            arrangement: 'Circle'
+                            radius-base: '0.25'
+                            radius-scale: '0'
+                            particles-base: '1'
+                            particles-scale: '0'
+                            direction: 'XZ'
+                            visible-radius: '100'
+                            dx: '1'
+                            dy: '1'
+                            dz: '1'
+                            speed: '1'
+                            amount: '0'
+                            forward: '0'
+                            upward: '0'
+                            right: '0'
+                            indicator: '2D'
+                          children:  {}

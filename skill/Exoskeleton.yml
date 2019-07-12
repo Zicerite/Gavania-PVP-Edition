@@ -1,0 +1,201 @@
+Exoskeleton: 
+  name: 'Exoskeleton'
+  type: 'Defense'
+  max-level: 1
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '20'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'IRON_CHESTPLATE'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Increases defense to the Caster by'
+  - '&7both a flat, and a percent.'
+  - ''
+  - '&bFlat Defense Buff: {attr:defbuff.value}'
+  - '&bPercent Defense Buff: {attr:xdefbuff.value}%'
+  - '&bDuration: {attr:lol.seconds} Seconds'
+  - ''
+  - '&2Cooldown: {attr:cooldown}'
+  desc:  []
+  components: 
+    Cast: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Self-b: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Command-c: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                command: 'playsound minecraft:block.anvil.use ambient @a[r=16] ~ ~ ~ 0.5 1.2'
+                type: 'OP'
+                indicator: '2D'
+              children:  {}
+            Repeat-d: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                repetitions-base: '30'
+                repetitions-scale: '0'
+                period: '0.2'
+                delay: '0'
+                stop-on-fail: 'False'
+                indicator: '2D'
+              children: 
+                Particle-e: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'Block Crack'
+                    material: 'Iron Block'
+                    type: '0'
+                    arrangement: 'Sphere'
+                    radius-base: '1'
+                    radius-scale: '0'
+                    particles-base: '5'
+                    particles-scale: '0'
+                    forward: '0'
+                    upward: '1'
+                    right: '0'
+                    indicator: '2D'
+                  children:  {}
+        Self-f: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Defense Buff-g: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                type: 'Multiplier'
+                skill: 'True'
+                value-base: '0.8'
+                value-scale: '0'
+                seconds-base: '6'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Defense Buff-h: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                type: 'Multiplier'
+                skill: 'False'
+                value-base: '0.8'
+                value-scale: '0'
+                seconds-base: '6'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Defense Buff-i: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'lol'
+                counts: 'True'
+                type: 'Flat'
+                skill: 'False'
+                value-base: '-5'
+                value-scale: '0'
+                seconds-base: '6'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Defense Buff-j: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                type: 'Flat'
+                skill: 'True'
+                value-base: '-5'
+                value-scale: '0'
+                seconds-base: '6'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-l: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '1'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Set-m: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'defbuff'
+                counts: 'True'
+                key: ''
+                value-base: '5'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Set-n: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'xdefbuff'
+                counts: 'True'
+                key: ''
+                value-base: '20'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}

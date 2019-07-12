@@ -1,0 +1,314 @@
+Grim Reaper Form: 
+  name: 'Grim Reaper Form'
+  type: 'Support'
+  max-level: 1
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '60'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'RAW_FISH'
+  icon-durability: 2
+  icon-data: 2
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Enables the Caster to deal 50%'
+  - '&7more damage, become invincible, and'
+  - '&7gain Speed and Haste for a short time.'
+  - ''
+  - '&bSpeed: {attr:po1.tier}'
+  - '&bHaste: {attr:po2.tier}'
+  - '&bDuration: {attr:po1.seconds} Seconds'
+  - ''
+  - '&cHealth: {attr:healthcost.value}% &fof Current HP'
+  - '&2Cooldown: {attr:cooldown}'
+  desc:  []
+  components: 
+    Cast: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Self-b: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Damage-c: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'healthcost'
+                counts: 'True'
+                type: 'Percent Left'
+                value-base: '50'
+                value-scale: '0'
+                true: 'True'
+                classifier: 'default'
+                indicator: '2D'
+              children:  {}
+            Delay-d: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                delay-base: '0.05'
+                delay-scale: '0'
+                indicator: '2D'
+              children: 
+                Self-e: 
+                  type: 'target'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    indicator: '2D'
+                    group: 'enemy'
+                    wall: 'false'
+                    caster: 'false'
+                  children: 
+                    Potion-f: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'po1'
+                        counts: 'True'
+                        potion: 'Speed'
+                        ambient: 'True'
+                        tier-base: '4'
+                        tier-scale: '0'
+                        seconds-base: '6'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Potion-g: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'po2'
+                        counts: 'True'
+                        potion: 'Fast Digging'
+                        ambient: 'True'
+                        tier-base: '2'
+                        tier-scale: '0'
+                        seconds-base: '6'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Status-h: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        status: 'Invincible'
+                        duration-base: '6'
+                        duration-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Damage Buff-i: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Multiplier'
+                        skill: 'False'
+                        value-base: '1.5'
+                        value-scale: '0'
+                        seconds-base: '6'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Damage Buff-j: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Multiplier'
+                        skill: 'True'
+                        value-base: '1.5'
+                        value-scale: '0'
+                        seconds-base: '6'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Particle-k: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        particle: 'Angry Villager'
+                        arrangement: 'Hemisphere'
+                        radius-base: '16'
+                        radius-scale: '0'
+                        particles-base: '20'
+                        particles-scale: '0'
+                        visible-radius: '50'
+                        dx: '0'
+                        dy: '0'
+                        dz: '0'
+                        speed: '1'
+                        amount: '1'
+                        forward: '0'
+                        upward: '0'
+                        right: '0'
+                        indicator: '2D'
+                      children:  {}
+                Area-l: 
+                  type: 'target'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'area'
+                    radius-base: '16'
+                    radius-scale: '0'
+                    group: 'Enemy'
+                    wall: 'True'
+                    caster: 'True'
+                    max-base: '999'
+                    max-scale: '0'
+                    random: 'False'
+                    indicator: '2D'
+                  children: 
+                    Potion-m: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        potion: 'Blindness'
+                        ambient: 'True'
+                        tier-base: '1'
+                        tier-scale: '0'
+                        seconds-base: '0.8'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Push-n: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Fixed'
+                        speed-base: '0.75'
+                        speed-scale: '0'
+                        source: 'none'
+                        indicator: '2D'
+                      children:  {}
+                Repeat-o: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    repetitions-base: '50'
+                    repetitions-scale: '0'
+                    period: '0.1'
+                    delay: '0'
+                    stop-on-fail: 'False'
+                    indicator: '2D'
+                  children: 
+                    Particle-p: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        particle: 'Red Dust'
+                        arrangement: 'Sphere'
+                        radius-base: '2'
+                        radius-scale: '0'
+                        particles-base: '5'
+                        particles-scale: '0'
+                        visible-radius: '50'
+                        dx: '0.2'
+                        dy: '0.2'
+                        dz: '0.2'
+                        speed: '1'
+                        amount: '0'
+                        forward: '0'
+                        upward: '1'
+                        right: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Particle-q: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        particle: 'Firework Spark'
+                        arrangement: 'Sphere'
+                        radius-base: '1'
+                        radius-scale: '0'
+                        particles-base: '1'
+                        particles-scale: '0'
+                        forward: '0'
+                        upward: '1'
+                        right: '0'
+                        indicator: '2D'
+                      children:  {}
+            Value Set-r: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'tech'
+                value-base: '0'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Command-s: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                command: 'playsound spells.darkness4 ambient @a[r=22] ~ ~ ~ 0.5 0.5'
+                type: 'OP'
+                indicator: '2D'
+              children:  {}
+            Command-t: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                command: 'playsound spells.darkness5 ambient @a[r=22] ~ ~ ~ 0.5 0.5'
+                type: 'OP'
+                indicator: '2D'
+              children:  {}
+            Command-u: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                command: 'playsound spells.darkness5 ambient @a[r=22] ~ ~ ~ 0.4 2'
+                type: 'OP'
+                indicator: '2D'
+              children:  {}

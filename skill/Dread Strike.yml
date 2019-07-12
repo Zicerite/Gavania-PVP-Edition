@@ -1,0 +1,353 @@
+Dread Strike: 
+  name: 'Dread Strike'
+  type: 'Damage/Support'
+  max-level: 1
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '6'
+    cooldown-scale: '0'
+    mana-base: '200'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'SKULL_ITEM'
+  icon-durability: 3
+  icon-data: 3
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Damages all enemies in front of the Caster, causes'
+  - '&7Wither, Mana Degen, and a Healing Debuff. Also deals'
+  - '&7Piercing damage. Caster gains tech and heals HP if'
+  - '&7the skill hits the target. Launches 3 projectiles that'
+  - '&7pierces trhough enemies, and deals damage.'
+  - ''
+  - '&bDamage: {attr:dmg.value} Damage &5䛾'
+  - '&bPiercing Damage: {attr:dmg2.value} Damage &5䛾'
+  - '&bProjectile Damage: {attr:dmg3.value} x3 Damage &5䛾'
+  - '&bRange: {attr:range.range} Blocks'
+  - '&bProjectile Range: &6Short-Medium'
+  - '&bHP Healed: {attr:heal.value}'
+  - '&bTech Gained: {attr:techgained.amount}'
+  - '&bWither: {attr:po.tier} for {attr:po.seconds} Seconds'
+  - '&bMana Degen: {attr:po2.tier} for {attr:po2.seconds} Seconds'
+  - '&bHealing Debuff: &6-80&f% for &63 &fSeconds'
+  - ''
+  - '&2Mana: {attr:mana} &2Cooldown: {attr:cooldown}'
+  desc:  []
+  components: 
+    Cast: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Self-b: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Command-c: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'False'
+                command: 'playsound spells.darkness4 ambient @a[r=16] ~ ~ ~ 0.4 0.9'
+                type: 'OP'
+                indicator: '2D'
+              children:  {}
+            Linear-d: 
+              type: 'target'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                range-base: '6'
+                range-scale: '0'
+                tolerance-base: '90'
+                tolerance-scale: '0'
+                group: 'Enemy'
+                wall: 'True'
+                caster: 'False'
+                max-base: '999'
+                max-scale: '0'
+                indicator: '2D'
+              children: 
+                Self-e: 
+                  type: 'target'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    indicator: '2D'
+                    group: 'enemy'
+                    wall: 'false'
+                    caster: 'false'
+                  children: 
+                    Heal-f: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'heal'
+                        counts: 'True'
+                        type: 'Health'
+                        value-base: '100'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Value Add-g: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'techgained'
+                        counts: 'True'
+                        key: 'tech'
+                        amount-base: '5'
+                        amount-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+            Particle Projectile-h: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                group: 'Enemy'
+                spread: 'Cone'
+                amount-base: '3'
+                amount-scale: '0'
+                velocity-base: '2.5'
+                velocity-scale: '0'
+                angle-base: '15'
+                angle-scale: '0'
+                position: '0'
+                forward-base: '0'
+                forward-scale: '0'
+                upward-base: '1.5'
+                upward-scale: '0'
+                right-base: '0'
+                right-scale: '0'
+                gravity: '0'
+                pierce: 'True'
+                particle: 'Red Dust'
+                arrangement: 'Circle'
+                radius-base: '1'
+                radius-scale: '0'
+                particles-base: '20'
+                particles-scale: '0'
+                direction: 'XZ'
+                visible-radius: '100'
+                dx: '0.4'
+                dy: '0.4'
+                dz: '0.4'
+                speed: '1'
+                amount: '0'
+                frequency: '0.05'
+                lifespan: '0.5'
+                use-effect: 'False'
+                indicator: '2D'
+              children: 
+                Area-i: 
+                  type: 'target'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    radius-base: '1.5'
+                    radius-scale: '0'
+                    group: 'Enemy'
+                    wall: 'True'
+                    caster: 'False'
+                    max-base: '999'
+                    max-scale: '0'
+                    random: 'False'
+                    indicator: '2D'
+                  children: 
+                    Damage-j: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'dmg3'
+                        counts: 'True'
+                        type: 'Damage'
+                        value-base: '30'
+                        value-scale: '0'
+                        true: 'False'
+                        classifier: 'dark'
+                        indicator: '2D'
+                      children:  {}
+            Linear-k: 
+              type: 'target'
+              indicator: '3D'
+              data: 
+                icon-key: 'range'
+                range-base: '6'
+                range-scale: '0'
+                tolerance-base: '90'
+                tolerance-scale: '0'
+                group: 'Enemy'
+                wall: 'True'
+                caster: 'False'
+                max-base: '666'
+                max-scale: '0'
+                indicator: '2D'
+              children: 
+                Repeat-l: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    repetitions-base: '30'
+                    repetitions-scale: '0'
+                    period: '0.2'
+                    delay: '0'
+                    stop-on-fail: 'False'
+                    indicator: '2D'
+                  children: 
+                    Particle-m: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        particle: 'Mob Spell'
+                        arrangement: 'Sphere'
+                        radius-base: '1'
+                        radius-scale: '0'
+                        particles-base: '2'
+                        particles-scale: '0'
+                        visible-radius: '40'
+                        dx: '0.01'
+                        dy: '0.25'
+                        dz: '0'
+                        speed: '1'
+                        amount: '0'
+                        forward: '0'
+                        upward: '1'
+                        right: '0'
+                        indicator: '2D'
+                      children:  {}
+                Damage-n: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'dmg'
+                    counts: 'True'
+                    type: 'Damage'
+                    value-base: '40'
+                    value-scale: '0'
+                    true: 'False'
+                    classifier: 'dark'
+                    indicator: '2D'
+                  children:  {}
+                Damage-o: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'dmg2'
+                    counts: 'True'
+                    type: 'Damage'
+                    value-base: '10'
+                    value-scale: '0'
+                    true: 'True'
+                    classifier: 'dark'
+                    indicator: '2D'
+                  children:  {}
+                Potion-p: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'po'
+                    counts: 'True'
+                    potion: 'Wither'
+                    ambient: 'True'
+                    tier-base: '3'
+                    tier-scale: '0'
+                    seconds-base: '3'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Potion-q: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'po2'
+                    counts: 'True'
+                    potion: 'Hunger'
+                    ambient: 'True'
+                    tier-base: '4'
+                    tier-scale: '0'
+                    seconds-base: '3'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Buff-r: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    immediate: 'False'
+                    type: 'HEALING'
+                    modifier: 'Multiplier'
+                    value-base: '0.2'
+                    value-scale: '0'
+                    seconds-base: '3'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Particle-s: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'False'
+                    particle: 'Ender Signal'
+                    arrangement: 'Sphere'
+                    radius-base: '0'
+                    radius-scale: '0'
+                    particles-base: '1'
+                    particles-scale: '0'
+                    data: '0'
+                    forward: '0'
+                    upward: '1'
+                    right: '0'
+                    indicator: '2D'
+                  children:  {}
+                Particle-t: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'Witch Magic'
+                    arrangement: 'Sphere'
+                    radius-base: '1'
+                    radius-scale: '0'
+                    particles-base: '10'
+                    particles-scale: '0'
+                    visible-radius: '50'
+                    dx: '0'
+                    dy: '0'
+                    dz: '0'
+                    speed: '0'
+                    amount: '1'
+                    forward: '0'
+                    upward: '1'
+                    right: '0'
+                    indicator: '2D'
+                  children:  {}

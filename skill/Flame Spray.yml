@@ -1,0 +1,222 @@
+Flame Spray: 
+  name: 'Flame Spray'
+  type: 'Damage/Support'
+  max-level: 1
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '4'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'BLAZE_POWDER'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Casts a blast of fire in front of the Caster.'
+  - '&7Causes ignition, and a flat defense debuff.'
+  - ''
+  - '&bDamage: {attr:dmg.value} Melee Damage &4䛵'
+  - '&bRange: &67 Blocks'
+  - '&bIgnition Duration: {attr:fire.seconds} Seconds'
+  - '&bDefense Debuff: &6-{attr:def.value} for {attr:def.seconds} Seconds'
+  - ''
+  - '&bEnergy: &620 &2Cooldown: {attr:cooldown}'
+  desc:  []
+  components: 
+    Cast: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Value-b: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            key: 'energy'
+            min-value-base: '20'
+            min-value-scale: '0'
+            max-value-base: '999'
+            max-value-scale: '0'
+            indicator: '2D'
+          children: 
+            Self-c: 
+              type: 'target'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                indicator: '2D'
+                group: 'enemy'
+                wall: 'false'
+                caster: 'false'
+              children: 
+                Command-d: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    command: 'playsound spells.flames ambient @a[r=16] ~ ~ ~ 0.5 1.25'
+                    type: 'OP'
+                    indicator: '2D'
+                  children:  {}
+                Value Add-e: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'energy'
+                    amount-base: '-20'
+                    amount-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+            Self-f: 
+              type: 'target'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                indicator: '2D'
+                group: 'enemy'
+                wall: 'false'
+                caster: 'false'
+              children: 
+                Particle Projectile-g: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    group: 'Enemy'
+                    spread: 'Cone'
+                    amount-base: '1'
+                    amount-scale: '0'
+                    velocity-base: '3'
+                    velocity-scale: '0'
+                    angle-base: '30'
+                    angle-scale: '0'
+                    position: '0'
+                    forward-base: '0'
+                    forward-scale: '0'
+                    upward-base: '1.5'
+                    upward-scale: '0'
+                    right-base: '0'
+                    right-scale: '0'
+                    gravity: '0'
+                    pierce: 'True'
+                    particle: 'Flame'
+                    arrangement: 'Circle'
+                    radius-base: '4'
+                    radius-scale: '0'
+                    particles-base: '20'
+                    particles-scale: '0'
+                    direction: 'XZ'
+                    visible-radius: '70'
+                    dx: '0'
+                    dy: '0.2'
+                    dz: '0'
+                    speed: '0.01'
+                    amount: '1'
+                    frequency: '0.05'
+                    lifespan: '0.125'
+                    use-effect: 'False'
+                    indicator: '2D'
+                  children: 
+                    Fire-h: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'fire'
+                        counts: 'True'
+                        seconds-base: '4'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Damage-i: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'dmg'
+                        counts: 'True'
+                        type: 'Damage'
+                        value-base: '40'
+                        value-scale: '0'
+                        true: 'False'
+                        classifier: 'fire'
+                        indicator: '2D'
+                      children:  {}
+                    Defense Buff-j: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'def'
+                        counts: 'True'
+                        type: 'Flat'
+                        skill: 'False'
+                        value-base: '10'
+                        value-scale: '0'
+                        seconds-base: '3'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Defense Buff-k: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Flat'
+                        skill: 'True'
+                        value-base: '10'
+                        value-scale: '0'
+                        seconds-base: '3'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Repeat-l: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        repetitions-base: '15'
+                        repetitions-scale: '0'
+                        period: '0.2'
+                        delay: '0'
+                        stop-on-fail: 'False'
+                        indicator: '2D'
+                      children: 
+                        Particle-m: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            particle: 'Block Crack'
+                            material: 'Magma'
+                            type: '0'
+                            arrangement: 'Sphere'
+                            radius-base: '1'
+                            radius-scale: '0'
+                            particles-base: '3'
+                            particles-scale: '0'
+                            forward: '0'
+                            upward: '1'
+                            right: '0'
+                            indicator: '2D'
+                          children:  {}

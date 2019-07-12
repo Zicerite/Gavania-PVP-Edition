@@ -1,0 +1,803 @@
+Divekick: 
+  name: 'Divekick'
+  type: 'Damage'
+  max-level: 1
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '-'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '0'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'INK_SACK'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7The Caster dives downward at a'
+  - '&7sideways angle. Enemies hit by'
+  - '&7the attack get hitstun, and are spiked'
+  - '&7downwards and away, then the caster'
+  - '&7jumps back upwards.'
+  - '&7Cast again after diving to cancel the dive.'
+  - '&7Casting the skill while grounded damages, and'
+  - '&7launches enemies upward that connects'
+  - '&7into the diving hit.'
+  - ''
+  - '&bGrounded Damage: {attr:dmg1.value} Damage &9䛇'
+  - '&bGrounded Range: {attr:range.range} Blocks'
+  - '&bSpike Damage: {attr:dmg2.value} Damage &9䛇'
+  - '&bSpike Radius: {attr:area.radius} Blocks'
+  - ''
+  - '&bDamage (Alby 1): {attr:dmg2.value} &5䛾'
+  - ''
+  - '&aStamina: &630 &2Cooldown: {attr:cooldown}'
+  desc:  []
+  components: 
+    Land-a: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        min-distance: '0'
+        indicator: '2D'
+      children: 
+        Value Set-b: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            key: 'Diving'
+            value-base: '0'
+            value-scale: '0'
+            indicator: '2D'
+          children:  {}
+    Cast: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Self-d: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Value-e: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                key: 'Diving'
+                min-value-base: '2'
+                min-value-scale: '0'
+                max-value-base: '2'
+                max-value-scale: '0'
+                indicator: '2D'
+              children: 
+                Value Set-f: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'Diving'
+                    value-base: '-1'
+                    value-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Sound-g: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    sound: 'Entity Enderdragon Flap'
+                    volume-base: '50'
+                    volume-scale: '0'
+                    pitch-base: '1.1'
+                    pitch-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Repeat-h: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    repetitions-base: '2'
+                    repetitions-scale: '0'
+                    period: '0.075'
+                    delay: '0'
+                    stop-on-fail: 'False'
+                    indicator: '2D'
+                  children: 
+                    Launch-i: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        relative: 'Target'
+                        forward-base: '-0.7'
+                        forward-scale: '0'
+                        upward-base: '0.5'
+                        upward-scale: '0'
+                        right-base: '0'
+                        right-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                Delay-j: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    delay-base: '0.05'
+                    delay-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Value Set-k: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'Diving'
+                        value-base: '0'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+            Value-l: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                key: 'stamina'
+                min-value-base: '0'
+                min-value-scale: '0'
+                max-value-base: '999'
+                max-value-scale: '0'
+                indicator: '2D'
+              children: 
+                Value-m: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    key: 'Diving'
+                    min-value-base: '0'
+                    min-value-scale: '0'
+                    max-value-base: '0'
+                    max-value-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Ground-n: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        type: 'Not On Ground'
+                        indicator: '2D'
+                      children: 
+                        Value Set-o: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            key: 'Diving'
+                            value-base: '2'
+                            value-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Value Add-p: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            key: 'stamina'
+                            amount-base: '-30'
+                            amount-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Sound-q: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            sound: 'Entity Enderdragon Flap'
+                            volume-base: '60'
+                            volume-scale: '0'
+                            pitch-base: '1.2'
+                            pitch-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                    Ground-r: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        type: 'On Ground'
+                        indicator: '2D'
+                      children: 
+                        Value Set-s: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            key: 'Diving'
+                            value-base: '1'
+                            value-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Launch-t: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            relative: 'Target'
+                            forward-base: '-0.2'
+                            forward-scale: '0'
+                            upward-base: '1'
+                            upward-scale: '0'
+                            right-base: '0'
+                            right-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Status-u: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            status: 'Invincible'
+                            duration-base: '0.2'
+                            duration-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Particle-v: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            particle: 'Cloud'
+                            arrangement: 'Sphere'
+                            radius-base: '1'
+                            radius-scale: '0'
+                            particles-base: '1'
+                            particles-scale: '0'
+                            visible-radius: '40'
+                            dx: '0'
+                            dy: '0'
+                            dz: '0'
+                            speed: '0.1'
+                            amount: '1'
+                            forward: '0'
+                            upward: '1'
+                            right: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Value Add-w: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            key: 'stamina'
+                            amount-base: '-30'
+                            amount-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Sound-x: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            sound: 'Entity Enderdragon Flap'
+                            volume-base: '60'
+                            volume-scale: '0'
+                            pitch-base: '1.2'
+                            pitch-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Delay-y: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            delay-base: '0.4'
+                            delay-scale: '0'
+                            indicator: '2D'
+                          children: 
+                            Value Set-z: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                key: 'Diving'
+                                value-base: '2'
+                                value-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+                            Command-ab: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                command: 'playsound minecraft:entity.enderdragon.flap ambient @a[r=16] ~ ~ ~ 0.4 1.2'
+                                type: 'OP'
+                                indicator: '2D'
+                              children:  {}
+                        Linear-bb: 
+                          type: 'target'
+                          indicator: '3D'
+                          data: 
+                            icon-key: 'range'
+                            range-base: '4'
+                            range-scale: '0'
+                            tolerance-base: '8'
+                            tolerance-scale: '0'
+                            group: 'Enemy'
+                            wall: 'True'
+                            caster: 'False'
+                            max-base: '999'
+                            max-scale: '0'
+                            indicator: '2D'
+                          children: 
+                            Status-cb: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                status: 'Disarm'
+                                duration-base: '1'
+                                duration-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+                            Status-db: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                status: 'Silence'
+                                duration-base: '1'
+                                duration-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+                            Repeat-eb: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                repetitions-base: '3'
+                                repetitions-scale: '0'
+                                period: '0.05'
+                                delay: '0'
+                                stop-on-fail: 'False'
+                                indicator: '2D'
+                              children: 
+                                Launch-fb: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    relative: 'Caster'
+                                    forward-base: '0.175'
+                                    forward-scale: '0'
+                                    upward-base: '0.45'
+                                    upward-scale: '0'
+                                    right-base: '0'
+                                    right-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                                Particle-gb: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    particle: 'Crit'
+                                    arrangement: 'Sphere'
+                                    radius-base: '1'
+                                    radius-scale: '0'
+                                    particles-base: '2'
+                                    particles-scale: '0'
+                                    visible-radius: '40'
+                                    dx: '0'
+                                    dy: '0'
+                                    dz: '0'
+                                    speed: '0'
+                                    amount: '1'
+                                    forward: '0'
+                                    upward: '1'
+                                    right: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                            Damage-hb: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: 'dmg1'
+                                counts: 'True'
+                                type: 'Damage'
+                                value-base: '25'
+                                value-scale: '0'
+                                true: 'False'
+                                classifier: 'physical'
+                                indicator: '2D'
+                              children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-jb: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.05'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value-kb: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                key: 'Diving'
+                min-value-base: '2'
+                min-value-scale: '0'
+                max-value-base: '999'
+                max-value-scale: '0'
+                indicator: '2D'
+              children: 
+                Launch-lb: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    relative: 'Target'
+                    forward-base: '1.45'
+                    forward-scale: '0'
+                    upward-base: '-2'
+                    upward-scale: '0'
+                    right-base: '0'
+                    right-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Particle-mb: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'Cloud'
+                    arrangement: 'Sphere'
+                    radius-base: '1'
+                    radius-scale: '0'
+                    particles-base: '3'
+                    particles-scale: '0'
+                    visible-radius: '40'
+                    dx: '0'
+                    dy: '0'
+                    dz: '0'
+                    speed: '0.1'
+                    amount: '1'
+                    forward: '0'
+                    upward: '1'
+                    right: '0'
+                    indicator: '2D'
+                  children:  {}
+                Offset-nb: 
+                  type: 'target'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    forward-base: '1'
+                    forward-scale: '0'
+                    upward-base: '-1'
+                    upward-scale: '0'
+                    right-base: '0'
+                    right-scale: '0'
+                    indicator: '2D'
+                    group: 'enemy'
+                    wall: 'false'
+                    caster: 'false'
+                  children: 
+                    Area-ob: 
+                      type: 'target'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'area'
+                        radius-base: '3.5'
+                        radius-scale: '0'
+                        group: 'Enemy'
+                        wall: 'True'
+                        caster: 'False'
+                        max-base: '999'
+                        max-scale: '0'
+                        random: 'False'
+                        indicator: '2D'
+                      children: 
+                        Self-pb: 
+                          type: 'target'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            indicator: '2D'
+                            group: 'enemy'
+                            wall: 'false'
+                            caster: 'false'
+                          children: 
+                            Value Set-qb: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                key: 'Diving'
+                                value-base: '0'
+                                value-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+                            Delay-rb: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                delay-base: '0.01'
+                                delay-scale: '0'
+                                indicator: '2D'
+                              children: 
+                                Launch-sb: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    relative: 'Caster'
+                                    forward-base: '0.4'
+                                    forward-scale: '0'
+                                    upward-base: '1.1'
+                                    upward-scale: '0'
+                                    right-base: '0'
+                                    right-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                                Value Set-tb: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    key: 'Diving'
+                                    value-base: '0'
+                                    value-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                            Status-ub: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                status: 'Invincible'
+                                duration-base: '0.1'
+                                duration-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+                            Command-vb: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                command: 'playsound minecraft:entity.zombie.attack_door_wood ambient @a[r=16] ~ ~ ~ 0.25 1'
+                                type: 'OP'
+                                indicator: '2D'
+                              children:  {}
+                        Status-wb: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            status: 'Disarm'
+                            duration-base: '0.5'
+                            duration-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Status-xb: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            status: 'Silence'
+                            duration-base: '0.5'
+                            duration-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Damage-yb: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: 'dmg2'
+                            counts: 'True'
+                            type: 'Damage'
+                            value-base: '40'
+                            value-scale: '0'
+                            true: 'False'
+                            classifier: 'physical'
+                            indicator: '2D'
+                          children:  {}
+                        Repeat-zb: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            repetitions-base: '3'
+                            repetitions-scale: '0'
+                            period: '0.05'
+                            delay: '0'
+                            stop-on-fail: 'False'
+                            indicator: '2D'
+                          children: 
+                            Launch-ac: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                relative: 'Caster'
+                                forward-base: '1'
+                                forward-scale: '0'
+                                upward-base: '-2.5'
+                                upward-scale: '0'
+                                right-base: '0'
+                                right-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+                        Skill Level-bc: 
+                          type: 'condition'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            skill: 'Alby-Thief'
+                            min-level: '1'
+                            max-level: '1'
+                            indicator: '2D'
+                          children: 
+                            Damage-cc: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: 'dmg2'
+                                counts: 'True'
+                                type: 'Damage'
+                                value-base: '30'
+                                value-scale: '0'
+                                true: 'False'
+                                classifier: 'dark'
+                                indicator: '2D'
+                              children:  {}
+                        Repeat-dc: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            repetitions-base: '5'
+                            repetitions-scale: '0'
+                            period: '0.1'
+                            delay: '0'
+                            stop-on-fail: 'False'
+                            indicator: '2D'
+                          children: 
+                            Particle-ec: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                particle: 'Crit'
+                                arrangement: 'Sphere'
+                                radius-base: '1'
+                                radius-scale: '0'
+                                particles-base: '3'
+                                particles-scale: '0'
+                                visible-radius: '40'
+                                dx: '0'
+                                dy: '0'
+                                dz: '0'
+                                speed: '0'
+                                amount: '1'
+                                forward: '0'
+                                upward: '1'
+                                right: '0'
+                                indicator: '2D'
+                              children:  {}
+                Ground-fc: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    type: 'On Ground'
+                    indicator: '2D'
+                  children: 
+                    Value Set-gc: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'Diving'
+                        value-base: '0'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+        Repeat-hc: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            repetitions-base: '3'
+            repetitions-scale: '0'
+            period: '0.1'
+            delay: '0'
+            stop-on-fail: 'False'
+            indicator: '2D'
+          children: 
+            Value Set-ic: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'Diving'
+                value-base: '0'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}

@@ -1,0 +1,244 @@
+Flaming Cartwheel: 
+  name: 'Flaming Cartwheel'
+  type: 'Damage/Support'
+  max-level: 1
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '2.5'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'WOOL'
+  icon-durability: 14
+  icon-data: 14
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Caster cartwheels forward, dealing repeated'
+  - '&7damage to enemies, causing hitstun, and'
+  - '&7ignites enemies. Caster is invincible at the'
+  - '&7start of the skill. Grants Speed.'
+  - ''
+  - '&bDamage: {attr:dmg.value} x4 Melee Damage &4䛵'
+  - '&bRadius: {attr:area.radius} Blocks'
+  - '&bIgnition Duration: {attr:fire.seconds} Seconds'
+  - '&bSpeed: {attr:po.tier} for {attr:po.seconds} Seconds'
+  - ''
+  - '&2Cooldown: {attr:cooldown}'
+  desc:  []
+  components: 
+    Cast: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Self-b: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Repeat-c: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                repetitions-base: '4'
+                repetitions-scale: '0'
+                period: '0.1'
+                delay: '0'
+                stop-on-fail: 'False'
+                indicator: '2D'
+              children: 
+                Self-d: 
+                  type: 'target'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    indicator: '2D'
+                    group: 'enemy'
+                    wall: 'false'
+                    caster: 'false'
+                  children: 
+                    Launch-e: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        relative: 'Caster'
+                        forward-base: '0.75'
+                        forward-scale: '0'
+                        upward-base: '0.001'
+                        upward-scale: '0'
+                        right-base: '0'
+                        right-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                Offset-f: 
+                  type: 'target'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    forward-base: '1.5'
+                    forward-scale: '0'
+                    upward-base: '0.5'
+                    upward-scale: '0'
+                    right-base: '0'
+                    right-scale: '0'
+                    indicator: '2D'
+                    group: 'enemy'
+                    wall: 'false'
+                    caster: 'false'
+                  children: 
+                    Particle-g: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        particle: 'Flame'
+                        arrangement: 'Sphere'
+                        radius-base: '4'
+                        radius-scale: '0'
+                        particles-base: '15'
+                        particles-scale: '0'
+                        visible-radius: '40'
+                        dx: '0'
+                        dy: '0'
+                        dz: '0'
+                        speed: '0.1'
+                        amount: '1'
+                        forward: '0'
+                        upward: '1'
+                        right: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Area-h: 
+                      type: 'target'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'area'
+                        radius-base: '4.5'
+                        radius-scale: '0'
+                        group: 'Enemy'
+                        wall: 'True'
+                        caster: 'False'
+                        max-base: '999'
+                        max-scale: '0'
+                        random: 'False'
+                        indicator: '2D'
+                      children: 
+                        Fire-i: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: 'fire'
+                            counts: 'True'
+                            seconds-base: '3'
+                            seconds-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Damage-j: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: 'dmg'
+                            counts: 'True'
+                            type: 'Damage'
+                            value-base: '15'
+                            value-scale: '0'
+                            true: 'False'
+                            classifier: 'fire'
+                            indicator: '2D'
+                          children:  {}
+                        Status-k: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            status: 'Disarm'
+                            duration-base: '0.5'
+                            duration-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Status-l: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            status: 'Silence'
+                            duration-base: '0.5'
+                            duration-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Launch-m: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            relative: 'Caster'
+                            forward-base: '0.77'
+                            forward-scale: '0'
+                            upward-base: '0.001'
+                            upward-scale: '0'
+                            right-base: '0'
+                            right-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+            Command-n: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                command: 'playsound spells.wind1 ambient @a[r=16] ~ ~ ~ 0.45 1.25'
+                type: 'OP'
+                indicator: '2D'
+              children:  {}
+            Status-o: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                status: 'Invincible'
+                duration-base: '0.2'
+                duration-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Potion-p: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'po'
+                counts: 'True'
+                potion: 'Speed'
+                ambient: 'True'
+                tier-base: '1'
+                tier-scale: '0'
+                seconds-base: '6'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}

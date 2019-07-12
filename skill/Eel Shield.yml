@@ -1,0 +1,587 @@
+Eel Shield: 
+  name: 'Eel Shield'
+  type: 'Defense/Damage'
+  max-level: 1
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '25'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'CACTUS'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Covers the Caster in eels, which'
+  - '&7cause a blast of electricity that deals'
+  - '&7damage to enemies when the Caster is'
+  - '&7touched, or when the Caster takes'
+  - '&7damage. Grants a defense buff, as'
+  - '&7well as a stun immunity.'
+  - ''
+  - '&bDamage: {attr:dmg.value} Melee Damage &e䛸'
+  - '&bShock Radius: {attr:area.radius} Blocks'
+  - '&bTouch Radius: {attr:area2.radius} Blocks'
+  - '&bDefense Buff: {attr:Eelbuff.value}%'
+  - '&bDuration: {attr:delay.delay} Seconds'
+  - ''
+  - '&2Cooldown: {attr:cooldown}'
+  desc:  []
+  components: 
+    Took Physical Damage-a: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        type: 'Both'
+        dmg-min: '0'
+        dmg-max: '999999'
+        indicator: '2D'
+      children: 
+        Self-b: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Value-c: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                key: 'SpikeShield'
+                min-value-base: '1'
+                min-value-scale: '0'
+                max-value-base: '1'
+                max-value-scale: '0'
+                indicator: '2D'
+              children: 
+                Command-d: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    command: 'playsound spells.thunder6 ambient @a[r=32] ~ ~ ~ 0.4 1.35'
+                    type: 'OP'
+                    indicator: '2D'
+                  children:  {}
+                Particle-e: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'Red Dust'
+                    arrangement: 'Sphere'
+                    radius-base: '3.5'
+                    radius-scale: '0'
+                    particles-base: '5'
+                    particles-scale: '0'
+                    visible-radius: '70'
+                    dx: '0.8'
+                    dy: '0.8'
+                    dz: '0'
+                    speed: '0'
+                    amount: '1'
+                    forward: '0'
+                    upward: '1'
+                    right: '0'
+                    indicator: '2D'
+                  children:  {}
+                Area-f: 
+                  type: 'target'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'area'
+                    radius-base: '3.5'
+                    radius-scale: '0'
+                    group: 'Enemy'
+                    wall: 'True'
+                    caster: 'False'
+                    max-base: '999'
+                    max-scale: '0'
+                    random: 'False'
+                    indicator: '2D'
+                  children: 
+                    Damage-g: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'dmg'
+                        counts: 'True'
+                        type: 'Damage'
+                        value-base: '30'
+                        value-scale: '0'
+                        true: 'False'
+                        classifier: 'thunder'
+                        indicator: '2D'
+                      children:  {}
+    Took Skill Damage-h: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        dmg-min: '0'
+        dmg-max: '999999'
+        category: 
+        - ''
+        indicator: '2D'
+      children: 
+        Self-i: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Value-j: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                key: 'SpikeShield'
+                min-value-base: '1'
+                min-value-scale: '0'
+                max-value-base: '1'
+                max-value-scale: '0'
+                indicator: '2D'
+              children: 
+                Command-k: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    command: 'playsound spells.thunder6 ambient @a[r=32] ~ ~ ~ 0.4 1.35'
+                    type: 'OP'
+                    indicator: '2D'
+                  children:  {}
+                Particle-l: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'Red Dust'
+                    arrangement: 'Sphere'
+                    radius-base: '3.5'
+                    radius-scale: '0'
+                    particles-base: '5'
+                    particles-scale: '0'
+                    visible-radius: '70'
+                    dx: '0.8'
+                    dy: '0.8'
+                    dz: '0'
+                    speed: '0'
+                    amount: '1'
+                    forward: '0'
+                    upward: '1'
+                    right: '0'
+                    indicator: '2D'
+                  children:  {}
+                Area-m: 
+                  type: 'target'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    radius-base: '3.5'
+                    radius-scale: '0'
+                    group: 'Enemy'
+                    wall: 'True'
+                    caster: 'False'
+                    max-base: '999'
+                    max-scale: '0'
+                    random: 'False'
+                    indicator: '2D'
+                  children: 
+                    Damage-n: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Damage'
+                        value-base: '30'
+                        value-scale: '0'
+                        true: 'False'
+                        classifier: 'thunder'
+                        indicator: '2D'
+                      children:  {}
+    Cast: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Self-p: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Value Set-q: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'SpikeShield'
+                value-base: '1'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Particle-r: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                particle: 'Firework Spark'
+                arrangement: 'Hemisphere'
+                radius-base: '1'
+                radius-scale: '0'
+                particles-base: '8'
+                particles-scale: '0'
+                forward: '0'
+                upward: '1'
+                right: '0'
+                indicator: '2D'
+              children:  {}
+            Command-s: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                command: 'playsound spells.electricarch4 ambient @a[r=32] ~ ~ ~ 1 1.2'
+                type: 'OP'
+                indicator: '2D'
+              children:  {}
+            Command-t: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                command: 'playsound spells.thunder6 ambient @a[r=32] ~ ~ ~ 0.5 1.2'
+                type: 'OP'
+                indicator: '2D'
+              children:  {}
+            Delay-u: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'delay'
+                counts: 'True'
+                delay-base: '8'
+                delay-scale: '0'
+                indicator: '2D'
+              children: 
+                Value Set-v: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'SpikeShield'
+                    value-base: '0'
+                    value-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+            Defense Buff-w: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                type: 'Multiplier'
+                skill: 'False'
+                value-base: '0.8'
+                value-scale: '0'
+                seconds-base: '8'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Defense Buff-x: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                type: 'Multiplier'
+                skill: 'True'
+                value-base: '0.8'
+                value-scale: '0'
+                seconds-base: '8'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Value Set-z: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            key: 'SpikeShield'
+            value-base: '0'
+            value-scale: '0'
+            indicator: '2D'
+          children:  {}
+        Passive-ab: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '1'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Set-bb: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'Eelbuff'
+                counts: 'True'
+                key: 'buffen'
+                value-base: '20'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+        Passive-cb: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.1'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value-db: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                key: 'SpikeShield'
+                min-value-base: '1'
+                min-value-scale: '0'
+                max-value-base: '1'
+                max-value-scale: '0'
+                indicator: '2D'
+              children: 
+                Particle-eb: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'Crit'
+                    arrangement: 'Circle'
+                    radius-base: '0.1'
+                    radius-scale: '0'
+                    particles-base: '15'
+                    particles-scale: '0'
+                    direction: 'XZ'
+                    visible-radius: '40'
+                    dx: '1'
+                    dy: '0'
+                    dz: '0'
+                    speed: '0'
+                    amount: '1'
+                    forward: '0'
+                    upward: '1'
+                    right: '0'
+                    indicator: '2D'
+                  children:  {}
+                Particle-fb: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'Magic Crit'
+                    arrangement: 'Circle'
+                    radius-base: '0.1'
+                    radius-scale: '0'
+                    particles-base: '15'
+                    particles-scale: '0'
+                    direction: 'XZ'
+                    visible-radius: '40'
+                    dx: '0'
+                    dy: '0'
+                    dz: '1'
+                    speed: '0'
+                    amount: '1'
+                    forward: '0'
+                    upward: '1'
+                    right: '0'
+                    indicator: '2D'
+                  children:  {}
+                Particle-gb: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'Red Dust'
+                    arrangement: 'Circle'
+                    radius-base: '1'
+                    radius-scale: '0'
+                    particles-base: '4'
+                    particles-scale: '0'
+                    direction: 'XZ'
+                    visible-radius: '40'
+                    dx: '0.8'
+                    dy: '0.8'
+                    dz: '0'
+                    speed: '1'
+                    amount: '0'
+                    forward: '0'
+                    upward: '1'
+                    right: '0'
+                    indicator: '2D'
+                  children:  {}
+                Area-hb: 
+                  type: 'target'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'area2'
+                    radius-base: '1.25'
+                    radius-scale: '0'
+                    group: 'Enemy'
+                    wall: 'True'
+                    caster: 'False'
+                    max-base: '999'
+                    max-scale: '0'
+                    random: 'False'
+                    indicator: '2D'
+                  children: 
+                    Damage-ib: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Damage'
+                        value-base: '30'
+                        value-scale: '0'
+                        true: 'False'
+                        classifier: 'thunder'
+                        indicator: '2D'
+                      children:  {}
+                Area-jb: 
+                  type: 'target'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    radius-base: '1.3'
+                    radius-scale: '0'
+                    group: 'Enemy'
+                    wall: 'True'
+                    caster: 'False'
+                    max-base: '1'
+                    max-scale: '0'
+                    random: 'False'
+                    indicator: '2D'
+                  children: 
+                    Self-kb: 
+                      type: 'target'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        indicator: '2D'
+                        group: 'enemy'
+                        wall: 'false'
+                        caster: 'false'
+                      children: 
+                        Command-lb: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            command: 'playsound spells.thunder6 ambient @a[r=32] ~ ~ ~ 0.4 1.35'
+                            type: 'OP'
+                            indicator: '2D'
+                          children:  {}
+        Passive-mb: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.05'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value-nb: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                key: 'SpikeShield'
+                min-value-base: '1'
+                min-value-scale: '0'
+                max-value-base: '999'
+                max-value-scale: '0'
+                indicator: '2D'
+              children: 
+                Status-ob: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    type: 'Active'
+                    status: 'Stun'
+                    indicator: '2D'
+                  children: 
+                    Cleanse-pb: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        potion: ''
+                        status: 'Stun'
+                        indicator: '2D'
+                      children:  {}
