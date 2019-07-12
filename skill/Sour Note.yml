@@ -1,0 +1,213 @@
+Sour Note: 
+  name: 'Sour Note'
+  type: 'Damage/Support'
+  max-level: 1
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '10'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'IRON_PICKAXE'
+  icon-durability: 48
+  icon-data: 48
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Plays a sour note, damaging nearby'
+  - '&7enemies. Stuns enemies.'
+  - ''
+  - '&bDamage: {attr:dmg.value} Damage &9䛇'
+  - '&bRadius: {attr:area.radius} Blocks'
+  - '&bStun Duration: {attr:stun.duration} Seconds'
+  - ''
+  - '&2Cooldown: {attr:cooldown}'
+  desc:  []
+  components: 
+    Cast: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Self-b: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Particle-c: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                particle: 'Note'
+                arrangement: 'Sphere'
+                radius-base: '6'
+                radius-scale: '0'
+                particles-base: '40'
+                particles-scale: '0'
+                visible-radius: '40'
+                dx: '0.9166666666666667'
+                dy: '0'
+                dz: '0'
+                speed: '1'
+                amount: '0'
+                forward: '0'
+                upward: '1'
+                right: '0'
+                indicator: '2D'
+              children:  {}
+            Area-d: 
+              type: 'target'
+              indicator: '3D'
+              data: 
+                icon-key: 'area'
+                radius-base: '6'
+                radius-scale: '0'
+                group: 'Enemy'
+                wall: 'True'
+                caster: 'False'
+                max-base: '999'
+                max-scale: '0'
+                random: 'False'
+                indicator: '2D'
+              children: 
+                Damage-e: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'dmg'
+                    counts: 'True'
+                    type: 'Damage'
+                    value-base: '60'
+                    value-scale: '0'
+                    true: 'False'
+                    classifier: 'physical'
+                    indicator: '2D'
+                  children:  {}
+                Status-f: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'stun'
+                    counts: 'True'
+                    status: 'Stun'
+                    duration-base: '1'
+                    duration-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Repeat-g: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    repetitions-base: '10'
+                    repetitions-scale: '0'
+                    period: '0.1'
+                    delay: '0'
+                    stop-on-fail: 'False'
+                    indicator: '2D'
+                  children: 
+                    Particle-h: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        particle: 'Angry Villager'
+                        arrangement: 'Circle'
+                        radius-base: '1'
+                        radius-scale: '0'
+                        particles-base: '1'
+                        particles-scale: '0'
+                        direction: 'XZ'
+                        visible-radius: '40'
+                        dx: '0'
+                        dy: '0'
+                        dz: '0'
+                        speed: '1'
+                        amount: '1'
+                        forward: '0'
+                        upward: '1.6'
+                        right: '0'
+                        indicator: '2D'
+                      children:  {}
+            Self-i: 
+              type: 'target'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                indicator: '2D'
+                group: 'enemy'
+                wall: 'false'
+                caster: 'false'
+              children: 
+                Command-j: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    command: 'playsound minecraft:block.note.harp ambient @a[r=16] ~ ~ ~ 0.3 1.4'
+                    type: 'OP'
+                    indicator: '2D'
+                  children:  {}
+                Command-k: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    command: 'playsound minecraft:block.note.harp ambient @a[r=16] ~ ~ ~ 0.3 1.2'
+                    type: 'OP'
+                    indicator: '2D'
+                  children:  {}
+                Command-l: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    command: 'playsound minecraft:block.note.harp ambient @a[r=16] ~ ~ ~ 0.3 1'
+                    type: 'OP'
+                    indicator: '2D'
+                  children:  {}
+                Command-m: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    command: 'playsound minecraft:block.note.harp ambient @a[r=16] ~ ~ ~ 0.3 0.8'
+                    type: 'OP'
+                    indicator: '2D'
+                  children:  {}
+                Command-n: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    command: 'playsound minecraft:block.note.harp ambient @a[r=16] ~ ~ ~ 0.3 0.6'
+                    type: 'OP'
+                    indicator: '2D'
+                  children:  {}

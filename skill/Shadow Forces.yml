@@ -1,0 +1,181 @@
+Shadow Forces: 
+  name: 'Shadow Forces'
+  type: 'Passive'
+  max-level: 1
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '0'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'BANNER'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Increases damage by &610&f% &7at Night.'
+  - '&7Increases defense by &610&f% &7at Night.'
+  - ''
+  - '&7Grants HP Regen {attr:po2.tier} &7for {attr:po2.seconds} &fseconds'
+  - '&7every {attr:timer.seconds} &7seconds at Night, but only'
+  - "&7if HP Regen isn't currently active."
+  desc:  []
+  components: 
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-b: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.1'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Self-c: 
+              type: 'target'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                indicator: '2D'
+                group: 'enemy'
+                wall: 'false'
+                caster: 'false'
+              children: 
+                Time-d: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    time: 'Night'
+                    indicator: '2D'
+                  children: 
+                    Damage Buff-e: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Multiplier'
+                        skill: 'False'
+                        value-base: '1.1'
+                        value-scale: '0'
+                        seconds-base: '1'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Damage Buff-f: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Multiplier'
+                        skill: 'True'
+                        value-base: '1.1'
+                        value-scale: '0'
+                        seconds-base: '1'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Defense Buff-g: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Multiplier'
+                        skill: 'False'
+                        value-base: '0.9'
+                        value-scale: '0'
+                        seconds-base: '1'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Defense Buff-h: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Multiplier'
+                        skill: 'True'
+                        value-base: '0.9'
+                        value-scale: '0'
+                        seconds-base: '1'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+        Passive-i: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: 'timer'
+            counts: 'True'
+            seconds-base: '10'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Self-j: 
+              type: 'target'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                indicator: '2D'
+                group: 'enemy'
+                wall: 'false'
+                caster: 'false'
+              children: 
+                Time-k: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    time: 'Night'
+                    indicator: '2D'
+                  children: 
+                    Potion-l: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        type: 'Not Active'
+                        potion: 'Regeneration'
+                        min-rank-base: '0'
+                        min-rank-scale: '0'
+                        max-rank-base: '999'
+                        max-rank-scale: '0'
+                        indicator: '2D'
+                      children: 
+                        Potion-m: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: 'po2'
+                            counts: 'True'
+                            potion: 'Regeneration'
+                            ambient: 'True'
+                            tier-base: '1'
+                            tier-scale: '0'
+                            seconds-base: '2.5'
+                            seconds-scale: '0'
+                            indicator: '2D'
+                          children:  {}

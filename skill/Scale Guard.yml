@@ -1,0 +1,235 @@
+Scale Guard: 
+  name: 'Scale Guard'
+  type: 'Defense'
+  max-level: 1
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '25'
+    cooldown-scale: '0'
+    mana-base: '150'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'IRON_INGOT'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Grants a Flat, and a Percent Defense'
+  - '&7buff to the Caster.'
+  - ''
+  - '&bFlat Defense Buff: {attr:fdef.value}'
+  - '&bPercent Defense Buff: {attr:pdef.value}%'
+  - '&bDuration: {attr:dur.seconds} Seconds'
+  - ''
+  - '&2Mana: {attr:mana} &2Cooldown: {attr:cooldown}'
+  desc:  []
+  components: 
+    Cast: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Self-b: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Defense Buff-c: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'dur'
+                counts: 'True'
+                type: 'Flat'
+                skill: 'False'
+                value-base: '-15'
+                value-scale: '0'
+                seconds-base: '6'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Defense Buff-d: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                type: 'Flat'
+                skill: 'True'
+                value-base: '-15'
+                value-scale: '0'
+                seconds-base: '6'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Defense Buff-e: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                type: 'Multiplier'
+                skill: 'False'
+                value-base: '0.85'
+                value-scale: '0'
+                seconds-base: '6'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Defense Buff-f: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                type: 'Multiplier'
+                skill: 'True'
+                value-base: '0.85'
+                value-scale: '0'
+                seconds-base: '6'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Command-g: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                command: 'playsound minecraft:entity.enderdragon.ambient ambient @a[r=16] ~ ~ ~ 0.2 0.9'
+                type: 'OP'
+                indicator: '2D'
+              children:  {}
+            Repeat-h: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                repetitions-base: '5'
+                repetitions-scale: '0'
+                period: '0.2'
+                delay: '0'
+                stop-on-fail: 'False'
+                indicator: '2D'
+              children: 
+                Command-i: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    command: 'playsound minecraft:block.stone.break ambient @a[r=16] ~ ~ ~ 1 1'
+                    type: 'OP'
+                    indicator: '2D'
+                  children:  {}
+                Particle-j: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'Block Crack'
+                    material: 'Prismarine'
+                    type: '0'
+                    arrangement: 'Circle'
+                    radius-base: '1'
+                    radius-scale: '0'
+                    particles-base: '5'
+                    particles-scale: '0'
+                    direction: 'XZ'
+                    forward: '0'
+                    upward: '1'
+                    right: '0'
+                    indicator: '2D'
+                  children:  {}
+            Repeat-k: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                repetitions-base: '30'
+                repetitions-scale: '0'
+                period: '0.2'
+                delay: '0'
+                stop-on-fail: 'False'
+                indicator: '2D'
+              children: 
+                Particle-l: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'Block Crack'
+                    material: 'Prismarine'
+                    type: '0'
+                    arrangement: 'Circle'
+                    radius-base: '1'
+                    radius-scale: '0'
+                    particles-base: '3'
+                    particles-scale: '0'
+                    direction: 'XZ'
+                    forward: '0'
+                    upward: '1'
+                    right: '0'
+                    indicator: '2D'
+                  children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-n: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.4'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Set-o: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'fdef'
+                counts: 'True'
+                key: 'flat'
+                value-base: '15'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Set-p: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'pdef'
+                counts: 'True'
+                key: 'percent'
+                value-base: '15'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}

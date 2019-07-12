@@ -1,0 +1,244 @@
+Running On Energy: 
+  name: 'Running On Energy'
+  type: 'Passive'
+  max-level: 1
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '0'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'EXP_BOTTLE'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7You don’t use Mana, nor Tech, you use &bEnergy&7.'
+  - ''
+  - '&7Your max &bEnergy &7is &6100&7. '
+  - ''
+  - '&7With this resource, you can charge'
+  - '&7up stronger attacks as you deal'
+  - '&7damage using your click skills,'
+  - '&7using some castable skills, or even by killing.'
+  - '&7Mana Regen heals &61 &bEnergy &7every'
+  - '&60.75 &fseconds&7, regardless of tier.'
+  - ''
+  - '&7Killing heals a fixed {attr:heal.value} &7HP, {attr:stradd.amount} &aStamina&7, '
+  - '&7and {attr:energyaddKill.amount} &bEnergy&7.'
+  - ''
+  - '&bEnergy &7automatically regenerates &61 &7unit'
+  - '&7every &60.75 &fseconds&7 but only when below'
+  - '&7&640 &bEnergy&7.'
+  desc:  []
+  components: 
+    Kill-a: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        indicator: '2D'
+      children: 
+        Heal-b: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: 'heal'
+            counts: 'True'
+            type: 'Health'
+            value-base: '150'
+            value-scale: '0'
+            indicator: '2D'
+          children:  {}
+        Value Add-c: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: 'stradd'
+            counts: 'True'
+            key: 'stamina'
+            amount-base: '30'
+            amount-scale: '0'
+            indicator: '2D'
+          children:  {}
+        Value Add-d: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: 'energyaddKill'
+            counts: 'True'
+            key: 'energy'
+            amount-base: '50'
+            amount-scale: '0'
+            indicator: '2D'
+          children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Repeat-f: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            repetitions-base: '2'
+            repetitions-scale: '0'
+            period: '0.1'
+            delay: '0'
+            stop-on-fail: 'False'
+            indicator: '2D'
+          children: 
+            Value Set-g: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'energy'
+                value-base: '0'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+        Passive-h: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.08'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value-i: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                key: 'energy'
+                min-value-base: '100'
+                min-value-scale: '0'
+                max-value-base: '999'
+                max-value-scale: '0'
+                indicator: '2D'
+              children: 
+                Value Set-j: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'energy'
+                    value-base: '100'
+                    value-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+            Value-k: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                key: 'energy'
+                min-value-base: '-999'
+                min-value-scale: '0'
+                max-value-base: '-1'
+                max-value-scale: '0'
+                indicator: '2D'
+              children: 
+                Value Set-l: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'energy'
+                    value-base: '0'
+                    value-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+        Passive-m: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.75'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value-n: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                key: 'energy'
+                min-value-base: '-999'
+                min-value-scale: '0'
+                max-value-base: '39'
+                max-value-scale: '0'
+                indicator: '2D'
+              children: 
+                Value Add-o: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'energy'
+                    amount-base: '1'
+                    amount-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+            Potion-p: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                type: 'Active'
+                potion: 'Saturation'
+                min-rank-base: '0'
+                min-rank-scale: '0'
+                max-rank-base: '999'
+                max-rank-scale: '0'
+                indicator: '2D'
+              children: 
+                Value-q: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    key: 'energy'
+                    min-value-base: '0'
+                    min-value-scale: '0'
+                    max-value-base: '99'
+                    max-value-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Value Add-r: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'energy'
+                        amount-base: '1'
+                        amount-scale: '0'
+                        indicator: '2D'
+                      children:  {}

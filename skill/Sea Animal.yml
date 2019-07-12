@@ -1,0 +1,92 @@
+Sea Animal: 
+  name: 'Sea Animal'
+  type: 'Passive'
+  max-level: 1
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '0'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'PRISMARINE'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Swim faster in water (Coming post 1.13), and'
+  - '&7have &6permanent &7Water Breathing.'
+  - ''
+  - '&7Heal &61 &eTech &7every &62 &7seconds'
+  - '&7while in water.'
+  desc:  []
+  components: 
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Self-b: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Passive-c: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                seconds-base: '2'
+                seconds-scale: '0'
+                indicator: '2D'
+              children: 
+                Water-d: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    state: 'In Water'
+                    indicator: '2D'
+                  children: 
+                    Value-e: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        key: 'tech'
+                        min-value-base: '0'
+                        min-value-scale: '0'
+                        max-value-base: '99'
+                        max-value-scale: '0'
+                        indicator: '2D'
+                      children: 
+                        Value Add-f: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            key: 'tech'
+                            amount-base: '1'
+                            amount-scale: '0'
+                            indicator: '2D'
+                          children:  {}

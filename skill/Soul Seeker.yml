@@ -1,0 +1,304 @@
+Soul Seeker: 
+  name: 'Soul Seeker'
+  type: 'Passive'
+  max-level: 1
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '0'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'GHAST_TEAR'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Heals &615&f% &7of the dealt damage as HP.'
+  - ''
+  - '&7Drains &610&f% &7of the dealt damage as Mana.'
+  - ''
+  - '&7Kills heal HP and Mana.'
+  - ''
+  - '&7Kills reduce active cooldowns'
+  - '&7by &63 &fSeconds&7.'
+  - ''
+  - '&bHP Healed: {attr:heal.value}'
+  - '&bMana Healed: {attr:mana.value}'
+  desc:  []
+  components: 
+    Kill-a: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        indicator: '2D'
+      children: 
+        Self-b: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Heal-c: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'heal'
+                counts: 'True'
+                type: 'Health'
+                value-base: '100'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Mana-d: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'mana'
+                counts: 'True'
+                type: 'Mana'
+                value-base: '100'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Delay-e: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                delay-base: '0.01'
+                delay-scale: '0'
+                indicator: '2D'
+              children: 
+                Cooldown-f: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    skill: 'all'
+                    type: 'Seconds'
+                    value-base: '3'
+                    value-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+            Particle-g: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                particle: 'Heart'
+                arrangement: 'Sphere'
+                radius-base: '1'
+                radius-scale: '0'
+                particles-base: '3'
+                particles-scale: '0'
+                forward: '0'
+                upward: '1'
+                right: '0'
+                indicator: '2D'
+              children:  {}
+    Skill Damage-h: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'False'
+        dmg-min: '0'
+        dmg-max: '999999'
+        category: 
+        - ''
+        indicator: '2D'
+      children: 
+        Remember Targets-i: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            key: 'drained'
+            indicator: '2D'
+          children:  {}
+        Self-j: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Value Set-k: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'ReaperDamageDrained'
+                value-base: 'api-dealt'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Multiply-l: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'ReaperDamageDrained'
+                multiplier-base: '0.15'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Delay-m: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                delay-base: '0.01'
+                delay-scale: '0'
+                indicator: '2D'
+              children: 
+                Heal-n: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    type: 'Health'
+                    value-base: 'ReaperDamageDrained'
+                    value-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+            Self-o: 
+              type: 'target'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                indicator: '2D'
+                group: 'enemy'
+                wall: 'false'
+                caster: 'false'
+              children: 
+                Value Set-p: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'ReaperManaDrained'
+                    value-base: 'api-dealt'
+                    value-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Value Set-q: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'ReaperManaHealed'
+                    value-base: 'api-dealt'
+                    value-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Value Multiply-r: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'ReaperManaDrained'
+                    multiplier-base: '0.1'
+                    multiplier-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Value Multiply-s: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'ReaperManaDrained'
+                    multiplier-base: '-1'
+                    multiplier-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Value Multiply-t: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'ReaperManaHealed'
+                    multiplier-base: '0.1'
+                    multiplier-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Delay-u: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    delay-base: '0.01'
+                    delay-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Remember-v: 
+                      type: 'target'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        key: 'drained'
+                        indicator: '2D'
+                        group: 'enemy'
+                        wall: 'false'
+                        caster: 'false'
+                      children: 
+                        Mana-w: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            type: 'Mana'
+                            value-base: 'ReaperManaDrained'
+                            value-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                    Mana-x: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Mana'
+                        value-base: 'ReaperManaHealed'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}

@@ -1,0 +1,61 @@
+Rune_Deity_ShadowOrb: 
+  name: 'Rune_Deity_ShadowOrb'
+  type: 'Rune'
+  max-level: 3
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '1'
+    cost-scale: '0'
+    cooldown-base: '0'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'REDSTONE_BLOCK'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&dShadow Orb Rune'
+  - ''
+  - '&eRune for Shadow Orb.'
+  - '&b*Left* click to rise mode number.'
+  - '&b*Right* click to lower mode number.'
+  - '&aCurrent Mode: &b[&6{level}&b]'
+  - ''
+  - '&dMode 1: &cLight Orb'
+  - '&7Changes element to Light.'
+  - ''
+  - '&dMode 2: &cNeutral Orb'
+  - '&7Changes element to Neutral.'
+  - ''
+  - '&dMode 3: &cHealing Bonus'
+  - '&7Grants HP Regen 2 for 2 Seconds'
+  - '&7to the Caster, after hitting an enemy with'
+  - '&7the orb.'
+  desc:  []
+  components: 
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Value Set-b: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            key: 'value'
+            value-base: '1'
+            value-scale: '0'
+            indicator: '2D'
+          children:  {}
