@@ -1,0 +1,369 @@
+Blizzard Bomb: 
+  name: 'Blizzard Bomb'
+  type: 'Damage'
+  max-level: 1
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '4'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'CONCRETE_POWDER'
+  icon-durability: 3
+  icon-data: 3
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Casts a projectile that explodes on impact,'
+  - '&7causing knockback to enemies.'
+  - '&7May stun enemies. Causes Slowness'
+  - '&7to enemies who aren’t stunned.'
+  - ''
+  - '&bDamage: {attr:dmg.value} Skill Damage &1䛴'
+  - '&bRange: &6Short-Medium'
+  - '&bProjectile Radius: &61.25 &fBlocks'
+  - '&bBlast Radius: {attr:area.radius} Blocks'
+  - '&bStun: {attr:CC.chance}% for {attr:stun.duration} Seconds'
+  - '&bSlowness: {attr:po.tier} for {attr:po.seconds} Seconds'
+  - ''
+  - '&bEnergy: &625 &2Cooldown: {attr:cooldown}'
+  desc:  []
+  components: 
+    Cast: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Value-b: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            key: 'energy'
+            min-value-base: '25'
+            min-value-scale: '0'
+            max-value-base: '999'
+            max-value-scale: '0'
+            indicator: '2D'
+          children: 
+            Self-c: 
+              type: 'target'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                indicator: '2D'
+                group: 'enemy'
+                wall: 'false'
+                caster: 'false'
+              children: 
+                Particle Projectile-d: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    group: 'Enemy'
+                    spread: 'Cone'
+                    amount-base: '1'
+                    amount-scale: '0'
+                    velocity-base: '1.5'
+                    velocity-scale: '0'
+                    angle-base: '30'
+                    angle-scale: '0'
+                    position: '0'
+                    forward-base: '0'
+                    forward-scale: '0'
+                    upward-base: '1.5'
+                    upward-scale: '0'
+                    right-base: '0'
+                    right-scale: '0'
+                    gravity: '-0.035'
+                    pierce: 'False'
+                    particle: 'Red Dust'
+                    arrangement: 'Sphere'
+                    radius-base: '1.25'
+                    radius-scale: '0'
+                    particles-base: '8'
+                    particles-scale: '0'
+                    visible-radius: '60'
+                    dx: '0.25'
+                    dy: '1'
+                    dz: '1'
+                    speed: '1'
+                    amount: '0'
+                    frequency: '0.05'
+                    lifespan: '6'
+                    use-effect: 'False'
+                    indicator: '2D'
+                  children: 
+                    Area-e: 
+                      type: 'target'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'area'
+                        radius-base: '6'
+                        radius-scale: '0'
+                        group: 'Enemy'
+                        wall: 'True'
+                        caster: 'False'
+                        max-base: '999'
+                        max-scale: '0'
+                        random: 'False'
+                        indicator: '2D'
+                      children: 
+                        Damage-f: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: 'dmg'
+                            counts: 'True'
+                            type: 'Damage'
+                            value-base: '80'
+                            value-scale: '0'
+                            true: 'False'
+                            classifier: 'water'
+                            indicator: '2D'
+                          children:  {}
+                        Chance-g: 
+                          type: 'condition'
+                          indicator: '3D'
+                          data: 
+                            icon-key: 'CC'
+                            chance-base: '15'
+                            chance-scale: '0'
+                            indicator: '2D'
+                          children: 
+                            Status-h: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: 'stun'
+                                counts: 'True'
+                                status: 'Stun'
+                                duration-base: '2'
+                                duration-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+                            Repeat-i: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                repetitions-base: '10'
+                                repetitions-scale: '0'
+                                period: '0.2'
+                                delay: '0'
+                                stop-on-fail: 'False'
+                                indicator: '2D'
+                              children: 
+                                Particle-j: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    particle: 'Angry Villager'
+                                    arrangement: 'Circle'
+                                    radius-base: '1'
+                                    radius-scale: '0'
+                                    particles-base: '1'
+                                    particles-scale: '0'
+                                    direction: 'XZ'
+                                    visible-radius: '40'
+                                    dx: '0'
+                                    dy: '0'
+                                    dz: '0'
+                                    speed: '1'
+                                    amount: '1'
+                                    forward: '0'
+                                    upward: '1.6'
+                                    right: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                        Status-k: 
+                          type: 'condition'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            type: 'Not Active'
+                            status: 'Stun'
+                            indicator: '2D'
+                          children: 
+                            Potion-l: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: 'po'
+                                counts: 'True'
+                                potion: 'Slow'
+                                ambient: 'True'
+                                tier-base: '2'
+                                tier-scale: '0'
+                                seconds-base: '6'
+                                seconds-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+                        Delay-m: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            delay-base: '0.03'
+                            delay-scale: '0'
+                            indicator: '2D'
+                          children: 
+                            Repeat-n: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                repetitions-base: '2'
+                                repetitions-scale: '0'
+                                period: '0.05'
+                                delay: '0'
+                                stop-on-fail: 'False'
+                                indicator: '2D'
+                              children: 
+                                Push-o: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    type: 'Fixed'
+                                    speed-base: '1'
+                                    speed-scale: '0'
+                                    source: 'none'
+                                    indicator: '2D'
+                                  children:  {}
+                    Particle-p: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        particle: 'Huge Explosion'
+                        arrangement: 'Sphere'
+                        radius-base: '4'
+                        radius-scale: '0'
+                        particles-base: '8'
+                        particles-scale: '0'
+                        visible-radius: '100'
+                        dx: '0'
+                        dy: '0'
+                        dz: '0'
+                        speed: '1'
+                        amount: '1'
+                        forward: '0'
+                        upward: '0'
+                        right: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Particle-q: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        particle: 'Block Crack'
+                        material: 'Water'
+                        type: '0'
+                        arrangement: 'Sphere'
+                        radius-base: '5'
+                        radius-scale: '0'
+                        particles-base: '25'
+                        particles-scale: '0'
+                        forward: '0'
+                        upward: '0.1'
+                        right: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Explosion-r: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        power-base: '0'
+                        power-scale: '0'
+                        damage: 'False'
+                        fire: 'False'
+                        indicator: '2D'
+                      children:  {}
+                Particle Projectile-s: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    group: 'Enemy'
+                    spread: 'Cone'
+                    amount-base: '1'
+                    amount-scale: '0'
+                    velocity-base: '1.5'
+                    velocity-scale: '0'
+                    angle-base: '30'
+                    angle-scale: '0'
+                    position: '0'
+                    forward-base: '0'
+                    forward-scale: '0'
+                    upward-base: '1.5'
+                    upward-scale: '0'
+                    right-base: '0'
+                    right-scale: '0'
+                    gravity: '-0.035'
+                    pierce: 'False'
+                    particle: 'Mob Spell'
+                    arrangement: 'Sphere'
+                    radius-base: '1.5'
+                    radius-scale: '0'
+                    particles-base: '5'
+                    particles-scale: '0'
+                    visible-radius: '60'
+                    dx: '0.25'
+                    dy: '1'
+                    dz: '1'
+                    speed: '1'
+                    amount: '0'
+                    frequency: '0.05'
+                    lifespan: '6'
+                    use-effect: 'False'
+                    indicator: '2D'
+                  children:  {}
+                Command-t: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    command: 'playsound spells.ice1 ambient @a[r=16] ~ ~ ~ 0.4 1'
+                    type: 'OP'
+                    indicator: '2D'
+                  children:  {}
+                Value Add-u: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'energy'
+                    amount-base: '-25'
+                    amount-scale: '0'
+                    indicator: '2D'
+                  children:  {}

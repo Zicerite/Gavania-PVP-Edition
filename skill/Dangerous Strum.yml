@@ -1,0 +1,221 @@
+Dangerous Strum: 
+  name: 'Dangerous Strum'
+  type: 'Damage'
+  max-level: 1
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '10'
+    cooldown-scale: '0'
+    mana-base: '150'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'GRAVEL'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Plays something slightly spooky, dealing'
+  - '&7repeated damage to enemies around'
+  - '&7the Caster.'
+  - ''
+  - '&bDamage: {attr:dmg.value} x25 Damage &7䛶'
+  - '&bRadius: {attr:area.radius} Blocks'
+  - ''
+  - '&2Mana: {attr:mana} &2Cooldown: {attr:cooldown}'
+  desc:  []
+  components: 
+    Cast: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Repeat-b: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            repetitions-base: '5'
+            repetitions-scale: '0'
+            period: '0.5'
+            delay: '0'
+            stop-on-fail: 'False'
+            indicator: '2D'
+          children: 
+            Self-c: 
+              type: 'target'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                indicator: '2D'
+                group: 'enemy'
+                wall: 'false'
+                caster: 'false'
+              children: 
+                Command-d: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    command: 'playsound minecraft:block.note.harp ambient @a[r=16] ~ ~ ~ 1 0.890899'
+                    type: 'OP'
+                    indicator: '2D'
+                  children:  {}
+                Repeat-e: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    repetitions-base: '5'
+                    repetitions-scale: '0'
+                    period: '0.1'
+                    delay: '0'
+                    stop-on-fail: 'False'
+                    indicator: '2D'
+                  children: 
+                    Particle-f: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        particle: 'Note'
+                        arrangement: 'Sphere'
+                        radius-base: '5'
+                        radius-scale: '0'
+                        particles-base: '8'
+                        particles-scale: '0'
+                        visible-radius: '60'
+                        dx: '0.1666666666666667'
+                        dy: '0'
+                        dz: '0'
+                        speed: '1'
+                        amount: '0'
+                        forward: '0'
+                        upward: '0'
+                        right: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Area-g: 
+                      type: 'target'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'area'
+                        radius-base: '5'
+                        radius-scale: '0'
+                        group: 'Enemy'
+                        wall: 'True'
+                        caster: 'False'
+                        max-base: '999'
+                        max-scale: '0'
+                        random: 'False'
+                        indicator: '2D'
+                      children: 
+                        Damage-h: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: 'dmg'
+                            counts: 'True'
+                            type: 'Damage'
+                            value-base: '10'
+                            value-scale: '0'
+                            true: 'False'
+                            classifier: 'neutral'
+                            indicator: '2D'
+                          children:  {}
+                Delay-i: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    delay-base: '0.1'
+                    delay-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Command-j: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        command: 'playsound minecraft:block.note.harp ambient @a[r=16] ~ ~ ~ 1 0.840896'
+                        type: 'OP'
+                        indicator: '2D'
+                      children:  {}
+                Delay-k: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    delay-base: '0.2'
+                    delay-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Command-l: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        command: 'playsound minecraft:block.note.harp ambient @a[r=16] ~ ~ ~ 1 0.793701'
+                        type: 'OP'
+                        indicator: '2D'
+                      children:  {}
+                Delay-m: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    delay-base: '0.3'
+                    delay-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Command-n: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        command: 'playsound minecraft:block.note.harp ambient @a[r=16] ~ ~ ~ 1 0.749154'
+                        type: 'OP'
+                        indicator: '2D'
+                      children:  {}
+                Delay-o: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    delay-base: '0.4'
+                    delay-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Command-p: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        command: 'playsound minecraft:block.note.harp ambient @a[r=16] ~ ~ ~ 1 0.707107'
+                        type: 'OP'
+                        indicator: '2D'
+                      children:  {}

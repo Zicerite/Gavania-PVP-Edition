@@ -1,0 +1,164 @@
+Aqua Spout: 
+  name: 'Aqua Spout'
+  type: 'Damage'
+  max-level: 1
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '3'
+    cooldown-scale: '0'
+    mana-base: '150'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'LAPIS_BLOCK'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Shoots out projectiles that deal Damage.'
+  - '&7Pierces through enemies.'
+  - '&7Reduces the cooldown of the skill if'
+  - '&7casted in water.'
+  - ''
+  - '&bDamage: {attr:dmg.value} x3 Damage &1䛴'
+  - '&bRange: &6Short-Medium'
+  - '&bCooldown Reduction: &680&f%'
+  - ''
+  - '&2Mana: {attr:mana} &2Cooldown: {attr:cooldown}'
+  desc:  []
+  components: 
+    Cast: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Self-b: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Particle Projectile-c: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                group: 'Enemy'
+                spread: 'Cone'
+                amount-base: '3'
+                amount-scale: '0'
+                velocity-base: '1.25'
+                velocity-scale: '0'
+                angle-base: '30'
+                angle-scale: '0'
+                position: '0'
+                forward-base: '0'
+                forward-scale: '0'
+                upward-base: '1'
+                upward-scale: '0'
+                right-base: '0'
+                right-scale: '0'
+                gravity: '0'
+                pierce: 'True'
+                particle: 'Red Dust'
+                arrangement: 'Sphere'
+                radius-base: '1.2'
+                radius-scale: '0'
+                particles-base: '9'
+                particles-scale: '0'
+                visible-radius: '60'
+                dx: '0.01'
+                dy: '0'
+                dz: '0.75'
+                speed: '1'
+                amount: '0'
+                frequency: '0.05'
+                lifespan: '1'
+                use-effect: 'False'
+                indicator: '2D'
+              children: 
+                Area-d: 
+                  type: 'target'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    radius-base: '1.5'
+                    radius-scale: '0'
+                    group: 'Enemy'
+                    wall: 'False'
+                    caster: 'False'
+                    max-base: '999'
+                    max-scale: '0'
+                    random: 'False'
+                    indicator: '2D'
+                  children: 
+                    Damage-e: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'dmg'
+                        counts: 'True'
+                        type: 'Damage'
+                        value-base: '25'
+                        value-scale: '0'
+                        true: 'False'
+                        classifier: 'water'
+                        indicator: '2D'
+                      children:  {}
+            Command-f: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                command: 'playsound spells.water2 ambient @a[r=16] ~ ~ ~ 0.7 1'
+                type: 'OP'
+                indicator: '2D'
+              children:  {}
+        Water-g: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            state: 'In Water'
+            indicator: '2D'
+          children: 
+            Delay-h: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                delay-base: '0.01'
+                delay-scale: '0'
+                indicator: '2D'
+              children: 
+                Cooldown-i: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    skill: 'Aqua Spout'
+                    type: 'Percent'
+                    value-base: '80'
+                    value-scale: '0'
+                    indicator: '2D'
+                  children:  {}

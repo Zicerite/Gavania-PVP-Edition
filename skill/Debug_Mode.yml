@@ -1,0 +1,918 @@
+Debug_Mode: 
+  name: 'Debug_Mode'
+  type: 'Interesting Setting'
+  max-level: 2
+  skill-req: 'None'
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '1'
+    cost-scale: '0'
+    cooldown-base: '0'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'IRON_INGOT'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name}'
+  - ''
+  - '&aCurrent Mode: &b[&6{level}&b]'
+  - '&6Remember that &9Holding F3,'
+  - '&6then &9pressing D &6clears chat!'
+  - ''
+  - '&dMode 1: &cBasic Damage indication'
+  - '&7Debug stuff. Displays the following:'
+  - '&bDamage Dealt to enemies.'
+  - '&bDamage Taken by enemies.'
+  - ''
+  - '&dMode 2: &cMode 1, +Aerial Combo Checker'
+  - '&7Debug stuff. Displays the following:'
+  - '&bDamage Dealt to enemies.'
+  - '&bDamage Taken by enemies.'
+  - '&bTotal Damage Dealt to enemies'
+  - '  &bafter landing on the ground.'
+  desc:  []
+  components: 
+    Skill Damage-a: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        dmg-min: '0'
+        dmg-max: '999999'
+        category: 
+        - 'fire'
+        indicator: '2D'
+      children: 
+        Message-b: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            message: '&cDealt &6{api-dealt} &4䛵 &fDamage'
+            indicator: '2D'
+          children:  {}
+        Self-c: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Ground-d: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                type: 'Not On Ground'
+                indicator: '2D'
+              children: 
+                Value Add-e: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'totaldmg_debug'
+                    amount-base: 'api-dealt'
+                    amount-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+    Skill Damage-f: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        dmg-min: '0'
+        dmg-max: '999999'
+        category: 
+        - 'light'
+        indicator: '2D'
+      children: 
+        Message-g: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            message: '&cDealt &6{api-dealt} &f䛆 &fDamage'
+            indicator: '2D'
+          children:  {}
+        Self-h: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Ground-i: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                type: 'Not On Ground'
+                indicator: '2D'
+              children: 
+                Value Add-j: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'totaldmg_debug'
+                    amount-base: 'api-dealt'
+                    amount-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+    Skill Damage-k: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        dmg-min: '0'
+        dmg-max: '999999'
+        category: 
+        - 'water'
+        indicator: '2D'
+      children: 
+        Message-l: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            message: '&cDealt &6{api-dealt} &1䛴 &fDamage'
+            indicator: '2D'
+          children:  {}
+        Self-m: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Ground-n: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                type: 'Not On Ground'
+                indicator: '2D'
+              children: 
+                Value Add-o: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'totaldmg_debug'
+                    amount-base: 'api-dealt'
+                    amount-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+    Skill Damage-p: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        dmg-min: '0'
+        dmg-max: '999999'
+        category: 
+        - 'physical'
+        indicator: '2D'
+      children: 
+        Message-q: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            message: '&cDealt &6{api-dealt} &9䛇 &fDamage'
+            indicator: '2D'
+          children:  {}
+        Self-r: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Ground-s: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                type: 'Not On Ground'
+                indicator: '2D'
+              children: 
+                Value Add-t: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'totaldmg_debug'
+                    amount-base: 'api-dealt'
+                    amount-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+    Skill Damage-u: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        dmg-min: '0'
+        dmg-max: '999999'
+        category: 
+        - 'neutral'
+        indicator: '2D'
+      children: 
+        Message-v: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            message: '&cDealt &6{api-dealt} &r䛶 &fDamage'
+            indicator: '2D'
+          children:  {}
+        Self-w: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Ground-x: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                type: 'Not On Ground'
+                indicator: '2D'
+              children: 
+                Value Add-y: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'totaldmg_debug'
+                    amount-base: 'api-dealt'
+                    amount-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+    Skill Damage-z: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        dmg-min: '0'
+        dmg-max: '999999'
+        category: 
+        - 'earth'
+        indicator: '2D'
+      children: 
+        Message-ab: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            message: '&cDealt &6{api-dealt} &2䛷 &fDamage'
+            indicator: '2D'
+          children:  {}
+        Self-bb: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Ground-cb: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                type: 'Not On Ground'
+                indicator: '2D'
+              children: 
+                Value Add-db: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'totaldmg_debug'
+                    amount-base: 'api-dealt'
+                    amount-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+    Skill Damage-eb: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        dmg-min: '0'
+        dmg-max: '999999'
+        category: 
+        - 'thunder'
+        indicator: '2D'
+      children: 
+        Message-fb: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            message: '&cDealt &6{api-dealt} &e䛸 &fDamage'
+            indicator: '2D'
+          children:  {}
+        Self-gb: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Ground-hb: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                type: 'Not On Ground'
+                indicator: '2D'
+              children: 
+                Value Add-ib: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'totaldmg_debug'
+                    amount-base: 'api-dealt'
+                    amount-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+    Skill Damage-jb: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        dmg-min: '0'
+        dmg-max: '999999'
+        category: 
+        - 'wind'
+        indicator: '2D'
+      children: 
+        Message-kb: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            message: '&cDealt &6{api-dealt} &f䛳 &fDamage'
+            indicator: '2D'
+          children:  {}
+        Self-lb: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Ground-mb: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                type: 'Not On Ground'
+                indicator: '2D'
+              children: 
+                Value Add-nb: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'totaldmg_debug'
+                    amount-base: 'api-dealt'
+                    amount-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+    Skill Damage-ob: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        dmg-min: '0'
+        dmg-max: '999999'
+        category: 
+        - 'dark'
+        indicator: '2D'
+      children: 
+        Message-pb: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            message: '&cDealt &6{api-dealt} &5䛾 &fDamage'
+            indicator: '2D'
+          children:  {}
+        Self-qb: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Ground-rb: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                type: 'Not On Ground'
+                indicator: '2D'
+              children: 
+                Value Add-sb: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'totaldmg_debug'
+                    amount-base: 'api-dealt'
+                    amount-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+    Took Physical Damage-tb: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        type: 'Both'
+        dmg-min: '0'
+        dmg-max: '999999'
+        indicator: '2D'
+      children: 
+        Message-ub: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            message: '&eTook &6{api-taken} &fPhysical Damage'
+            indicator: '2D'
+          children:  {}
+    Took Skill Damage-vb: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        dmg-min: '0'
+        dmg-max: '999999'
+        category: 
+        - 'fire'
+        indicator: '2D'
+      children: 
+        Message-wb: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            message: '&eTook &6{api-taken} &4䛵 &fSkill Damage'
+            indicator: '2D'
+          children:  {}
+    Took Skill Damage-xb: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        dmg-min: '0'
+        dmg-max: '999999'
+        category: 
+        - 'light'
+        indicator: '2D'
+      children: 
+        Message-yb: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            message: '&eTook &6{api-taken} &f䛆 &fSkill Damage'
+            indicator: '2D'
+          children:  {}
+    Took Skill Damage-zb: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        dmg-min: '0'
+        dmg-max: '999999'
+        category: 
+        - 'water'
+        indicator: '2D'
+      children: 
+        Message-ac: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            message: '&eTook &6{api-taken} &2䛴 &fSkill Damage'
+            indicator: '2D'
+          children:  {}
+    Took Skill Damage-bc: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        dmg-min: '0'
+        dmg-max: '999999'
+        category: 
+        - 'physical'
+        indicator: '2D'
+      children: 
+        Message-cc: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            message: '&eTook &6{api-taken} &9䛇 &fSkill Damage'
+            indicator: '2D'
+          children:  {}
+    Took Skill Damage-dc: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        dmg-min: '0'
+        dmg-max: '999999'
+        category: 
+        - 'neutral'
+        indicator: '2D'
+      children: 
+        Message-ec: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            message: '&eTook &6{api-taken} &r䛶 &fSkill Damage'
+            indicator: '2D'
+          children:  {}
+    Took Skill Damage-fc: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        dmg-min: '0'
+        dmg-max: '999999'
+        category: 
+        - 'earth'
+        indicator: '2D'
+      children: 
+        Message-gc: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            message: '&eTook &6{api-taken} &2䛷 &fSkill Damage'
+            indicator: '2D'
+          children:  {}
+    Took Skill Damage-hc: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        dmg-min: '0'
+        dmg-max: '999999'
+        category: 
+        - 'thunder'
+        indicator: '2D'
+      children: 
+        Message-ic: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            message: '&eTook &6{api-taken} &e䛸 &fSkill Damage'
+            indicator: '2D'
+          children:  {}
+    Took Skill Damage-jc: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        dmg-min: '0'
+        dmg-max: '999999'
+        category: 
+        - 'wind'
+        indicator: '2D'
+      children: 
+        Message-kc: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            message: '&eTook &6{api-taken} &f䛳 &fSkill Damage'
+            indicator: '2D'
+          children:  {}
+    Took Skill Damage-lc: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        dmg-min: '0'
+        dmg-max: '999999'
+        category: 
+        - 'dark'
+        indicator: '2D'
+      children: 
+        Message-mc: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            message: '&eTook &6{api-taken} &5䛾 &fSkill Damage'
+            indicator: '2D'
+          children:  {}
+    Physical Damage-nc: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'True'
+        type: 'Both'
+        dmg-min: '0'
+        dmg-max: '999999'
+        indicator: '2D'
+      children: 
+        Message-oc: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            message: '&cDealt &6{api-dealt} &fPhysical Damage'
+            indicator: '2D'
+          children:  {}
+        Self-pc: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Ground-qc: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                type: 'Not On Ground'
+                indicator: '2D'
+              children: 
+                Value Add-rc: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'totaldmg_debug'
+                    amount-base: 'api-dealt'
+                    amount-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+    Land-sc: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        min-distance: '0'
+        indicator: '2D'
+      children: 
+        Skill Level-tc: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            skill: 'Debug_Mode'
+            min-level: '1'
+            max-level: '1'
+            indicator: '2D'
+          children: 
+            Value Set-uc: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'totaldmg_debug'
+                value-base: '0'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+        Skill Level-vc: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            skill: 'Debug_Mode'
+            min-level: '2'
+            max-level: '2'
+            indicator: '2D'
+          children: 
+            Value-wc: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                key: 'totaldmg_debug'
+                min-value-base: '0.0001'
+                min-value-scale: '0'
+                max-value-base: '9999999999'
+                max-value-scale: '0'
+                indicator: '2D'
+              children: 
+                Message-xc: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    message: '&b== Dealt &6{totaldmg_debug} &bTotal Damage =='
+                    indicator: '2D'
+                  children:  {}
+                Delay-yc: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    delay-base: '0.02'
+                    delay-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Value Set-zc: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'totaldmg_debug'
+                        value-base: '0'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Message-bd: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            message: '&a- = - Debug Mode Activated!! - = -'
+            indicator: '2D'
+          children:  {}
+        Value Set-cd: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            key: 'totaldmg_debug'
+            value-base: '0'
+            value-scale: '0'
+            indicator: '2D'
+          children:  {}
+    Cleanup: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Message-ed: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            message: '&4- = - Debug Mode Deactivated!! - = -'
+            indicator: '2D'
+          children:  {}

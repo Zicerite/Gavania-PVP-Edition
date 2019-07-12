@@ -1,0 +1,89 @@
+Darker Energies: 
+  name: 'Darker Energies'
+  type: 'Passive'
+  max-level: 100
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '2'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '0'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'SKULL_ITEM'
+  icon-durability: 1
+  icon-data: 1
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Drain {attr:mana.value}&f &7Mana and'
+  - '&7heal {attr:zzheal.value}&f &7HP when dealing'
+  - '&7Dark Damage.'
+  desc:  []
+  components: 
+    Skill Damage-a: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'False'
+        dmg-min: '0'
+        dmg-max: '999999'
+        category: 
+        - 'dark'
+        indicator: '2D'
+      children: 
+        Mana-b: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: 'mana'
+            counts: 'True'
+            type: 'Mana'
+            value-base: '-10'
+            value-scale: '0'
+            indicator: '2D'
+          children:  {}
+        Self-c: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Heal-d: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'zzheal'
+                counts: 'True'
+                type: 'Health'
+                value-base: '10'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Mana-e: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                type: 'Mana'
+                value-base: '10'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}

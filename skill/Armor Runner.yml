@@ -1,0 +1,1436 @@
+Armor Runner: 
+  name: 'Armor Runner'
+  type: 'Dynamic'
+  max-level: 1
+  skill-req: 'None'
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '0'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'LEATHER'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Ignore this, this just runs the armor'
+  - '&7code, so just leave it alone :P'
+  desc:  []
+  components: 
+    Environment Damage-a: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        type: 'Fall'
+        indicator: '2D'
+      children: 
+        Cancel-b: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            indicator: '2D'
+          children:  {}
+    Environment Damage-c: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        type: 'Hot Floor'
+        indicator: '2D'
+      children: 
+        Potion-d: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            type: 'Not Active'
+            potion: 'Fire Resistance'
+            min-rank-base: '0'
+            min-rank-scale: '0'
+            max-rank-base: '999'
+            max-rank-scale: '0'
+            indicator: '2D'
+          children: 
+            Status-e: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                type: 'Active'
+                status: 'Invincible'
+                indicator: '2D'
+              children: 
+                Cancel-f: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    indicator: '2D'
+                  children:  {}
+            Else-g: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                indicator: '2D'
+              children: 
+                Delay-h: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    delay-base: '0.05'
+                    delay-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Damage-i: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Multiplier'
+                        value-base: '5'
+                        value-scale: '0'
+                        true: 'True'
+                        classifier: 'default'
+                        indicator: '2D'
+                      children:  {}
+                    Damage-j: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Damage'
+                        value-base: '5'
+                        value-scale: '0'
+                        true: 'True'
+                        classifier: 'default'
+                        indicator: '2D'
+                      children:  {}
+    Environment Damage-k: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        type: 'Contact'
+        indicator: '2D'
+      children: 
+        Status-l: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            type: 'Active'
+            status: 'Invincible'
+            indicator: '2D'
+          children: 
+            Cancel-m: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                indicator: '2D'
+              children:  {}
+        Else-n: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+          children: 
+            Delay-o: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                delay-base: '0.05'
+                delay-scale: '0'
+                indicator: '2D'
+              children: 
+                Damage-p: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    type: 'Multiplier'
+                    value-base: '3'
+                    value-scale: '0'
+                    true: 'True'
+                    classifier: 'default'
+                    indicator: '2D'
+                  children:  {}
+                Damage-q: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    type: 'Damage'
+                    value-base: '10'
+                    value-scale: '0'
+                    true: 'True'
+                    classifier: 'default'
+                    indicator: '2D'
+                  children:  {}
+    Environment Damage-r: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        type: 'Magic'
+        indicator: '2D'
+      children: 
+        Status-s: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            type: 'Active'
+            status: 'Invincible'
+            indicator: '2D'
+          children: 
+            Cancel-t: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                indicator: '2D'
+              children:  {}
+        Else-u: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+          children: 
+            Delay-v: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                delay-base: '0.05'
+                delay-scale: '0'
+                indicator: '2D'
+              children: 
+                Damage-w: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    type: 'Multiplier'
+                    value-base: '8'
+                    value-scale: '0'
+                    true: 'True'
+                    classifier: 'default'
+                    indicator: '2D'
+                  children:  {}
+                Damage-x: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    type: 'Damage'
+                    value-base: '5'
+                    value-scale: '0'
+                    true: 'True'
+                    classifier: 'default'
+                    indicator: '2D'
+                  children:  {}
+    Environment Damage-y: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        type: 'Fire Tick'
+        indicator: '2D'
+      children: 
+        Class-z: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            class: 'Phoenix'
+            exact: 'True'
+            indicator: '2D'
+          children: 
+            Potion-ab: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                type: 'Active'
+                potion: 'Fire Resistance'
+                min-rank-base: '0'
+                min-rank-scale: '0'
+                max-rank-base: '999'
+                max-rank-scale: '0'
+                indicator: '2D'
+              children: 
+                Value Set-bb: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'value'
+                    value-base: '1'
+                    value-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+            Else-cb: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                indicator: '2D'
+              children: 
+                Status-db: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    type: 'Active'
+                    status: 'Invincible'
+                    indicator: '2D'
+                  children: 
+                    Cancel-eb: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        indicator: '2D'
+                      children:  {}
+                Else-fb: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    indicator: '2D'
+                  children: 
+                    Delay-gb: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        delay-base: '0.05'
+                        delay-scale: '0'
+                        indicator: '2D'
+                      children: 
+                        Damage-hb: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            type: 'Multiplier'
+                            value-base: '1.875'
+                            value-scale: '0'
+                            true: 'True'
+                            classifier: 'default'
+                            indicator: '2D'
+                          children:  {}
+                        Damage-ib: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            type: 'Damage'
+                            value-base: '2'
+                            value-scale: '0'
+                            true: 'True'
+                            classifier: 'default'
+                            indicator: '2D'
+                          children:  {}
+                        Message-jb: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            message: 'Is a Phoenix, No FireR, No Invin'
+                            indicator: '2D'
+                          children:  {}
+        Else-kb: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+          children: 
+            Potion-lb: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                type: 'Active'
+                potion: 'Fire Resistance'
+                min-rank-base: '0'
+                min-rank-scale: '0'
+                max-rank-base: '999'
+                max-rank-scale: '0'
+                indicator: '2D'
+              children: 
+                Cancel-mb: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    indicator: '2D'
+                  children:  {}
+            Else-nb: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                indicator: '2D'
+              children: 
+                Status-ob: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    type: 'Active'
+                    status: 'Invincible'
+                    indicator: '2D'
+                  children: 
+                    Cancel-pb: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        indicator: '2D'
+                      children:  {}
+                    Message-qb: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        message: 'Not Invin'
+                        indicator: '2D'
+                      children:  {}
+                Else-rb: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    indicator: '2D'
+                  children: 
+                    Delay-sb: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        delay-base: '0.05'
+                        delay-scale: '0'
+                        indicator: '2D'
+                      children: 
+                        Damage-tb: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            type: 'Multiplier'
+                            value-base: '3.75'
+                            value-scale: '0'
+                            true: 'True'
+                            classifier: 'default'
+                            indicator: '2D'
+                          children:  {}
+                        Damage-ub: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            type: 'Damage'
+                            value-base: '5'
+                            value-scale: '0'
+                            true: 'True'
+                            classifier: 'default'
+                            indicator: '2D'
+                          children:  {}
+                        Message-vb: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            message: 'No FireR, No Invin'
+                            indicator: '2D'
+                          children:  {}
+        Message-wb: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            message: 'Triggered: Fire Tick Damage'
+            indicator: '2D'
+          children:  {}
+    Environment Damage-xb: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        type: 'Lava'
+        indicator: '2D'
+      children: 
+        Potion-yb: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            type: 'Not Active'
+            potion: 'Fire Resistance'
+            min-rank-base: '0'
+            min-rank-scale: '0'
+            max-rank-base: '999'
+            max-rank-scale: '0'
+            indicator: '2D'
+          children: 
+            Status-zb: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                type: 'Active'
+                status: 'Invincible'
+                indicator: '2D'
+              children: 
+                Cancel-ac: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    indicator: '2D'
+                  children:  {}
+            Else-bc: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                indicator: '2D'
+              children: 
+                Delay-cc: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    delay-base: '0.05'
+                    delay-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Damage-dc: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Multiplier'
+                        value-base: '7'
+                        value-scale: '0'
+                        true: 'True'
+                        classifier: 'default'
+                        indicator: '2D'
+                      children:  {}
+                    Damage-ec: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Damage'
+                        value-base: '12'
+                        value-scale: '0'
+                        true: 'True'
+                        classifier: 'default'
+                        indicator: '2D'
+                      children:  {}
+    Skill Damage-fc: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'False'
+        dmg-min: '0'
+        dmg-max: '999999'
+        category: 
+        - ''
+        indicator: '2D'
+      children: 
+        Value-gc: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            key: 'IsBarrier'
+            min-value-base: '1'
+            min-value-scale: '0'
+            max-value-base: '999'
+            max-value-scale: '0'
+            indicator: '2D'
+          children: 
+            Self-hc: 
+              type: 'target'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                indicator: '2D'
+                group: 'enemy'
+                wall: 'false'
+                caster: 'false'
+              children: 
+                Launch-ic: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    relative: 'Target'
+                    forward-base: '-1'
+                    forward-scale: '0'
+                    upward-base: '-0.1'
+                    upward-scale: '0'
+                    right-base: '0'
+                    right-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+        Remember Targets-jc: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            key: 'target'
+            indicator: '2D'
+          children:  {}
+        Self-kc: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Health-lc: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                type: 'Percent'
+                min-value-base: '0'
+                min-value-scale: '0'
+                max-value-base: '20.009'
+                max-value-scale: '0'
+                indicator: '2D'
+              children: 
+                Slot-mc: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    slot: 
+                    - '36'
+                    - '37'
+                    - '38'
+                    - '39'
+                    - '9'
+                    - '18'
+                    - '27'
+                    - '40'
+                    check-mat: 'False'
+                    check-data: 'False'
+                    check-lore: 'True'
+                    lore: '+Crisis Flames'
+                    check-name: 'False'
+                    regex: 'False'
+                    indicator: '2D'
+                  children: 
+                    Remember-nc: 
+                      type: 'target'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        key: 'target'
+                        indicator: '2D'
+                        group: 'enemy'
+                        wall: 'false'
+                        caster: 'false'
+                      children: 
+                        Damage Lore-oc: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            hand: 'Main'
+                            regex: 'Melee Damage - {value}'
+                            multiplier-base: '0.1'
+                            multiplier-scale: '0'
+                            true: 'False'
+                            classifier: 'default'
+                            indicator: '2D'
+                          children:  {}
+                        Fire-pc: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            seconds-base: '3'
+                            seconds-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                Slot-qc: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    slot: 
+                    - '36'
+                    - '37'
+                    - '38'
+                    - '39'
+                    - '9'
+                    - '18'
+                    - '27'
+                    - '40'
+                    check-mat: 'False'
+                    check-data: 'False'
+                    check-lore: 'True'
+                    lore: '+Crisis Toxins'
+                    check-name: 'False'
+                    regex: 'False'
+                    indicator: '2D'
+                  children: 
+                    Remember-rc: 
+                      type: 'target'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        key: 'target'
+                        indicator: '2D'
+                        group: 'enemy'
+                        wall: 'false'
+                        caster: 'false'
+                      children: 
+                        Damage Lore-sc: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            hand: 'Main'
+                            regex: 'Melee Damage - {value}'
+                            multiplier-base: '0.1'
+                            multiplier-scale: '0'
+                            true: 'False'
+                            classifier: 'default'
+                            indicator: '2D'
+                          children:  {}
+                        Potion-tc: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            potion: 'Poison'
+                            ambient: 'True'
+                            tier-base: '2'
+                            tier-scale: '0'
+                            seconds-base: '3'
+                            seconds-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                Slot-uc: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    slot: 
+                    - '36'
+                    - '37'
+                    - '38'
+                    - '39'
+                    - '9'
+                    - '18'
+                    - '27'
+                    - '40'
+                    check-mat: 'False'
+                    check-data: 'False'
+                    check-lore: 'True'
+                    lore: '+Crisis Decay'
+                    check-name: 'False'
+                    regex: 'False'
+                    indicator: '2D'
+                  children: 
+                    Remember-vc: 
+                      type: 'target'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        key: 'target'
+                        indicator: '2D'
+                        group: 'enemy'
+                        wall: 'false'
+                        caster: 'false'
+                      children: 
+                        Damage Lore-wc: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            hand: 'Main'
+                            regex: 'Melee Damage - {value}'
+                            multiplier-base: '0.1'
+                            multiplier-scale: '0'
+                            true: 'False'
+                            classifier: 'default'
+                            indicator: '2D'
+                          children:  {}
+                        Potion-xc: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            potion: 'Wither'
+                            ambient: 'True'
+                            tier-base: '2'
+                            tier-scale: '0'
+                            seconds-base: '3'
+                            seconds-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                Slot-yc: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    slot: 
+                    - '36'
+                    - '37'
+                    - '38'
+                    - '39'
+                    - '9'
+                    - '18'
+                    - '27'
+                    - '40'
+                    check-mat: 'False'
+                    check-data: 'False'
+                    check-lore: 'True'
+                    lore: '+Crisis Slowing'
+                    check-name: 'False'
+                    regex: 'False'
+                    indicator: '2D'
+                  children: 
+                    Remember-zc: 
+                      type: 'target'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        key: 'target'
+                        indicator: '2D'
+                        group: 'enemy'
+                        wall: 'false'
+                        caster: 'false'
+                      children: 
+                        Damage Lore-ad: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            hand: 'Main'
+                            regex: 'Melee Damage - {value}'
+                            multiplier-base: '0.1'
+                            multiplier-scale: '0'
+                            true: 'False'
+                            classifier: 'default'
+                            indicator: '2D'
+                          children:  {}
+                        Potion-bd: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            potion: 'Slow'
+                            ambient: 'True'
+                            tier-base: '2'
+                            tier-scale: '0'
+                            seconds-base: '3'
+                            seconds-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+            Health-cd: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                type: 'Percent'
+                min-value-base: '80'
+                min-value-scale: '0'
+                max-value-base: '100'
+                max-value-scale: '0'
+                indicator: '2D'
+              children: 
+                Slot-dd: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    slot: 
+                    - '36'
+                    - '37'
+                    - '38'
+                    - '39'
+                    - '9'
+                    - '18'
+                    - '27'
+                    - '40'
+                    check-mat: 'False'
+                    check-data: 'False'
+                    check-lore: 'True'
+                    lore: '+Healthy Flames'
+                    check-name: 'False'
+                    regex: 'False'
+                    indicator: '2D'
+                  children: 
+                    Remember-ed: 
+                      type: 'target'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        key: 'target'
+                        indicator: '2D'
+                        group: 'enemy'
+                        wall: 'false'
+                        caster: 'false'
+                      children: 
+                        Fire-fd: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            seconds-base: '2'
+                            seconds-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Damage Lore-gd: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            hand: 'Main'
+                            regex: 'Melee Damage - {value}'
+                            multiplier-base: '0.1'
+                            multiplier-scale: '0'
+                            true: 'False'
+                            classifier: 'default'
+                            indicator: '2D'
+                          children:  {}
+        Value-hd: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            key: 'IsBarrier'
+            min-value-base: '1'
+            min-value-scale: '0'
+            max-value-base: '999'
+            max-value-scale: '0'
+            indicator: '2D'
+          children: 
+            Self-id: 
+              type: 'target'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                indicator: '2D'
+                group: 'enemy'
+                wall: 'false'
+                caster: 'false'
+              children: 
+                Launch-jd: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    relative: 'Target'
+                    forward-base: '-1'
+                    forward-scale: '0'
+                    upward-base: '-0.1'
+                    upward-scale: '0'
+                    right-base: '0'
+                    right-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+    Death-kd: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        indicator: '2D'
+      children: 
+        Cooldown-ld: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            skill: 'all'
+            type: 'Seconds'
+            value-base: '7'
+            value-scale: '0'
+            indicator: '2D'
+          children:  {}
+    Physical Damage-md: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'False'
+        type: 'Both'
+        dmg-min: '0'
+        dmg-max: '9999999'
+        indicator: '2D'
+      children: 
+        Remember Targets-nd: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            key: 'target'
+            indicator: '2D'
+          children:  {}
+        Self-od: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Health-pd: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                type: 'Percent'
+                min-value-base: '0'
+                min-value-scale: '0'
+                max-value-base: '20.009'
+                max-value-scale: '0'
+                indicator: '2D'
+              children: 
+                Slot-qd: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    slot: 
+                    - '36'
+                    - '37'
+                    - '38'
+                    - '39'
+                    - '9'
+                    - '18'
+                    - '27'
+                    - '40'
+                    check-mat: 'False'
+                    check-data: 'False'
+                    check-lore: 'True'
+                    lore: '+Crisis Flames'
+                    check-name: 'False'
+                    regex: 'False'
+                    indicator: '2D'
+                  children: 
+                    Remember-rd: 
+                      type: 'target'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        key: 'target'
+                        indicator: '2D'
+                        group: 'enemy'
+                        wall: 'false'
+                        caster: 'false'
+                      children: 
+                        Damage Lore-sd: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            hand: 'Main'
+                            regex: 'Melee Damage - {value}'
+                            multiplier-base: '0.1'
+                            multiplier-scale: '0'
+                            true: 'False'
+                            classifier: 'default'
+                            indicator: '2D'
+                          children:  {}
+                        Fire-td: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            seconds-base: '3'
+                            seconds-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                Slot-ud: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    slot: 
+                    - '36'
+                    - '37'
+                    - '38'
+                    - '39'
+                    - '9'
+                    - '18'
+                    - '27'
+                    - '40'
+                    check-mat: 'False'
+                    check-data: 'False'
+                    check-lore: 'True'
+                    lore: '+Crisis Toxins'
+                    check-name: 'False'
+                    regex: 'False'
+                    indicator: '2D'
+                  children: 
+                    Remember-vd: 
+                      type: 'target'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        key: 'target'
+                        indicator: '2D'
+                        group: 'enemy'
+                        wall: 'false'
+                        caster: 'false'
+                      children: 
+                        Damage Lore-wd: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            hand: 'Main'
+                            regex: 'Melee Damage - {value}'
+                            multiplier-base: '0.1'
+                            multiplier-scale: '0'
+                            true: 'False'
+                            classifier: 'default'
+                            indicator: '2D'
+                          children:  {}
+                        Potion-xd: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            potion: 'Poison'
+                            ambient: 'True'
+                            tier-base: '2'
+                            tier-scale: '0'
+                            seconds-base: '3'
+                            seconds-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                Slot-yd: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    slot: 
+                    - '36'
+                    - '37'
+                    - '38'
+                    - '39'
+                    - '9'
+                    - '18'
+                    - '27'
+                    - '40'
+                    check-mat: 'False'
+                    check-data: 'False'
+                    check-lore: 'True'
+                    lore: '+Crisis Decay'
+                    check-name: 'False'
+                    regex: 'False'
+                    indicator: '2D'
+                  children: 
+                    Remember-zd: 
+                      type: 'target'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        key: 'target'
+                        indicator: '2D'
+                        group: 'enemy'
+                        wall: 'false'
+                        caster: 'false'
+                      children: 
+                        Damage Lore-ae: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            hand: 'Main'
+                            regex: 'Melee Damage - {value}'
+                            multiplier-base: '0.1'
+                            multiplier-scale: '0'
+                            true: 'False'
+                            classifier: 'default'
+                            indicator: '2D'
+                          children:  {}
+                        Potion-be: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            potion: 'Wither'
+                            ambient: 'True'
+                            tier-base: '2'
+                            tier-scale: '0'
+                            seconds-base: '3'
+                            seconds-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                Slot-ce: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    slot: 
+                    - '36'
+                    - '37'
+                    - '38'
+                    - '39'
+                    - '9'
+                    - '18'
+                    - '27'
+                    - '40'
+                    check-mat: 'False'
+                    check-data: 'False'
+                    check-lore: 'True'
+                    lore: '+Crisis Slowing'
+                    check-name: 'False'
+                    regex: 'False'
+                    indicator: '2D'
+                  children: 
+                    Remember-de: 
+                      type: 'target'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        key: 'target'
+                        indicator: '2D'
+                        group: 'enemy'
+                        wall: 'false'
+                        caster: 'false'
+                      children: 
+                        Damage Lore-ee: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            hand: 'Main'
+                            regex: 'Melee Damage - {value}'
+                            multiplier-base: '0.1'
+                            multiplier-scale: '0'
+                            true: 'False'
+                            classifier: 'default'
+                            indicator: '2D'
+                          children:  {}
+                        Potion-fe: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            potion: 'Slow'
+                            ambient: 'True'
+                            tier-base: '2'
+                            tier-scale: '0'
+                            seconds-base: '3'
+                            seconds-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+            Health-ge: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                type: 'Percent'
+                min-value-base: '80'
+                min-value-scale: '0'
+                max-value-base: '100'
+                max-value-scale: '0'
+                indicator: '2D'
+              children: 
+                Slot-he: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    slot: 
+                    - '36'
+                    - '37'
+                    - '38'
+                    - '39'
+                    - '9'
+                    - '18'
+                    - '27'
+                    - '40'
+                    check-mat: 'False'
+                    check-data: 'False'
+                    check-lore: 'True'
+                    lore: '+Healthy Flames'
+                    check-name: 'False'
+                    regex: 'False'
+                    indicator: '2D'
+                  children: 
+                    Remember-ie: 
+                      type: 'target'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        key: 'target'
+                        indicator: '2D'
+                        group: 'enemy'
+                        wall: 'false'
+                        caster: 'false'
+                      children: 
+                        Fire-je: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            seconds-base: '2'
+                            seconds-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Damage Lore-ke: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            hand: 'Main'
+                            regex: 'Melee Damage - {value}'
+                            multiplier-base: '0.1'
+                            multiplier-scale: '0'
+                            true: 'False'
+                            classifier: 'default'
+                            indicator: '2D'
+                          children:  {}
+        Value-le: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            key: 'IsBarrier'
+            min-value-base: '1'
+            min-value-scale: '0'
+            max-value-base: '999'
+            max-value-scale: '0'
+            indicator: '2D'
+          children: 
+            Self-me: 
+              type: 'target'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                indicator: '2D'
+                group: 'enemy'
+                wall: 'false'
+                caster: 'false'
+              children: 
+                Launch-ne: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    relative: 'Target'
+                    forward-base: '-1'
+                    forward-scale: '0'
+                    upward-base: '-0.1'
+                    upward-scale: '0'
+                    right-base: '0'
+                    right-scale: '0'
+                    indicator: '2D'
+                  children:  {}

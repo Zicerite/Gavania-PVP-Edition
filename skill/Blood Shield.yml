@@ -1,0 +1,207 @@
+Blood Shield: 
+  name: 'Blood Shield'
+  type: 'Defense/Healing'
+  max-level: 1
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '25'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'REDSTONE_ORE'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&bPuts up a shield around the Caster, which'
+  - '&breduces damage taken, and heals'
+  - '&bWrath, Tech, and Stamina.'
+  - ''
+  - '&bDefense Buff: &675&f%'
+  - '&bDuration: {attr:buff.seconds} Seconds'
+  - '&bStamina Healed: {attr:stradd.amount}'
+  - '&bWrath Healed: {attr:wrathadd.amount}'
+  - '&BTech Healed: {attr:techgained.amount}'
+  - ' '
+  - '&2Cooldown: {attr:cooldown}'
+  desc:  []
+  components: 
+    Cast: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Self-b: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Self-c: 
+              type: 'target'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                indicator: '2D'
+                group: 'enemy'
+                wall: 'false'
+                caster: 'false'
+              children: 
+                Defense Buff-d: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'buff'
+                    counts: 'True'
+                    type: 'Multiplier'
+                    skill: 'False'
+                    value-base: '0.25'
+                    value-scale: '0'
+                    seconds-base: '5'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Defense Buff-e: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    type: 'Multiplier'
+                    skill: 'True'
+                    value-base: '0.25'
+                    value-scale: '0'
+                    seconds-base: '5'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Value Add-f: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'stradd'
+                    counts: 'True'
+                    key: 'stamina'
+                    amount-base: '40'
+                    amount-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Value Add-g: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'wrathadd'
+                    counts: 'True'
+                    key: 'wrath'
+                    amount-base: '30'
+                    amount-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Value Add-h: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: 'techgained'
+                    counts: 'True'
+                    key: 'tech'
+                    amount-base: '20'
+                    amount-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+            Self-i: 
+              type: 'target'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                indicator: '2D'
+                group: 'enemy'
+                wall: 'false'
+                caster: 'false'
+              children: 
+                Command-j: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    command: 'playsound spells.darkness1 ambient @a[r=16] ~ ~ ~ 0.5 1.25'
+                    type: 'OP'
+                    indicator: '2D'
+                  children:  {}
+                Repeat-k: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    repetitions-base: '25'
+                    repetitions-scale: '0'
+                    period: '0.2'
+                    delay: '0'
+                    stop-on-fail: 'False'
+                    indicator: '2D'
+                  children: 
+                    Particle-l: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        particle: 'Red Dust'
+                        arrangement: 'Sphere'
+                        radius-base: '0'
+                        radius-scale: '0'
+                        particles-base: '1'
+                        particles-scale: '0'
+                        visible-radius: '60'
+                        dx: '0'
+                        dy: '0'
+                        dz: '0'
+                        speed: '1'
+                        amount: '0'
+                        forward: '0'
+                        upward: '1'
+                        right: '1'
+                        indicator: '2D'
+                      children:  {}
+                    Particle-m: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        particle: 'Red Dust'
+                        arrangement: 'Sphere'
+                        radius-base: '0'
+                        radius-scale: '0'
+                        particles-base: '1'
+                        particles-scale: '0'
+                        visible-radius: '60'
+                        dx: '0'
+                        dy: '0'
+                        dz: '0'
+                        speed: '1'
+                        amount: '0'
+                        forward: '0'
+                        upward: '1'
+                        right: '-1'
+                        indicator: '2D'
+                      children:  {}

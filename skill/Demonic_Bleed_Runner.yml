@@ -1,0 +1,682 @@
+Demonic_Bleed_Runner: 
+  name: 'Demonic_Bleed_Runner'
+  type: 'Dynamic'
+  max-level: 1
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '0'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'FISHING_ROD'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&dDemonic Bleeding &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&bDemonic Bleed:'
+  - '&7Causes a &660&f% &7Healing debuff.'
+  - '&7Deals &610 &aStamina &7Damage per second.'
+  - '&7Causes a &615&f% &7Damage and Defense debuff.'
+  - ''
+  - '&bFor Shadow-Barbarians exclusively:'
+  - '&7Damaging a target with the Demonic'
+  - '&7Bleed status effect, drains &650 &bMana&7,'
+  - '&7&68 &aStamina&7, and heals &675&f% &7of the'
+  - '&7dealt damage. Shadow-Barbarians'
+  - '&7can not be inflicted with this status'
+  - '&7effect. This status effect can not be'
+  - '&7cleansed. Only players are affected by this.'
+  desc:  []
+  components: 
+    Skill Damage-a: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'False'
+        dmg-min: '0'
+        dmg-max: '999999'
+        category: 
+        - ''
+        indicator: '2D'
+      children: 
+        Self-b: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Value Set-c: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'dmg_demonManaDrain'
+                value-base: 'api-dealt'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Multiply-d: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'dmg_demonManaDrain'
+                multiplier-base: '0.75'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+        Delay-e: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            delay-base: '0.03'
+            delay-scale: '0'
+            indicator: '2D'
+          children: 
+            Value-f: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                key: 'd_bleeding'
+                min-value-base: '1'
+                min-value-scale: '0'
+                max-value-base: '999'
+                max-value-scale: '0'
+                indicator: '2D'
+              children: 
+                Remember Targets-g: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'bleeder'
+                    indicator: '2D'
+                  children:  {}
+                Self-h: 
+                  type: 'target'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    indicator: '2D'
+                    group: 'enemy'
+                    wall: 'false'
+                    caster: 'false'
+                  children: 
+                    Class-i: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        class: 'Shadow-Barbarian'
+                        exact: 'True'
+                        indicator: '2D'
+                      children: 
+                        Mana-j: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            type: 'Mana'
+                            value-base: '50'
+                            value-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Value Add-k: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            key: 'stamina'
+                            amount-base: '8'
+                            amount-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Heal-l: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            type: 'Health'
+                            value-base: 'dmg_demonManaDrain'
+                            value-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Remember-m: 
+                          type: 'target'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            key: 'bleeder'
+                            indicator: '2D'
+                            group: 'enemy'
+                            wall: 'false'
+                            caster: 'false'
+                          children: 
+                            Mana-n: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                type: 'Mana'
+                                value-base: '-50'
+                                value-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+                            Value Add-o: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                key: 'stamina'
+                                amount-base: '-8'
+                                amount-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+    Physical Damage-p: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        target: 'False'
+        type: 'Both'
+        dmg-min: '0'
+        dmg-max: '9999999'
+        indicator: '2D'
+      children: 
+        Self-q: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Value Set-r: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'dmg_demonManaDrain'
+                value-base: 'api-dealt'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Value Multiply-s: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'dmg_demonManaDrain'
+                multiplier-base: '0.75'
+                multiplier-scale: '0'
+                indicator: '2D'
+              children:  {}
+        Delay-t: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            delay-base: '0.03'
+            delay-scale: '0'
+            indicator: '2D'
+          children: 
+            Value-u: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                key: 'd_bleeding'
+                min-value-base: '1'
+                min-value-scale: '0'
+                max-value-base: '999'
+                max-value-scale: '0'
+                indicator: '2D'
+              children: 
+                Remember Targets-v: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'bleeder'
+                    indicator: '2D'
+                  children:  {}
+                Self-w: 
+                  type: 'target'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    indicator: '2D'
+                    group: 'enemy'
+                    wall: 'false'
+                    caster: 'false'
+                  children: 
+                    Class-x: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        class: 'Shadow-Barbarian'
+                        exact: 'True'
+                        indicator: '2D'
+                      children: 
+                        Mana-y: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            type: 'Mana'
+                            value-base: '50'
+                            value-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Value Add-z: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            key: 'stamina'
+                            amount-base: '8'
+                            amount-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Heal-ab: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            type: 'Health'
+                            value-base: 'dmg_demonManaDrain'
+                            value-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Remember-bb: 
+                          type: 'target'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            key: 'bleeder'
+                            indicator: '2D'
+                            group: 'enemy'
+                            wall: 'false'
+                            caster: 'false'
+                          children: 
+                            Mana-cb: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                type: 'Mana'
+                                value-base: '-50'
+                                value-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+                            Value Add-db: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                key: 'stamina'
+                                amount-base: '-8'
+                                amount-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-fb: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.1'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Class-gb: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                class: 'Shadow-Barbarian'
+                exact: 'True'
+                indicator: '2D'
+              children: 
+                Flag Clear-hb: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'DBL'
+                    indicator: '2D'
+                  children:  {}
+            Else-ib: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                indicator: '2D'
+              children: 
+                Flag-jb: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    type: 'Set'
+                    key: 'DBL'
+                    indicator: '2D'
+                  children: 
+                    Particle-kb: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        particle: 'Witch Magic'
+                        arrangement: 'Sphere'
+                        radius-base: '1'
+                        radius-scale: '0'
+                        particles-base: '1'
+                        particles-scale: '0'
+                        visible-radius: '50'
+                        dx: '0'
+                        dy: '0'
+                        dz: '0'
+                        speed: '0'
+                        amount: '1'
+                        forward: '0'
+                        upward: '1'
+                        right: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Particle-lb: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        particle: 'Red Dust'
+                        arrangement: 'Sphere'
+                        radius-base: '1'
+                        radius-scale: '0'
+                        particles-base: '1'
+                        particles-scale: '0'
+                        visible-radius: '50'
+                        dx: '0'
+                        dy: '0'
+                        dz: '0'
+                        speed: '1'
+                        amount: '0'
+                        forward: '0'
+                        upward: '1'
+                        right: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Self-mb: 
+                      type: 'target'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        indicator: '2D'
+                        group: 'enemy'
+                        wall: 'false'
+                        caster: 'false'
+                      children: 
+                        Buff-nb: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            immediate: 'False'
+                            type: 'HEALING'
+                            modifier: 'Multiplier'
+                            value-base: '0.4'
+                            value-scale: '0'
+                            seconds-base: '0.1'
+                            seconds-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Damage Buff-ob: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            type: 'Multiplier'
+                            skill: 'False'
+                            value-base: '0.85'
+                            value-scale: '0'
+                            seconds-base: '0.1'
+                            seconds-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Damage Buff-pb: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            type: 'Multiplier'
+                            skill: 'True'
+                            value-base: '0.85'
+                            value-scale: '0'
+                            seconds-base: '0.1'
+                            seconds-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Defense Buff-qb: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            type: 'Multiplier'
+                            skill: 'False'
+                            value-base: '1.1'
+                            value-scale: '0'
+                            seconds-base: '0.1'
+                            seconds-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Defense Buff-rb: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            type: 'Multiplier'
+                            skill: 'True'
+                            value-base: '1.1'
+                            value-scale: '0'
+                            seconds-base: '0.1'
+                            seconds-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+            Offhand-sb: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                check-mat: 'True'
+                material: 'Coal'
+                check-data: 'False'
+                check-lore: 'False'
+                check-name: 'False'
+                regex: 'False'
+                indicator: '2D'
+              children: 
+                Flag-tb: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    type: 'Set'
+                    key: 'DBL'
+                    indicator: '2D'
+                  children: 
+                    Message-ub: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        message: 'I am Demonically Bleeding!'
+                        indicator: '2D'
+                      children:  {}
+        Passive-vb: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '1'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Flag-wb: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                type: 'Set'
+                key: 'DBL'
+                indicator: '2D'
+              children: 
+                Self-xb: 
+                  type: 'target'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    indicator: '2D'
+                    group: 'enemy'
+                    wall: 'false'
+                    caster: 'false'
+                  children: 
+                    Particle-yb: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        particle: 'Dragon Breath'
+                        arrangement: 'Sphere'
+                        radius-base: '1'
+                        radius-scale: '0'
+                        particles-base: '1'
+                        particles-scale: '0'
+                        visible-radius: '50'
+                        dx: '0'
+                        dy: '0'
+                        dz: '0'
+                        speed: '0.15'
+                        amount: '1'
+                        forward: '0'
+                        upward: '1'
+                        right: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Command-zb: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        command: 'playsound spells.darkness4 ambient @a[r=16] ~ ~ ~ 0.1 1.8'
+                        type: 'OP'
+                        indicator: '2D'
+                      children:  {}
+                    Value-ac: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        key: 'stamina'
+                        min-value-base: '0'
+                        min-value-scale: '0'
+                        max-value-base: '999'
+                        max-value-scale: '0'
+                        indicator: '2D'
+                      children: 
+                        Value Add-bc: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            key: 'stamina'
+                            amount-base: '-10'
+                            amount-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                    Value-cc: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        key: 'stamina'
+                        min-value-base: '-999'
+                        min-value-scale: '0'
+                        max-value-base: '-1'
+                        max-value-scale: '0'
+                        indicator: '2D'
+                      children: 
+                        Value Set-dc: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            key: 'stamina'
+                            value-base: '-10'
+                            value-scale: '0'
+                            indicator: '2D'
+                          children:  {}
