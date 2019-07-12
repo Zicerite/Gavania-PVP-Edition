@@ -1,0 +1,112 @@
+Killing Energies: 
+  name: 'Killing Energies'
+  type: 'Passive'
+  max-level: 1
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '0'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'REDSTONE'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Getting kills heals various resources,'
+  - '&7and reduces all active cooldowns.'
+  - ''
+  - '&bHP Healed: {attr:heal.value}'
+  - '&bMana Healed: {attr:mana.value}'
+  - '&bStamina Healed: {attr:stradd.amount}'
+  - '&bTech Healed: {attr:techgained.amount}'
+  - '&bCooldowns Reduced: {attr:cooldr.value} Seconds'
+  desc:  []
+  components: 
+    Kill-a: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        indicator: '2D'
+      children: 
+        Heal-b: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: 'heal'
+            counts: 'True'
+            type: 'Health'
+            value-base: '200'
+            value-scale: '0'
+            indicator: '2D'
+          children:  {}
+        Mana-c: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: 'mana'
+            counts: 'True'
+            type: 'Mana'
+            value-base: '200'
+            value-scale: '0'
+            indicator: '2D'
+          children:  {}
+        Value Add-d: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: 'stradd'
+            counts: 'True'
+            key: 'stamina'
+            amount-base: '40'
+            amount-scale: '0'
+            indicator: '2D'
+          children:  {}
+        Value Add-e: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: 'techgained'
+            counts: 'True'
+            key: 'tech'
+            amount-base: '40'
+            amount-scale: '0'
+            indicator: '2D'
+          children:  {}
+        Delay-f: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            delay-base: '0.01'
+            delay-scale: '0'
+            indicator: '2D'
+          children: 
+            Cooldown-g: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'cooldr'
+                counts: 'True'
+                skill: 'all'
+                type: 'Seconds'
+                value-base: '4'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
