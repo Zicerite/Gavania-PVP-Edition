@@ -1,0 +1,102 @@
+# Attributes.yml
+#
+# For full details, visit
+# http://dev.bukkit.org/bukkit-plugins/skillapi/pages/attributes/
+#
+# List of available stats to modify:
+#   armor            | [PREM, 1.9+] Vanilla damage mitigation
+#   armor-toughness  | [PREM, 1.9+] Secondary vanilla damage mitigation
+#   attack-speed	 | [PREM, 1.9+] Weapon recharge time
+#   cooldown         | [PREM] Modifies skill cooldowns
+#   defense-<type>   | [PREM] Reduces damage taken from various damage sources.
+#                    |     See the DamageCause docs to see supported types.
+#                    |     Use lower-case versions of it, such as "defense-block_explosion".
+#   exp              | [PREM] increases all class experience gained
+#   health           | The max health of the player
+#   hunger           | [PREM] Increases how long hunger lasts. This attribute is always based off of a base value of 1. A resulting value of 2 would double how long the hunger bar lasts, for example.
+#   hunger-heal      | [PREM] Increases how much you heal while satiated
+#   knockback-resist | [PREM, 1.9+] Probability of resisting knockback as a decimal (1.0 is 100% change to resist)
+#   luck	         | [PREM, 1.9+] loot table chances
+#   mana	         | The max mana of the player
+#   mana-regen       | The amount of mana regeneration the player has
+#   move-speed       | The movement speed of the player
+#   physical-damage  | The amount of damage done by physical (basic or projectile) attacks
+#   physical-defense | The amount of damage taken by physical (basic or projectile) attacks
+#   skill-damage	 | The amount of damage done by skills
+#   skill-defense    | The amount of damage taken by skills
+
+#   skill-damage-<classification>  | [PREM] The amount of damage done by skills with the specified classification
+#   skill-defense-<classification> | [PREM] The amount of damage taken by skills with the specified classification
+StaminaBonus: 
+  display: 'StaminaBonus'
+  max: '1000'
+  icon: 'iron_boots'
+  icon-data: '0'
+  icon-lore: 
+  - ''
+  global: 
+    condition:  {}
+    mechanic:  {}
+    target:  {}
+  stats:  {}
+StaminaBonusMinusOne: 
+  display: 'StaminaBonusMinusOne'
+  max: '1000'
+  icon: 'leather_boots'
+  icon-data: '0'
+  icon-lore: 
+  - ''
+  global: 
+    condition:  {}
+    mechanic:  {}
+    target:  {}
+  stats:  {}
+BaseSpeed: 
+  display: 'BaseSpeed'
+  max: '100'
+  icon: 'iron_pickaxe'
+  icon-data: '0'
+  icon-lore: 
+  - '&6Agility &7(&2{amount}&7)'
+  - ''
+  - '&7Grants +1% increased'
+  - '&7walk speed per'
+  - '&7point invested.'
+  - ''
+  global: 
+    condition:  {}
+    mechanic:  {}
+    target:  {}
+  stats: 
+    move-speed: 'a*0.01+1*v'
+Weight: 
+  display: 'Weight'
+  max: '1000'
+  icon: 'iron_axe'
+  icon-data: '0'
+  icon-lore: 
+  - ''
+  - '&7Grants more launch'
+  - '&7resistance per'
+  - '&7point invested.'
+  - ''
+  global: 
+    condition:  {}
+    mechanic:  {}
+    target:  {}
+  stats:  {}
+NaturalManaRegen: 
+  display: 'Natural Mana Regeneration'
+  max: '1000'
+  icon: 'water_bucket'
+  icon-data: '0'
+  icon-lore: 
+  - ''
+  - '&7Yes'
+  - '&7Waffles > Pancakes'
+  - ''
+  global: 
+    condition:  {}
+    mechanic:  {}
+    target:  {}
+  stats:  {}
