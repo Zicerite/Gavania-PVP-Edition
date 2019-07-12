@@ -1,0 +1,546 @@
+Overdrive: 
+  name: 'Overdrive'
+  type: 'Support'
+  max-level: 1
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '100'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'NETHER_STAR'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Overclocks your system, which damages'
+  - '&7the caster, and makes the caster deal more'
+  - '&7damage for a short time. The Caster is also'
+  - '&7granted Speed and Haste for a short time.'
+  - '&7Mana Regenerates over time as well.'
+  - '&7"R" click shoots much faster, as well as'
+  - '&7healing &610 &aStamina &7every second.'
+  - '&7Getting a kill while in Overdrive grants a &610'
+  - '&7&fSecond &7cooldown reduction to all skills.'
+  - ''
+  - '&bDamage Buff: &640&f%'
+  - '&bSpeed: {attr:poSpeed.tier} for {attr:poSpeed.seconds} Seconds'
+  - '&bHaste: {attr:po4.tier} for {attr:po4.seconds} Seconds'
+  - '&bMana Healing Speed: &630 &fper second'
+  - '&bDuration: &612 &fseconds'
+  - ''
+  - '&cHealth: &660% &fof Max HP'
+  - '&2Cooldown: {attr:cooldown}'
+  desc:  []
+  components: 
+    Kill-a: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        indicator: '2D'
+      children: 
+        Value-b: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            key: 'Overdrive'
+            min-value-base: '1'
+            min-value-scale: '0'
+            max-value-base: '1'
+            max-value-scale: '0'
+            indicator: '2D'
+          children: 
+            Delay-c: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                delay-base: '0.01'
+                delay-scale: '0'
+                indicator: '2D'
+              children: 
+                Cooldown-d: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    skill: 'all'
+                    type: 'Seconds'
+                    value-base: '10'
+                    value-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+    Cast: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Self-f: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Health-g: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                type: 'Percent'
+                min-value-base: '0'
+                min-value-scale: '0'
+                max-value-base: '60.00009'
+                max-value-scale: '0'
+                indicator: '2D'
+              children: 
+                Message-h: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'False'
+                    message: '&4Your &cHealth &4isnt high enough to use this skill!'
+                    indicator: '2D'
+                  children:  {}
+            Health-i: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                type: 'Percent'
+                min-value-base: '60.1'
+                min-value-scale: '0'
+                max-value-base: '100'
+                max-value-scale: '0'
+                indicator: '2D'
+              children: 
+                Self-j: 
+                  type: 'target'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    indicator: '2D'
+                    group: 'enemy'
+                    wall: 'false'
+                    caster: 'false'
+                  children: 
+                    Damage Buff-k: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Multiplier'
+                        skill: 'False'
+                        value-base: '1.4'
+                        value-scale: '0'
+                        seconds-base: '12'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Damage Buff-l: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Multiplier'
+                        skill: 'True'
+                        value-base: '1.4'
+                        value-scale: '0'
+                        seconds-base: '12'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Delay-m: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        delay-base: '12'
+                        delay-scale: '0'
+                        indicator: '2D'
+                      children: 
+                        Value Set-n: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            key: 'Overdrive'
+                            value-base: '0'
+                            value-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Repeat-o: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            repetitions-base: '12'
+                            repetitions-scale: '0'
+                            period: '0.01'
+                            delay: '0'
+                            stop-on-fail: 'False'
+                            indicator: '2D'
+                          children: 
+                            Value Set-p: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                key: 'AbleToShoot'
+                                value-base: '-1'
+                                value-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+                    Delay-q: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        delay-base: '14'
+                        delay-scale: '0'
+                        indicator: '2D'
+                      children: 
+                        Value Set-r: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            key: 'AbleToShoot'
+                            value-base: '1'
+                            value-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                Self-s: 
+                  type: 'target'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    indicator: '2D'
+                    group: 'enemy'
+                    wall: 'false'
+                    caster: 'false'
+                  children: 
+                    Potion-t: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        potion: 'Slow'
+                        ambient: 'True'
+                        tier-base: '10'
+                        tier-scale: '0'
+                        seconds-base: '0.2'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Command-u: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        command: 'playsound minecraft:ambient.cave ambient @a[r=36] ~ ~ ~ 1 2 1'
+                        type: 'OP'
+                        indicator: '2D'
+                      children:  {}
+                    Command-v: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        command: 'playsound minecraft:ambient.cave ambient @a[r=36] ~ ~ ~ 1 2 1'
+                        type: 'OP'
+                        indicator: '2D'
+                      children:  {}
+                    Command-w: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        command: 'playsound minecraft:ambient.cave ambient @a[r=36] ~ ~ ~ 1 2 1'
+                        type: 'OP'
+                        indicator: '2D'
+                      children:  {}
+                    Repeat-x: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'rep'
+                        counts: 'True'
+                        repetitions-base: '120'
+                        repetitions-scale: '0'
+                        period: '0.1'
+                        delay: '0'
+                        stop-on-fail: 'False'
+                        indicator: '2D'
+                      children: 
+                        Mana-y: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            type: 'Mana'
+                            value-base: '3'
+                            value-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Particle-z: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            particle: 'End Rod'
+                            arrangement: 'Sphere'
+                            radius-base: '2'
+                            radius-scale: '0'
+                            particles-base: '2'
+                            particles-scale: '0'
+                            visible-radius: '36'
+                            dx: '0'
+                            dy: '0'
+                            dz: '0'
+                            speed: '0.1'
+                            amount: '1'
+                            forward: '0'
+                            upward: '1'
+                            right: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Value Random-ab: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            key: 'note'
+                            type: 'Triangular'
+                            min-base: '0.9'
+                            min-scale: '0'
+                            max-base: '1.1'
+                            max-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Value Set-bb: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            key: 'AbleToShoot'
+                            value-base: '1'
+                            value-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                        Value-cb: 
+                          type: 'condition'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            key: 'stamina'
+                            min-value-base: '0'
+                            min-value-scale: '0'
+                            max-value-base: '99'
+                            max-value-scale: '0'
+                            indicator: '2D'
+                          children: 
+                            Value Add-db: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                key: 'stamina'
+                                amount-base: '1'
+                                amount-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+                    Command-eb: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        command: 'playsound spells.magic3 ambient @a[r=36] ~ ~ ~ 0.8 1.5'
+                        type: 'OP'
+                        indicator: '2D'
+                      children:  {}
+                    Command-fb: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        command: 'playsound spells.magic8 ambient @a[r=36] ~ ~ ~ 0.8 1.2'
+                        type: 'OP'
+                        indicator: '2D'
+                      children:  {}
+                    Potion-gb: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'poSpeed'
+                        counts: 'True'
+                        potion: 'Speed'
+                        ambient: 'True'
+                        tier-base: '3'
+                        tier-scale: '0'
+                        seconds-base: '12'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Damage-hb: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Multiplier'
+                        value-base: '50'
+                        value-scale: '0'
+                        true: 'True'
+                        classifier: 'default'
+                        indicator: '2D'
+                      children:  {}
+                    Skill Level-ib: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        skill: 'Yryn-Automation'
+                        min-level: '3'
+                        max-level: '3'
+                        indicator: '2D'
+                      children: 
+                        Value Add-jb: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            key: 'tech'
+                            amount-base: '25'
+                            amount-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                    Potion-kb: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: 'po4'
+                        counts: 'True'
+                        potion: 'Fast Digging'
+                        ambient: 'True'
+                        tier-base: '2'
+                        tier-scale: '0'
+                        seconds-base: '12'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                Area-lb: 
+                  type: 'target'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    radius-base: '12'
+                    radius-scale: '0'
+                    group: 'Both'
+                    wall: 'False'
+                    caster: 'True'
+                    max-base: '999'
+                    max-scale: '0'
+                    random: 'False'
+                    indicator: '2D'
+                  children: 
+                    Potion-mb: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        potion: 'Night Vision'
+                        ambient: 'True'
+                        tier-base: '1'
+                        tier-scale: '0'
+                        seconds-base: '1'
+                        seconds-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                Value Set-nb: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'Overdrive'
+                    value-base: '1'
+                    value-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Repeat-pb: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            repetitions-base: '3'
+            repetitions-scale: '0'
+            period: '0.1'
+            delay: '0'
+            stop-on-fail: 'False'
+            indicator: '2D'
+          children: 
+            Value Set-qb: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'Overdrive'
+                value-base: '0'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}

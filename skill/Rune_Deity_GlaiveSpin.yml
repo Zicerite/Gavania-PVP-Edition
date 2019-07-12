@@ -1,0 +1,81 @@
+Rune_Deity_GlaiveSpin: 
+  name: 'Rune_Deity_GlaiveSpin'
+  type: 'Rune'
+  max-level: 3
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '1'
+    cost-scale: '0'
+    cooldown-base: '0'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'REDSTONE_BLOCK'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&dGlaive Spin Rune'
+  - ''
+  - '&eRune for Glaive Spin.'
+  - '&b*Left* click to rise mode number.'
+  - '&b*Right* click to lower mode number.'
+  - '&aCurrent Mode: &b[&6{level}&b]'
+  - ''
+  - '&dMode 1: &cQuickly Ready'
+  - '&7Reduces the cooldown by 1.5 Seconds.'
+  - ''
+  - '&dMode 2: &cElement Change'
+  - '&7Changes element to Fire.'
+  - '&7Ignites for 3 Seconds on both hits.'
+  - ''
+  - '&dMode 3: &cElement Change'
+  - '&7Changes element to Thunder.'
+  - '&7Has a {attr:CC.chance}% &7chance to'
+  - '&7stun enemies for 1 Second on the 2nd hit.'
+  desc:  []
+  components: 
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Value Set-b: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            key: 'value'
+            value-base: '1'
+            value-scale: '0'
+            indicator: '2D'
+          children:  {}
+        Passive-c: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '1'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Chance-d: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: 'CC'
+                chance-base: '10'
+                chance-scale: '0'
+                indicator: '2D'
+              children:  {}

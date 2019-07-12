@@ -1,0 +1,442 @@
+Null Nullify: 
+  name: 'Null Nullify'
+  type: 'Support'
+  max-level: 1
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '20'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'STRUCTURE_VOID'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Makes the caster invincible, and causes'
+  - '&7Mana Degen, Wither, and Fatigue to a'
+  - '&7single nearby enemy. Additionally'
+  - '&7causes a Healing Debuff.'
+  - ''
+  - '&bInvincible Duration: {attr:inv.duration} Seconds'
+  - '&bHealing Debuff: &6-100&f%'
+  - '&bRadius: {attr:area.radius} Blocks'
+  - '&bEffects: &fTier: {attr:po.tier} for {attr:po.seconds} Seconds'
+  - ''
+  - '&2Cooldown: {attr:cooldown}'
+  desc:  []
+  components: 
+    Cast: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Self-b: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Status-c: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'inv'
+                counts: 'True'
+                status: 'Invincible'
+                duration-base: '3'
+                duration-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Repeat-d: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                repetitions-base: '15'
+                repetitions-scale: '0'
+                period: '0.2'
+                delay: '0'
+                stop-on-fail: 'False'
+                indicator: '2D'
+              children: 
+                Particle-e: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'End Rod'
+                    arrangement: 'Sphere'
+                    radius-base: '1'
+                    radius-scale: '0'
+                    particles-base: '1'
+                    particles-scale: '0'
+                    visible-radius: '40'
+                    dx: '0'
+                    dy: '0'
+                    dz: '0'
+                    speed: '0.1'
+                    amount: '1'
+                    forward: '0'
+                    upward: '1'
+                    right: '0'
+                    indicator: '2D'
+                  children:  {}
+            Command-f: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                command: 'playsound spells.magic3 ambient @a[r=16] ~ ~ ~ 0.7 0.65'
+                type: 'OP'
+                indicator: '2D'
+              children:  {}
+            Potion-g: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                potion: 'Night Vision'
+                ambient: 'True'
+                tier-base: '99'
+                tier-scale: '0'
+                seconds-base: '0.3'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Particle-h: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                particle: 'End Rod'
+                arrangement: 'Sphere'
+                radius-base: '7'
+                radius-scale: '0'
+                particles-base: '20'
+                particles-scale: '0'
+                visible-radius: '40'
+                dx: '0'
+                dy: '0'
+                dz: '0'
+                speed: '0.125'
+                amount: '1'
+                forward: '0'
+                upward: '1'
+                right: '0'
+                indicator: '2D'
+              children:  {}
+        Nearest-i: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: 'area'
+            radius-base: '7'
+            radius-scale: '0'
+            group: 'Enemy'
+            wall: 'True'
+            caster: 'False'
+            max-base: '1'
+            max-scale: '0'
+            indicator: '2D'
+          children: 
+            Potion-j: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'po'
+                counts: 'True'
+                potion: 'Hunger'
+                ambient: 'True'
+                tier-base: '5'
+                tier-scale: '0'
+                seconds-base: '3'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Potion-k: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                potion: 'Wither'
+                ambient: 'True'
+                tier-base: '3'
+                tier-scale: '0'
+                seconds-base: '3'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Status-l: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                status: 'Disarm'
+                duration-base: '0.5'
+                duration-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Status-m: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                status: 'Silence'
+                duration-base: '0.5'
+                duration-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Buff-n: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                immediate: 'False'
+                type: 'HEALING'
+                modifier: 'Multiplier'
+                value-base: '0'
+                value-scale: '0'
+                seconds-base: '3'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Repeat-o: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                repetitions-base: '6'
+                repetitions-scale: '0'
+                period: '0.5'
+                delay: '0'
+                stop-on-fail: 'False'
+                indicator: '2D'
+              children: 
+                Particle-p: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'Mob Spell'
+                    arrangement: 'Sphere'
+                    radius-base: '1'
+                    radius-scale: '0'
+                    particles-base: '3'
+                    particles-scale: '0'
+                    visible-radius: '50'
+                    dx: '0.5'
+                    dy: '0.5'
+                    dz: '0.5'
+                    speed: '1'
+                    amount: '0'
+                    forward: '0'
+                    upward: '1'
+                    right: '0'
+                    indicator: '2D'
+                  children:  {}
+            Repeat-q: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                repetitions-base: '3'
+                repetitions-scale: '0'
+                period: '0.075'
+                delay: '0'
+                stop-on-fail: 'False'
+                indicator: '2D'
+              children: 
+                Launch-r: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    relative: 'Caster'
+                    forward-base: '-0.001'
+                    forward-scale: '0'
+                    upward-base: '-0.001'
+                    upward-scale: '0'
+                    right-base: '0'
+                    right-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+            Potion-s: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                potion: 'Slow Digging'
+                ambient: 'True'
+                tier-base: '1'
+                tier-scale: '0'
+                seconds-base: '3'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Skill Level-t: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                skill: 'Rune_Deity_NullNullify'
+                min-level: '1'
+                max-level: '1'
+                indicator: '2D'
+              children: 
+                Potion-u: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    potion: 'Slow'
+                    ambient: 'True'
+                    tier-base: '3'
+                    tier-scale: '0'
+                    seconds-base: '3'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Potion-v: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    potion: 'Poison'
+                    ambient: 'True'
+                    tier-base: '3'
+                    tier-scale: '0'
+                    seconds-base: '3'
+                    seconds-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+            Skill Level-w: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                skill: 'Rune_Deity_NullNullify'
+                min-level: '2'
+                max-level: '2'
+                indicator: '2D'
+              children: 
+                Mana-x: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    type: 'Mana'
+                    value-base: '-300'
+                    value-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Value Add-y: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    key: 'stamina'
+                    amount-base: '-50'
+                    amount-scale: '0'
+                    indicator: '2D'
+                  children:  {}
+                Self-z: 
+                  type: 'target'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    indicator: '2D'
+                    group: 'enemy'
+                    wall: 'false'
+                    caster: 'false'
+                  children: 
+                    Mana-ab: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Mana'
+                        value-base: '300'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Value Add-bb: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        key: 'stamina'
+                        amount-base: '50'
+                        amount-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+        Skill Level-cb: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            skill: 'Rune_Deity_NullNullify'
+            min-level: '3'
+            max-level: '3'
+            indicator: '2D'
+          children: 
+            Delay-db: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                delay-base: '0.01'
+                delay-scale: '0'
+                indicator: '2D'
+              children: 
+                Cooldown-eb: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    skill: 'Null Nullify'
+                    type: 'Seconds'
+                    value-base: '4'
+                    value-scale: '0'
+                    indicator: '2D'
+                  children:  {}

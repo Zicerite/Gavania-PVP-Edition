@@ -1,0 +1,213 @@
+Petrichor Aura: 
+  name: 'Petrichor Aura'
+  type: 'Support/Healing'
+  max-level: 1
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '1'
+    level-scale: '0'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '20'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'SAPLING'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - '&7Grants a Damage and Defense buff'
+  - '&7to the Caster and nearby allies.'
+  - '&7Heals Tech too.'
+  - ''
+  - '&bRadius: {attr:area.radius} Blocks'
+  - '&bTech Healed: {attr:techgained.amount}'
+  - '&bDamage Buff: {attr:XAVbuff.value}%'
+  - '&bDefense Buff: {attr:XAVbuff.value}%'
+  - '&bDuration: &610 &fSeconds'
+  - ''
+  - '&2Cooldown: {attr:cooldown}'
+  desc:  []
+  components: 
+    Cast: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Self-b: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Command-c: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                command: 'playsound spells.water6 ambient @a[r=16] ~ ~ ~ 0.35 1'
+                type: 'OP'
+                indicator: '2D'
+              children:  {}
+        Area-d: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: 'area'
+            radius-base: '6'
+            radius-scale: '0'
+            group: 'Ally'
+            wall: 'True'
+            caster: 'True'
+            max-base: '999'
+            max-scale: '0'
+            random: 'False'
+            indicator: '2D'
+          children: 
+            Damage Buff-e: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                type: 'Multiplier'
+                skill: 'False'
+                value-base: '1.15'
+                value-scale: '0'
+                seconds-base: '10'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Damage Buff-f: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                type: 'Multiplier'
+                skill: 'True'
+                value-base: '1.15'
+                value-scale: '0'
+                seconds-base: '10'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Defense Buff-g: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                type: 'Multiplier'
+                skill: 'False'
+                value-base: '0.85'
+                value-scale: '0'
+                seconds-base: '10'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Defense Buff-h: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                type: 'Multiplier'
+                skill: 'True'
+                value-base: '0.85'
+                value-scale: '0'
+                seconds-base: '10'
+                seconds-scale: '0'
+                indicator: '2D'
+              children:  {}
+            Repeat-i: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                repetitions-base: '50'
+                repetitions-scale: '0'
+                period: '0.2'
+                delay: '0'
+                stop-on-fail: 'False'
+                indicator: '2D'
+              children: 
+                Particle-j: 
+                  type: 'mechanic'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    counts: 'True'
+                    particle: 'Red Dust'
+                    arrangement: 'Sphere'
+                    radius-base: '1'
+                    radius-scale: '0'
+                    particles-base: '2'
+                    particles-scale: '0'
+                    visible-radius: '50'
+                    dx: '0.01'
+                    dy: '0.75'
+                    dz: '0.1'
+                    speed: '1'
+                    amount: '0'
+                    forward: '0'
+                    upward: '1'
+                    right: '0'
+                    indicator: '2D'
+                  children:  {}
+            Value Add-k: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'techgained'
+                counts: 'True'
+                key: 'tech'
+                amount-base: '20'
+                amount-scale: '0'
+                indicator: '2D'
+              children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Passive-m: 
+          type: 'mechanic'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            counts: 'True'
+            seconds-base: '0.1'
+            seconds-scale: '0'
+            indicator: '2D'
+          children: 
+            Value Set-n: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: 'XAVbuff'
+                counts: 'True'
+                key: 'xx_AVdef'
+                value-base: '15'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}

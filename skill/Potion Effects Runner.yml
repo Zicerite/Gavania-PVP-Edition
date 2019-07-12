@@ -1,0 +1,1547 @@
+Potion Effects Runner: 
+  name: 'Potion Effects Runner'
+  type: 'Passive'
+  max-level: 5
+  skill-req: 'None'
+  skill-req-lvl: 1
+  needs-permission: 'false'
+  attributes: 
+    level-base: '0'
+    level-scale: '0'
+    cost-base: '0'
+    cost-scale: '0'
+    cooldown-base: '0'
+    cooldown-scale: '0'
+    mana-base: '0'
+    mana-scale: '0'
+    points-spent-req-base: '0'
+    points-spent-req-scale: '0'
+    incompatible: 
+    - ''
+  msg: '&6{player} &2has cast &6{skill}'
+  icon: 'POTION'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&d{name} &7({level}/{max})'
+  - '&2Type: &6{type}'
+  - ''
+  - ''
+  desc:  []
+  components: 
+    Environment Damage-a: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        mana: 'False'
+        cooldown: 'False'
+        type: 'Poison'
+        indicator: '2D'
+      children: 
+        Status-b: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            type: 'Active'
+            status: 'Invincible'
+            indicator: '2D'
+          children: 
+            Value Set-c: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                key: 'value'
+                value-base: '1'
+                value-scale: '0'
+                indicator: '2D'
+              children:  {}
+        Else-d: 
+          type: 'condition'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+          children: 
+            Class-e: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                class: 'Reaper'
+                exact: 'True'
+                indicator: '2D'
+              children: 
+                Health-f: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    type: 'Percent'
+                    min-value-base: '10'
+                    min-value-scale: '0'
+                    max-value-base: '100'
+                    max-value-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Mana-g: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Mana'
+                        value-base: '-40'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Damage-h: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Percent Missing'
+                        value-base: '3'
+                        value-scale: '0'
+                        true: 'True'
+                        classifier: 'poison'
+                        indicator: '2D'
+                      children:  {}
+                    Damage-i: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Damage'
+                        value-base: '2'
+                        value-scale: '0'
+                        true: 'True'
+                        classifier: 'default'
+                        indicator: '2D'
+                      children:  {}
+                    Particle-j: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        particle: 'Mob Spell'
+                        arrangement: 'Sphere'
+                        radius-base: '1'
+                        radius-scale: '0'
+                        particles-base: '2'
+                        particles-scale: '0'
+                        visible-radius: '40'
+                        dx: '0.01'
+                        dy: '0.5'
+                        dz: '0.25'
+                        speed: '1'
+                        amount: '0'
+                        forward: '0'
+                        upward: '1'
+                        right: '0'
+                        indicator: '2D'
+                      children:  {}
+            Else-k: 
+              type: 'condition'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                indicator: '2D'
+              children: 
+                Health-l: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    type: 'Percent'
+                    min-value-base: '10'
+                    min-value-scale: '0'
+                    max-value-base: '100'
+                    max-value-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Mana-m: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Mana'
+                        value-base: '-40'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Damage-n: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Percent Missing'
+                        value-base: '6'
+                        value-scale: '0'
+                        true: 'True'
+                        classifier: 'poison'
+                        indicator: '2D'
+                      children:  {}
+                    Damage-o: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Damage'
+                        value-base: '4'
+                        value-scale: '0'
+                        true: 'True'
+                        classifier: 'default'
+                        indicator: '2D'
+                      children:  {}
+                    Particle-p: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        particle: 'Mob Spell'
+                        arrangement: 'Sphere'
+                        radius-base: '1'
+                        radius-scale: '0'
+                        particles-base: '5'
+                        particles-scale: '0'
+                        visible-radius: '40'
+                        dx: '0.01'
+                        dy: '0.5'
+                        dz: '0.25'
+                        speed: '1'
+                        amount: '0'
+                        forward: '0'
+                        upward: '1'
+                        right: '0'
+                        indicator: '2D'
+                      children:  {}
+    Initialize: 
+      type: 'trigger'
+      indicator: '3D'
+      data: 
+        icon-key: ''
+        indicator: '2D'
+      children: 
+        Self-r: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Passive-s: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                seconds-base: '0.4'
+                seconds-scale: '0'
+                indicator: '2D'
+              children: 
+                Self-t: 
+                  type: 'target'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    indicator: '2D'
+                    group: 'enemy'
+                    wall: 'false'
+                    caster: 'false'
+                  children: 
+                    Status-u: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        type: 'Active'
+                        status: 'Curse'
+                        indicator: '2D'
+                      children: 
+                        Value Set-v: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            key: 'value'
+                            value-base: '1'
+                            value-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                    Else-w: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        indicator: '2D'
+                      children: 
+                        Self-x: 
+                          type: 'target'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            indicator: '2D'
+                            group: 'enemy'
+                            wall: 'false'
+                            caster: 'false'
+                          children: 
+                            Potion-y: 
+                              type: 'condition'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                type: 'Active'
+                                potion: 'Saturation'
+                                min-rank-base: '0'
+                                min-rank-scale: '0'
+                                max-rank-base: '0'
+                                max-rank-scale: '0'
+                                indicator: '2D'
+                              children: 
+                                Mana-z: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    type: 'Mana'
+                                    value-base: '1.5'
+                                    value-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                                Mana-ab: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    type: 'Percent'
+                                    value-base: '0.1'
+                                    value-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                            Potion-bb: 
+                              type: 'condition'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                type: 'Active'
+                                potion: 'Saturation'
+                                min-rank-base: '1'
+                                min-rank-scale: '0'
+                                max-rank-base: '1'
+                                max-rank-scale: '0'
+                                indicator: '2D'
+                              children: 
+                                Mana-cb: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    type: 'Mana'
+                                    value-base: '3'
+                                    value-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                                Mana-db: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    type: 'Percent'
+                                    value-base: '0.2'
+                                    value-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                            Potion-eb: 
+                              type: 'condition'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                type: 'Active'
+                                potion: 'Saturation'
+                                min-rank-base: '2'
+                                min-rank-scale: '0'
+                                max-rank-base: '2'
+                                max-rank-scale: '0'
+                                indicator: '2D'
+                              children: 
+                                Mana-fb: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    type: 'Mana'
+                                    value-base: '4.5'
+                                    value-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                                Mana-gb: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    type: 'Percent'
+                                    value-base: '0.3'
+                                    value-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                            Potion-hb: 
+                              type: 'condition'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                type: 'Active'
+                                potion: 'Saturation'
+                                min-rank-base: '3'
+                                min-rank-scale: '0'
+                                max-rank-base: '3'
+                                max-rank-scale: '0'
+                                indicator: '2D'
+                              children: 
+                                Mana-ib: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    type: 'Mana'
+                                    value-base: '6'
+                                    value-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                                Mana-jb: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    type: 'Percent'
+                                    value-base: '0.4'
+                                    value-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                            Potion-kb: 
+                              type: 'condition'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                type: 'Active'
+                                potion: 'Saturation'
+                                min-rank-base: '4'
+                                min-rank-scale: '0'
+                                max-rank-base: '4'
+                                max-rank-scale: '0'
+                                indicator: '2D'
+                              children: 
+                                Mana-lb: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    type: 'Mana'
+                                    value-base: '7.5'
+                                    value-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                                Mana-mb: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    type: 'Percent'
+                                    value-base: '0.5'
+                                    value-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                            Potion-nb: 
+                              type: 'condition'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                type: 'Active'
+                                potion: 'Saturation'
+                                min-rank-base: '5'
+                                min-rank-scale: '0'
+                                max-rank-base: '5'
+                                max-rank-scale: '0'
+                                indicator: '2D'
+                              children: 
+                                Mana-ob: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    type: 'Mana'
+                                    value-base: '9'
+                                    value-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                                Mana-pb: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    type: 'Percent'
+                                    value-base: '0.6'
+                                    value-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                            Potion-qb: 
+                              type: 'condition'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                type: 'Active'
+                                potion: 'Saturation'
+                                min-rank-base: '6'
+                                min-rank-scale: '0'
+                                max-rank-base: '6'
+                                max-rank-scale: '0'
+                                indicator: '2D'
+                              children: 
+                                Mana-rb: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    type: 'Mana'
+                                    value-base: '10.5'
+                                    value-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                                Mana-sb: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    type: 'Percent'
+                                    value-base: '0.7'
+                                    value-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                            Potion-tb: 
+                              type: 'condition'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                type: 'Active'
+                                potion: 'Saturation'
+                                min-rank-base: '7'
+                                min-rank-scale: '0'
+                                max-rank-base: '7'
+                                max-rank-scale: '0'
+                                indicator: '2D'
+                              children: 
+                                Mana-ub: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    type: 'Mana'
+                                    value-base: '12'
+                                    value-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                                Mana-vb: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    type: 'Percent'
+                                    value-base: '0.8'
+                                    value-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                            Potion-wb: 
+                              type: 'condition'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                type: 'Active'
+                                potion: 'Saturation'
+                                min-rank-base: '8'
+                                min-rank-scale: '0'
+                                max-rank-base: '8'
+                                max-rank-scale: '0'
+                                indicator: '2D'
+                              children: 
+                                Mana-xb: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    type: 'Mana'
+                                    value-base: '13.5'
+                                    value-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                                Mana-yb: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    type: 'Percent'
+                                    value-base: '0.9'
+                                    value-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                            Potion-zb: 
+                              type: 'condition'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                type: 'Active'
+                                potion: 'Saturation'
+                                min-rank-base: '9'
+                                min-rank-scale: '0'
+                                max-rank-base: '999'
+                                max-rank-scale: '0'
+                                indicator: '2D'
+                              children: 
+                                Mana-ac: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    type: 'Mana'
+                                    value-base: '15'
+                                    value-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                                Mana-bc: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    type: 'Percent'
+                                    value-base: '1'
+                                    value-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+            Passive-cc: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                seconds-base: '0.4'
+                seconds-scale: '0'
+                indicator: '2D'
+              children: 
+                Potion-dc: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    type: 'Active'
+                    potion: 'Hunger'
+                    min-rank-base: '0'
+                    min-rank-scale: '0'
+                    max-rank-base: '0'
+                    max-rank-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Mana-ec: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Mana'
+                        value-base: '-2'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Mana-fc: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Percent'
+                        value-base: '-0.5'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                Potion-gc: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    type: 'Active'
+                    potion: 'Hunger'
+                    min-rank-base: '1'
+                    min-rank-scale: '0'
+                    max-rank-base: '1'
+                    max-rank-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Mana-hc: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Mana'
+                        value-base: '-4'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Mana-ic: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Percent'
+                        value-base: '-1'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                Potion-jc: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    type: 'Active'
+                    potion: 'Hunger'
+                    min-rank-base: '2'
+                    min-rank-scale: '0'
+                    max-rank-base: '2'
+                    max-rank-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Mana-kc: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Mana'
+                        value-base: '-6'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Mana-lc: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Percent'
+                        value-base: '-1.5'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                Potion-mc: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    type: 'Active'
+                    potion: 'Hunger'
+                    min-rank-base: '3'
+                    min-rank-scale: '0'
+                    max-rank-base: '3'
+                    max-rank-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Mana-nc: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Mana'
+                        value-base: '-8'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Mana-oc: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Percent'
+                        value-base: '-2'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                Potion-pc: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    type: 'Active'
+                    potion: 'Hunger'
+                    min-rank-base: '4'
+                    min-rank-scale: '0'
+                    max-rank-base: '4'
+                    max-rank-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Mana-qc: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Mana'
+                        value-base: '-10'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Mana-rc: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Percent'
+                        value-base: '-2.5'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                Potion-sc: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    type: 'Active'
+                    potion: 'Hunger'
+                    min-rank-base: '5'
+                    min-rank-scale: '0'
+                    max-rank-base: '5'
+                    max-rank-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Mana-tc: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Mana'
+                        value-base: '-12'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Mana-uc: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Percent'
+                        value-base: '-3'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                Potion-vc: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    type: 'Active'
+                    potion: 'Hunger'
+                    min-rank-base: '6'
+                    min-rank-scale: '0'
+                    max-rank-base: '6'
+                    max-rank-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Mana-wc: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Mana'
+                        value-base: '-14'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Mana-xc: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Percent'
+                        value-base: '-3.5'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                Potion-yc: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    type: 'Active'
+                    potion: 'Hunger'
+                    min-rank-base: '7'
+                    min-rank-scale: '0'
+                    max-rank-base: '7'
+                    max-rank-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Mana-zc: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Mana'
+                        value-base: '-16'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Mana-ad: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Percent'
+                        value-base: '-4'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                Potion-bd: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    type: 'Active'
+                    potion: 'Hunger'
+                    min-rank-base: '8'
+                    min-rank-scale: '0'
+                    max-rank-base: '8'
+                    max-rank-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Mana-cd: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Mana'
+                        value-base: '-18'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Mana-dd: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Percent'
+                        value-base: '-4.5'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                Potion-ed: 
+                  type: 'condition'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    type: 'Active'
+                    potion: 'Hunger'
+                    min-rank-base: '9'
+                    min-rank-scale: '0'
+                    max-rank-base: '999'
+                    max-rank-scale: '0'
+                    indicator: '2D'
+                  children: 
+                    Mana-fd: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Mana'
+                        value-base: '-20'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+                    Mana-gd: 
+                      type: 'mechanic'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        counts: 'True'
+                        type: 'Percent'
+                        value-base: '-5'
+                        value-scale: '0'
+                        indicator: '2D'
+                      children:  {}
+        Self-hd: 
+          type: 'target'
+          indicator: '3D'
+          data: 
+            icon-key: ''
+            indicator: '2D'
+            group: 'enemy'
+            wall: 'false'
+            caster: 'false'
+          children: 
+            Passive-id: 
+              type: 'mechanic'
+              indicator: '3D'
+              data: 
+                icon-key: ''
+                counts: 'True'
+                seconds-base: '0.4'
+                seconds-scale: '0'
+                indicator: '2D'
+              children: 
+                Self-jd: 
+                  type: 'target'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    indicator: '2D'
+                    group: 'enemy'
+                    wall: 'false'
+                    caster: 'false'
+                  children: 
+                    Status-kd: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        type: 'Active'
+                        status: 'Curse'
+                        indicator: '2D'
+                      children: 
+                        Value Set-ld: 
+                          type: 'mechanic'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            counts: 'True'
+                            key: 'value'
+                            value-base: '1'
+                            value-scale: '0'
+                            indicator: '2D'
+                          children:  {}
+                    Else-md: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        indicator: '2D'
+                      children: 
+                        Self-nd: 
+                          type: 'target'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            indicator: '2D'
+                            group: 'enemy'
+                            wall: 'false'
+                            caster: 'false'
+                          children: 
+                            Potion-od: 
+                              type: 'condition'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                type: 'Active'
+                                potion: 'Regeneration'
+                                min-rank-base: '0'
+                                min-rank-scale: '0'
+                                max-rank-base: '0'
+                                max-rank-scale: '0'
+                                indicator: '2D'
+                              children: 
+                                Heal-pd: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    type: 'Percent'
+                                    value-base: '0.2'
+                                    value-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                                Heal-qd: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    type: 'Health'
+                                    value-base: '1.5'
+                                    value-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                            Potion-rd: 
+                              type: 'condition'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                type: 'Active'
+                                potion: 'Regeneration'
+                                min-rank-base: '1'
+                                min-rank-scale: '0'
+                                max-rank-base: '1'
+                                max-rank-scale: '0'
+                                indicator: '2D'
+                              children: 
+                                Heal-sd: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    type: 'Percent'
+                                    value-base: '0.4'
+                                    value-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                                Heal-td: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    type: 'Health'
+                                    value-base: '3'
+                                    value-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                            Potion-ud: 
+                              type: 'condition'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                type: 'Active'
+                                potion: 'Regeneration'
+                                min-rank-base: '2'
+                                min-rank-scale: '0'
+                                max-rank-base: '2'
+                                max-rank-scale: '0'
+                                indicator: '2D'
+                              children: 
+                                Heal-vd: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    type: 'Percent'
+                                    value-base: '0.6'
+                                    value-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                                Heal-wd: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    type: 'Health'
+                                    value-base: '4.5'
+                                    value-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                            Potion-xd: 
+                              type: 'condition'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                type: 'Active'
+                                potion: 'Regeneration'
+                                min-rank-base: '3'
+                                min-rank-scale: '0'
+                                max-rank-base: '3'
+                                max-rank-scale: '0'
+                                indicator: '2D'
+                              children: 
+                                Heal-yd: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    type: 'Percent'
+                                    value-base: '0.8'
+                                    value-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                                Heal-zd: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    type: 'Health'
+                                    value-base: '6'
+                                    value-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                            Potion-ae: 
+                              type: 'condition'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                type: 'Active'
+                                potion: 'Regeneration'
+                                min-rank-base: '4'
+                                min-rank-scale: '0'
+                                max-rank-base: '4'
+                                max-rank-scale: '0'
+                                indicator: '2D'
+                              children: 
+                                Heal-be: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    type: 'Percent'
+                                    value-base: '1'
+                                    value-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                                Heal-ce: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    type: 'Health'
+                                    value-base: '7.5'
+                                    value-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                            Potion-de: 
+                              type: 'condition'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                type: 'Active'
+                                potion: 'Regeneration'
+                                min-rank-base: '5'
+                                min-rank-scale: '0'
+                                max-rank-base: '5'
+                                max-rank-scale: '0'
+                                indicator: '2D'
+                              children: 
+                                Heal-ee: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    type: 'Percent'
+                                    value-base: '1.2'
+                                    value-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                                Heal-fe: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    type: 'Health'
+                                    value-base: '9'
+                                    value-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                            Potion-ge: 
+                              type: 'condition'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                type: 'Active'
+                                potion: 'Regeneration'
+                                min-rank-base: '6'
+                                min-rank-scale: '0'
+                                max-rank-base: '999'
+                                max-rank-scale: '0'
+                                indicator: '2D'
+                              children: 
+                                Heal-he: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    type: 'Percent'
+                                    value-base: '1.4'
+                                    value-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                                Heal-ie: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    type: 'Health'
+                                    value-base: '10.5'
+                                    value-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                            Potion-je: 
+                              type: 'condition'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                type: 'Active'
+                                potion: 'Regeneration'
+                                min-rank-base: '7'
+                                min-rank-scale: '0'
+                                max-rank-base: '7'
+                                max-rank-scale: '0'
+                                indicator: '2D'
+                              children: 
+                                Heal-ke: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    type: 'Percent'
+                                    value-base: '1.6'
+                                    value-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                                Heal-le: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    type: 'Health'
+                                    value-base: '12'
+                                    value-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                            Potion-me: 
+                              type: 'condition'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                type: 'Active'
+                                potion: 'Regeneration'
+                                min-rank-base: '8'
+                                min-rank-scale: '0'
+                                max-rank-base: '8'
+                                max-rank-scale: '0'
+                                indicator: '2D'
+                              children: 
+                                Heal-ne: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    type: 'Percent'
+                                    value-base: '1.8'
+                                    value-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                                Heal-oe: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    type: 'Health'
+                                    value-base: '13.5'
+                                    value-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                            Potion-pe: 
+                              type: 'condition'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                type: 'Active'
+                                potion: 'Regeneration'
+                                min-rank-base: '9'
+                                min-rank-scale: '0'
+                                max-rank-base: '999'
+                                max-rank-scale: '0'
+                                indicator: '2D'
+                              children: 
+                                Heal-qe: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    type: 'Percent'
+                                    value-base: '2'
+                                    value-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                                Heal-re: 
+                                  type: 'mechanic'
+                                  indicator: '3D'
+                                  data: 
+                                    icon-key: ''
+                                    counts: 'True'
+                                    type: 'Health'
+                                    value-base: '15'
+                                    value-scale: '0'
+                                    indicator: '2D'
+                                  children:  {}
+                Self-se: 
+                  type: 'target'
+                  indicator: '3D'
+                  data: 
+                    icon-key: ''
+                    indicator: '2D'
+                    group: 'enemy'
+                    wall: 'false'
+                    caster: 'false'
+                  children: 
+                    Potion-te: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        type: 'Active'
+                        potion: 'Speed'
+                        min-rank-base: '0'
+                        min-rank-scale: '0'
+                        max-rank-base: '0'
+                        max-rank-scale: '0'
+                        indicator: '2D'
+                      children: 
+                        Value-ue: 
+                          type: 'condition'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            key: 'stamina'
+                            min-value-base: '-999'
+                            min-value-scale: '0'
+                            max-value-base: '99'
+                            max-value-scale: '0'
+                            indicator: '2D'
+                          children: 
+                            Value Add-ve: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                key: 'stamina'
+                                amount-base: '1'
+                                amount-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+                    Potion-we: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        type: 'Active'
+                        potion: 'Speed'
+                        min-rank-base: '1'
+                        min-rank-scale: '0'
+                        max-rank-base: '1'
+                        max-rank-scale: '0'
+                        indicator: '2D'
+                      children: 
+                        Value-xe: 
+                          type: 'condition'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            key: 'stamina'
+                            min-value-base: '-999'
+                            min-value-scale: '0'
+                            max-value-base: '98'
+                            max-value-scale: '0'
+                            indicator: '2D'
+                          children: 
+                            Value Add-ye: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                key: 'stamina'
+                                amount-base: '2'
+                                amount-scale: '0'
+                                indicator: '2D'
+                              children:  {}
+                    Potion-ze: 
+                      type: 'condition'
+                      indicator: '3D'
+                      data: 
+                        icon-key: ''
+                        type: 'Active'
+                        potion: 'Speed'
+                        min-rank-base: '2'
+                        min-rank-scale: '0'
+                        max-rank-base: '999'
+                        max-rank-scale: '0'
+                        indicator: '2D'
+                      children: 
+                        Value-af: 
+                          type: 'condition'
+                          indicator: '3D'
+                          data: 
+                            icon-key: ''
+                            key: 'stamina'
+                            min-value-base: '-999'
+                            min-value-scale: '0'
+                            max-value-base: '97'
+                            max-value-scale: '0'
+                            indicator: '2D'
+                          children: 
+                            Value Add-bf: 
+                              type: 'mechanic'
+                              indicator: '3D'
+                              data: 
+                                icon-key: ''
+                                counts: 'True'
+                                key: 'stamina'
+                                amount-base: '3'
+                                amount-scale: '0'
+                                indicator: '2D'
+                              children:  {}
