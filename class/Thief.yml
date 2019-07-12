@@ -1,0 +1,57 @@
+Thief: 
+  name: 'Thief'
+  action-bar: ''
+  prefix: '&6Thief'
+  group: 'class'
+  mana: '&2Mana'
+  max-level: 1
+  parent: 'Citizen'
+  needs-permission: 'false'
+  attributes: 
+    health-base: '550'
+    health-scale: '0'
+    mana-base: '1000'
+    mana-scale: '0'
+    staminabonus-base: '100'
+    staminabonus-scale: '0'
+    staminabonusminusone-base: '99'
+    staminabonusminusone-scale: '0'
+    basespeed-base: '14'
+    basespeed-scale: '0'
+    weight-base: '70'
+    weight-scale: '0'
+    naturalmanaregen-base: '35'
+    naturalmanaregen-scale: '0'
+  mana-regen: 0.0
+  tree: 'FLOOD'
+  blacklist:  []
+  skills: 
+  - 'Light Combo Thief'
+  - 'Heavy Combo Thief'
+  - 'Multi-Strike'
+  - 'Spin-Strike'
+  - 'Slash Dash'
+  - 'Toxic Dart'
+  - 'Acid Dagger'
+  - 'Flash Bomb'
+  - 'Divekick'
+  - 'Shadow Guard'
+  - 'Bandage Up'
+  - 'Get Away Sprint'
+  - 'Rope With Claw'
+  - 'Water Energies'
+  - 'Darker Energies'
+  - 'Alby-Thief'
+  - 'Xync-Thief'
+  - 'Yryn-Thief'
+  - 'Nrik-Thief'
+  - 'Shadow Needles'
+  - 'Hydro Gel Patch'
+  - 'Quick Dash'
+  - 'Frosty Needles'
+  icon: 'FEATHER'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&dThief'
+  exp-source: 511

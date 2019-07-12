@@ -1,0 +1,49 @@
+Shadow-Barbarian: 
+  name: 'Shadow-Barbarian'
+  action-bar: '&c[䛰{health}/{maxHealth}䛰] &0[&5䛾&4{value:wrath}&5䛾&0] &a[&2䛸&a{value:stamina}%&2䛸&a] &e[䛢{value:tech}䛢] &0[&3䛽&5{value:masterful}%&3䛽&0]'
+  prefix: '&6Sh-Barbarian'
+  group: 'class'
+  mana: '&2Mana'
+  max-level: 1
+  parent: 'Citizen'
+  needs-permission: 'false'
+  attributes: 
+    health-base: '850'
+    health-scale: '0'
+    mana-base: '20'
+    mana-scale: '0'
+    staminabonus-base: '100'
+    staminabonus-scale: '0'
+    staminabonusminusone-base: '99'
+    staminabonusminusone-scale: '0'
+    basespeed-base: '4'
+    basespeed-scale: '0'
+    weight-base: '95'
+    weight-scale: '0'
+    naturalmanaregen-base: '20'
+    naturalmanaregen-scale: '0'
+  mana-regen: 0.0
+  tree: 'FLOOD'
+  blacklist:  []
+  skills: 
+  - 'Running On Wrath'
+  - 'Light Combo Shadow-Barbarian'
+  - 'Heavy Combo Shadow-Barbarian'
+  - 'Untamed Anger'
+  - 'Barbaric Kill'
+  - 'Berserker Toggle'
+  - 'Lacerate'
+  - 'Axe Throw'
+  - 'Burning Raise'
+  - 'Hypo Cut'
+  - 'Skybound Kick'
+  - 'Brutal Swing'
+  - 'Blood Shield'
+  - 'Wrath Expend'
+  - 'Tech Bandage'
+  icon: 'IRON_AXE'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&dShadow-Barbarian'
+  exp-source: 511

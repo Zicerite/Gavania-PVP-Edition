@@ -1,0 +1,58 @@
+Archangel: 
+  name: 'Archangel'
+  action-bar: ''
+  prefix: '&6Archangel'
+  group: 'class'
+  mana: '&2Mana'
+  max-level: 1
+  parent: 'Citizen'
+  needs-permission: 'false'
+  attributes: 
+    health-base: '1000'
+    health-scale: '0'
+    mana-base: '1000'
+    mana-scale: '0'
+    staminabonus-base: '100'
+    staminabonus-scale: '0'
+    staminabonusminusone-base: '99'
+    staminabonusminusone-scale: '0'
+    basespeed-base: '0'
+    basespeed-scale: '0'
+    weight-base: '140'
+    weight-scale: '0'
+    naturalmanaregen-base: '40'
+    naturalmanaregen-scale: '0'
+  mana-regen: 0.0
+  tree: 'FLOOD'
+  blacklist:  []
+  skills: 
+  - 'Light Combo Archangel'
+  - 'Heavy Combo Archangel'
+  - 'Circumference'
+  - 'Ascension'
+  - 'Sunlight'
+  - 'Electric Smite'
+  - 'Surgeline'
+  - 'Angel Blessing'
+  - 'Bright Strike'
+  - 'Smiteful Swing'
+  - 'Guardian Shield'
+  - 'Hot Anvil Swing'
+  - 'Underhand Swing'
+  - 'Alby-Archangel'
+  - 'Xync-Archangel'
+  - 'Yryn-Archangel'
+  - 'Nrik-Archangel'
+  - 'Archangel Resistance'
+  - 'Guardian Angel'
+  - 'Hardy Tank'
+  - 'Angelic Field'
+  - 'Angelic Siphon'
+  - 'Overhead Swing'
+  - 'Slam Hammer'
+  icon: 'IRON_AXE'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&dArchangel'
+  exp-source: 511

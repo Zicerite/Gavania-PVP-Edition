@@ -1,0 +1,54 @@
+Beast: 
+  name: 'Beast'
+  action-bar: ''
+  prefix: '&6Beast'
+  group: 'class'
+  mana: '&2Mana'
+  max-level: 1
+  parent: 'Citizen'
+  needs-permission: 'false'
+  attributes: 
+    health-base: '750'
+    health-scale: '0'
+    mana-base: '1000'
+    mana-scale: '0'
+    staminabonus-base: '100'
+    staminabonus-scale: '0'
+    staminabonusminusone-base: '99'
+    staminabonusminusone-scale: '0'
+    basespeed-base: '18'
+    basespeed-scale: '0'
+    weight-base: '90'
+    weight-scale: '0'
+    naturalmanaregen-base: '30'
+    naturalmanaregen-scale: '0'
+  mana-regen: 0.0
+  tree: 'FLOOD'
+  blacklist:  []
+  skills: 
+  - 'Light Combo Beast'
+  - 'Heavy Combo Beast'
+  - 'Slash'
+  - 'Munch'
+  - 'Feral Rush'
+  - 'Spit'
+  - 'Howl'
+  - 'Leap'
+  - 'Thunder Bite'
+  - 'Wild Smash'
+  - 'Endure'
+  - 'Wrath of the Blood Moon'
+  - 'Alby-Beast'
+  - 'Xync-Beast'
+  - 'Yryn-Beast'
+  - 'Nrik-Beast'
+  - 'Killing Energies'
+  - 'Adrenaline Boost'
+  - 'Moonlight Boost'
+  - 'Catching Prey'
+  icon: 'QUARTZ'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&dBeast'
+  exp-source: 511

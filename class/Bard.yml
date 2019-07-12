@@ -1,0 +1,45 @@
+Bard: 
+  name: 'Bard'
+  action-bar: ''
+  prefix: '&6Bard'
+  group: 'class'
+  mana: '&2Mana'
+  max-level: 1
+  parent: 'Citizen'
+  needs-permission: 'true'
+  attributes: 
+    health-base: '600'
+    health-scale: '0'
+    mana-base: '1000'
+    mana-scale: '0'
+    staminabonus-base: '100'
+    staminabonus-scale: '0'
+    staminabonusminusone-base: '99'
+    staminabonusminusone-scale: '0'
+    basespeed-base: '5'
+    basespeed-scale: '0'
+    weight-base: '90'
+    weight-scale: '0'
+    naturalmanaregen-base: '30'
+    naturalmanaregen-scale: '0'
+  mana-regen: 0.0
+  tree: 'FLOOD'
+  blacklist:  []
+  skills: 
+  - 'Light Combo Bard'
+  - 'Heavy Combo Bard'
+  - 'Lullaby'
+  - 'Sour Note'
+  - 'Thundering Bass'
+  - 'Calming Melody'
+  - 'Heavier Metal'
+  - 'Dangerous Strum'
+  - 'Raising Notes'
+  - 'Falling Notes'
+  - 'Critical Tempo'
+  icon: 'NOTE_BLOCK'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&dBard'
+  exp-source: 511

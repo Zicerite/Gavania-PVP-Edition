@@ -1,0 +1,41 @@
+Fairy: 
+  name: 'Fairy'
+  action-bar: ''
+  prefix: '&6Fairy'
+  group: 'class'
+  mana: '&2Mana'
+  max-level: 1
+  parent: 'Citizen'
+  needs-permission: 'false'
+  attributes: 
+    health-base: '600'
+    health-scale: '0'
+    mana-base: '1000'
+    mana-scale: '0'
+    staminabonus-base: '100'
+    staminabonus-scale: '0'
+    staminabonusminusone-base: '99'
+    staminabonusminusone-scale: '0'
+    basespeed-base: '10'
+    basespeed-scale: '0'
+    weight-base: '65'
+    weight-scale: '0'
+    naturalmanaregen-base: '45'
+    naturalmanaregen-scale: '0'
+  mana-regen: 0.0
+  tree: 'REQUIREMENT'
+  blacklist:  []
+  skills: 
+  - 'Light Combo Fairy'
+  - 'Heavy Combo Fairy'
+  - 'Fairy Dust'
+  - 'Aero Disc'
+  - 'Leviathan Bolts'
+  - 'Healing Bomb'
+  - 'Pixie Body'
+  icon: 'SUGAR'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&dFairy'
+  exp-source: 511

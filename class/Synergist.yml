@@ -1,0 +1,57 @@
+Synergist: 
+  name: 'Synergist'
+  action-bar: ''
+  prefix: '&6Synergist'
+  group: 'class'
+  mana: '&2Mana'
+  max-level: 1
+  parent: 'Citizen'
+  needs-permission: 'false'
+  attributes: 
+    health-base: '700'
+    health-scale: '0'
+    mana-base: '1000'
+    mana-scale: '0'
+    staminabonus-base: '100'
+    staminabonus-scale: '0'
+    staminabonusminusone-base: '99'
+    staminabonusminusone-scale: '0'
+    basespeed-base: '8'
+    basespeed-scale: '0'
+    weight-base: '90'
+    weight-scale: '0'
+    naturalmanaregen-base: '50'
+    naturalmanaregen-scale: '0'
+  mana-regen: 0.0
+  tree: 'REQUIREMENT'
+  blacklist:  []
+  skills: 
+  - 'Light Combo Synergist'
+  - 'Heavy Combo Synergist'
+  - 'Flame Wheel'
+  - 'Hydro Blast'
+  - 'Thundercloud'
+  - 'Leaf Shield'
+  - 'Mana Barrier'
+  - 'Cure Burst'
+  - 'Envelop'
+  - 'Encouragement'
+  - 'Vita Field'
+  - 'Ultimate Synergy'
+  - 'Explosive Jump'
+  - 'Shadow Wave'
+  - 'Light Wisp'
+  - 'Restorative Kill'
+  - 'Distilling Waters'
+  - 'Retaliative Struggle'
+  - 'Alby-Synergist'
+  - 'Xync-Synergist'
+  - 'Yryn-Synergist'
+  - 'Nrik-Synergist'
+  - 'Violent Breeze'
+  icon: 'BOOK'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&dSynergist'
+  exp-source: 511

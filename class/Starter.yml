@@ -1,0 +1,51 @@
+Starter: 
+  name: 'Starter'
+  action-bar: ''
+  prefix: '&6Starter'
+  group: 'class'
+  mana: '&2Mana'
+  max-level: 1
+  parent: 'Citizen'
+  needs-permission: 'false'
+  attributes: 
+    health-base: '100'
+    health-scale: '0'
+    mana-base: '100'
+    mana-scale: '0'
+    staminabonus-base: '0'
+    staminabonus-scale: '0'
+    staminabonusminusone-base: '0'
+    staminabonusminusone-scale: '0'
+    basespeed-base: '0'
+    basespeed-scale: '0'
+    weight-base: '0'
+    weight-scale: '0'
+    naturalmanaregen-base: '1'
+    naturalmanaregen-scale: '0'
+  mana-regen: 0.0
+  tree: 'FLOOD'
+  blacklist:  []
+  skills: 
+  - 'FLC'
+  - 'FRC'
+  - 'Starter_Sword Spin'
+  - 'Starter_Sword Fury'
+  - 'Starter_Sword Swing'
+  - 'Starter_Hilt Hit'
+  - 'Starter_Gale Blade'
+  - 'Starter_Sword Beam'
+  - 'Starter_Back Slash'
+  - 'Starter_Fireball'
+  - 'Starter_Cure'
+  - 'Starter_Frost'
+  - 'Starter_Ice Beam'
+  - 'Starter_Thunderbolt'
+  - 'Starter_Barrier'
+  - 'Multi-Mine'
+  - 'Flaming Hammer'
+  icon: 'WEB'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&dStarter'
+  exp-source: 511

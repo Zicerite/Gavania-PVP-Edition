@@ -1,0 +1,56 @@
+Insect: 
+  name: 'Insect'
+  action-bar: ''
+  prefix: '&6Insect'
+  group: 'class'
+  mana: '&2Mana'
+  max-level: 1
+  parent: 'Citizen'
+  needs-permission: 'false'
+  attributes: 
+    health-base: '500'
+    health-scale: '0'
+    mana-base: '1000'
+    mana-scale: '0'
+    staminabonus-base: '100'
+    staminabonus-scale: '0'
+    staminabonusminusone-base: '99'
+    staminabonusminusone-scale: '0'
+    basespeed-base: '25'
+    basespeed-scale: '0'
+    weight-base: '60'
+    weight-scale: '0'
+    naturalmanaregen-base: '35'
+    naturalmanaregen-scale: '0'
+  mana-regen: 0.0
+  tree: 'FLOOD'
+  blacklist:  []
+  skills: 
+  - 'Light Combo Insect'
+  - 'Heavy Combo Insect'
+  - 'Iron Bite'
+  - 'Buzz Off'
+  - 'Horn Rush'
+  - 'Horn Uppercut'
+  - 'Horn Fury'
+  - 'Proboscis'
+  - 'Updraft'
+  - 'Swarm'
+  - 'Digestive Fluids'
+  - 'Plague Bite'
+  - 'Exoskeleton'
+  - 'Scatter'
+  - 'Positional Bonuses'
+  - 'Toxin Advantage'
+  - 'Feed'
+  - 'Alby-Insect'
+  - 'Xync-Insect'
+  - 'Yryn-Insect'
+  - 'Nrik-Insect'
+  - 'Araw-Insect'
+  icon: 'IRON_NUGGET'
+  icon-durability: 0
+  icon-data: 0
+  icon-lore: 
+  - '&dInsect'
+  exp-source: 511
